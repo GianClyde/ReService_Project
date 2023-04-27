@@ -1,0 +1,217 @@
+#main-wrapper{
+    min-height: 600px;
+    padding: 5%;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#left-wrapper{
+    width: 90%;
+    background-color: white;
+    padding: 5%;
+    margin: auto;
+    margin-bottom: 10%;
+}
+
+#right-wrapper{
+    width: 90%;
+    background-color: white;
+    padding: 5%;
+    margin: auto;
+    margin-bottom: 5%;
+    
+    
+}
+
+#img-wrapper{
+    width: 50%;
+    margin: auto;
+    border-radius: 50%;
+    background-color: white;
+
+}
+#img{
+    width: 100%;
+}
+#drvr-name{
+     text-align: center;
+     font-family: 'Bebas Neue', cursive;
+     font-size: 18px;
+
+}
+#sub-header{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+#label{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+#sub-header1{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+#label1{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+#proile-content-wrapper{
+    margin-left: 3%;
+    font-size: 10px;
+    margin-left:3%;
+    margin-bottom: 1%;
+    border-bottom: solid #001c69;
+    width: 80%;
+    border-width: 1px;
+
+}
+#proile-content-wrapper-r{
+    margin-left: 3%;
+    font-size: 10px;
+    margin-left:3%;
+    margin-bottom: 1%;
+    border-bottom: solid #001c69;
+    width: 80%;
+    border-width: 1px;
+}
+
+.reserve-btn{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 12px;
+    background-color: white;
+    color: #001c69;
+    padding: 2%;
+    width: 20%;
+    text-align: center;
+    margin: auto;
+}
+.reserve-btn:hover{
+    background-color: #deaf39;
+}
+#forgot-pass-main-wrapper{
+    width: 100%;
+    min-height: 565px;
+    padding: 10%;
+    
+}
+#forgot-pass-form-wrapper{
+    width: 95%;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: #001c69;
+    min-height: 400px;
+    padding: 5%;
+}
+#forgot-pass-header{
+    font-family: 'Signika';
+    color: #001c69;
+    font-size: 20px;
+}
+#forgot-pass-message{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #001c69; 
+    font-size: 10px;
+}
+#forgot-pass-subheader{
+    font-family: 'Signika';
+    color: #001c69;
+    font-size: 12px;
+}
+@media screen and (min-width:700px){
+    #main-wrapper{
+        min-height: 500px;
+        padding: 0;
+
+    }
+    #left-wrapper{
+        width: 50%;
+        background-color: #001c69;
+        padding: 5%;
+        padding-top: 5%;
+        margin: auto;
+        margin-top: 0;
+        margin-bottom: 10%;
+        float: left;
+    }
+
+    #right-wrapper{
+        padding-top: 0;
+        margin-top: 0;
+        width: 50%;
+        background-color: white;
+        padding: 5%;
+        margin-bottom: 5%;
+        float: right;
+        margin-bottom: 5%;
+        min-height: 800px;
+    }
+    #drvr-name{
+        text-align: center;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 22px;
+        color: #deaf39;
+   
+   }
+   #sub-header{
+    font-size: 22px;
+    color: #deaf39;
+    }
+    #sub-header1{
+        font-size: 22px;
+        color: #001c69;
+    }
+
+    #label{
+        text-align: left;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        color: #deaf39;
+    }
+    #label1{
+        text-align: left;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        color: #001c69;
+    }
+    #proile-content-wrapper{
+        margin-left: 3%;
+        font-size:15px;
+        margin-left:3%;
+        margin-bottom: 1%;
+        border-bottom: solid #001c69;
+        width: 80%;
+        border-width: 1px;
+        color: #deaf39;
+
+    }
+    #proile-content-wrapper-r{
+        margin-left: 3%;
+        font-size: 15px;
+        margin-left:3%;
+        margin-bottom: 1%;
+        border-bottom: solid #001c69;
+        width: 80%;
+        border-width: 1px;
+        color: #001c69;
+    }
+    .reserve-btn{
+        font-family: 'Bebas Neue', cursive;
+        font-size: 12px;
+        background-color: white;
+        color: #001c69;
+        padding: 2%;
+        width: 20%;
+        text-align: center;
+        margin: auto;
+        margin-top: 8%;
+
+    }
+
+}

@@ -1,0 +1,222 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<style>
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    #profile-main-wrapper{
+        width: 100%;
+        padding: 5%;
+        background-image: url("{%static 'images/bg.png'%}");
+        min-height: 570px;
+        background-size: cover;
+        }
+</style>
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_profile_page.css' %}">
+{%if page == 'driver-profile'%}
+<div id="profile-main-wrapper">
+    <div id="profile-row1-wrapper" class="clearfix">
+        <div id="contact-image-wrapper">
+            <div id="image-wrapper">
+                {% if user.driverprofile.image %}
+                    <img id="profile-img" src="{{user.driverprofile.image.url}}">
+                {%else%}
+                    <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+    
+                <h2 id="profile-name">{{request.user.first_name}} {{request.user.last_name}}</h2>
+                <a href="{% url 'driver-edit-profile' request.user.id%}" id="edit-btn">Edit</a>
+            </div>
+            <div id="contact-wrapper">
+                <h2 id="profile-subheader">Contacts</h2>
+                <label id="profile-label">Contact No.:</label>
+                <div id="proile-content-wrapper">
+                    {{request.user.contact_no}}
+                </div>
+            </div>
+
+            
+        </div>
+        
+        <div id="personal-info-wrapper">
+            <h2 id="profile-subheader" >Personal Information</h2>
+            <hr>
+            <label id="profile-label">Last Name:</label>
+            <div id="proile-content-wrapper">
+                {{request.user.last_name}}
+            </div>
+            <label id="profile-label">First Name:</label>
+            <div id="proile-content-wrapper">
+                {{request.user.first_name}}
+            </div>
+            <label id="profile-label">Middle Name:</label>
+            <div id="proile-content-wrapper">
+                {{request.user.middle_name}}
+            </div>
+            <label id="driverprofile-label">Birth Date:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.birth_date}}<br>
+            </div>
+            <label id="profile-label">Age:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.age}}
+            </div>
+        </div>
+        <div id="address-wrapper">
+            <h2 id="profile-subheader">Address</h2>
+            <hr>
+                <label id="profile-label">Lot/House no./Blg no.:</label>
+                <div id="proile-content-wrapper" style="display: inline; margin-left: 0; margin-right: 2%;">
+                    {{user.driverprofile.lot}}
+                </div>
+                <label id="profile-label">Street:</label>
+                <div id="proile-content-wrapper" style="display: inline; margin-left: 0; margin-right: 2%;">
+                    {{user.driverprofile.street}}<br>
+                </div>
+                <label id="profile-label">Village:</label>
+                <div id="proile-content-wrapper" style="display: inline; margin-left: 0; margin-right: 2%; margin-top: 2%;">
+                    {{user.driverprofile.village}}
+                </div>
+                <label id="profile-label" style="margin-top: 2%;">City:</label>
+                <div id="proile-content-wrapper" style="display: inline; margin-left: 0; margin-right: 2%; margin-top: 2%;">
+                    {{user.driverprofile.city}}<br>
+                </div>
+                <label id="profile-label" style="margin-top: 2%;">Zip Code:</label>
+                <div id="proile-content-wrapper" style="display: inline; margin-left: 0; margin-right: 2%;">
+                    {{user.driverprofile.zipcode}}
+                </div>
+    
+        </div>
+    </div>
+
+    
+    <div id="profile-row3-wrapper">
+        <h2 id="profile-subheader">Franchise Information</h2>
+        <hr>
+        <label id="profile-label">Franchise:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.franchise}}
+            </div>
+            <label id="profile-label">Franchise No.:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.franchise_no}}
+            </div>
+            <label id="profile-label">Operator:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.operator}}
+            </div>
+
+            <h2 style="font-family: Signika; font-size: 15px; color: #001c69; ">School Information</h2>
+            <div id="profile-personal-info-wrapper">
+            <label id="profile-label">School Branch:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.school_branch}}
+            </div>
+            <label id="profile-label">Assigned Route:</label>
+            <div id="proile-content-wrapper">
+                {{user.driverprofile.assigned_route}}
+            </div>
+            
+
+    </div>
+</div>
+{%else%}
+<div id="profile-main-wrapper">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="profile-row1-wrapper" class="clearfix">
+            <div id="contact-image-wrapper">
+                <div id="image-wrapper">
+                    {% if user.profile.image %}
+                        <img id="profile-img" src="{{user.profile.image.url}}">
+                        {{pform.image}}
+                    {%else%}
+                        <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                        {{pform.image}}
+                    {%endif%}
+        
+                    <h2 id="profile-name">{{request.user.first_name}} {{request.user.last_name}}</h2>
+                    <input id="save-btn" type="submit" value="Save"/>
+                </div>
+                <div id="contact-wrapper">
+                    <h2 style="font-family: Signika; font-size: 15px; color: #001c69; ">Contacts</h2>
+                    <label id="profile-label">Contact No.:</label>
+                    {{form.contact_no}}
+                </div>
+    
+                
+            </div>
+            
+            <div id="personal-info-wrapper">
+                <h2 style="font-family: Signika; font-size: 15px; color: #001c69; ">Personal Information</h2>
+                <hr>
+                <label id="profile-label">Last Name:</label>
+                {{form.last_name}}
+                <label id="profile-label">First Name:</label>
+                {{form.first_name}}
+                <label id="profile-label">Middle Name:</label>
+                {{form.middle_name}}
+                <label id="profile-label">Birth Date:</label>
+                {{form_p.birth_date}}<br>
+                <label id="profile-label">Age:</label><br>
+                {{form_p.age}}
+            </div>
+    
+            <div id="address-wrapper">
+                <h2 style="font-family: Signika; font-size: 15px; color: #001c69; ">Address</h2>
+                <hr>
+                    <label id="profile-label">Lot/House no./Blg no.:</label>
+                    {{form_p.lot}}
+                    <label id="profile-label">Street:</label>
+                    {{form_p.street}}<br>
+                    <label id="profile-label">Village:</label>
+                    {{form_p.village}}
+                    <label id="profile-label" style="margin-top: 2%;">City:</label>
+                    {{form_p.city}}<br>
+                    <label id="profile-label" style="margin-top: 2%;">Zip Code:</label>
+                    {{form_p.zipcode}}
+                  
+        
+            </div>
+        </div>
+    
+       
+        <div id="profile-row3-wrapper">
+            <h2 id="profile-subheader">Franchise Information</h2>
+            <hr>
+            <label id="profile-label">Franchise:</label>
+                <div id="proile-content-wrapper">
+                    {{user.driverprofile.franchise}}
+                </div>
+                <label id="profile-label">Franchise No.:</label>
+                <div id="proile-content-wrapper">
+                    {{user.driverprofile.franchise_no}}
+                </div>
+                <label id="profile-label">Operator:</label>
+                <div id="proile-content-wrapper">
+                    {{user.driverprofile.operator}}
+                </div>
+    
+                <h2 style="font-family: Signika; font-size: 15px; color: #001c69; ">School Information</h2>
+                <div id="profile-personal-info-wrapper">
+                <label id="profile-label">School Branch:</label>
+                <div id="proile-content-wrapper">
+                    {{user.driverprofile.school_branch}}
+                </div>
+                <label id="profile-label">Assigned Route:</label>
+                <div id="proile-content-wrapper">
+                    {{user.driverprofile.assigned_route}}
+                </div>
+                
+    
+        </div>
+    </form>
+    </div>
+
+{%endif%}
+{%endblock%}

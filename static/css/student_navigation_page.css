@@ -1,0 +1,143 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#stdnt-navpage-main-wrapper{
+    width: 100%;
+    background-color: black;
+    padding-top: 5%;
+    min-height: 565px;
+}
+#stdnt-navpage-header{
+    font-family: 'Noto Sans';
+    font-size: 18px;
+}
+#stdnt-navpage-header-wrapper{
+    width: 100%;
+    background-color: bisque;
+}
+#buttons-main-wrapper{
+    width: 100%;
+    padding: 8%;
+}
+.card{
+    background-color: white;
+    border: solid;
+    border-color: white;
+    border-width: 5px;
+    border-radius: 15px;
+    transition: 0.5s;
+    
+}
+.card:hover{
+    background-color: #001c69;
+    border-color: #deaf39;
+    border-width: 5px;
+    color: white;
+}
+#card1{
+    width: 45%;
+    float: left;
+    min-height: 150px;
+    padding: 5%;
+}
+#card2{
+    width: 45%;
+    float: left;
+    margin-left: 8%;
+    min-height: 150px;
+}
+#card3{
+    width: 45%;
+    float: left;
+    margin-top: 10%;
+    min-height: 150px;
+    margin-left: 1%;
+}
+#card4{
+    width: 45%;
+    float: left;
+    margin-left: 8%;
+    margin-top: 10%;
+    min-height: 150px;
+}
+#card-img-wrapper1{
+    width: 70%;
+    margin-left: 16%;
+    margin-bottom: 3%;
+}
+#card-icon-img1{
+    width: 100%;
+}
+#nav-btn-label-wrapper{
+    width: 100%;
+    text-align: center;
+}
+#nav-btn-label-wrapper1{
+    width: 100%;
+    text-align: center;
+}
+#nav-btn-label{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 18px;
+    color: #001c69;
+    text-align: center;
+}
+
+#card-img-wrapper2{
+    width: 56%;
+    margin-left: 23%;
+    margin-bottom: 3%;
+    padding-top: 12%;
+    
+}
+#card-icon-img2{
+    width: 100%;
+    
+}
+
+@media screen and (min-width:1000px){
+    #stdnt-navpage-main-wrapper{
+        padding-top: 2%;
+        min-height: 650px;
+
+    }
+    #buttons-main-wrapper{
+        width: 100%;
+        padding: 2%;
+    }
+    #card1{
+        width: 22%;
+        min-height: 150px;
+        padding: 5%;
+        float: left;
+        margin-left: 3%;
+    }
+    #card2{
+        width: 22%;
+        float: left;
+        margin-left: 3%;
+        min-height: 130px;
+    }
+    #card3{
+        width: 22%;
+        float: left;
+        min-height: 150px;
+        margin-top: 0;
+        margin-left: 3%;
+    }
+    #card4{
+        width: 22%;
+        float: left;
+        margin-left: 3%;
+        margin-top: 0;
+        min-height: 150px;
+    }
+    #nav-btn-label-wrapper{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15%;
+    }
+
+}

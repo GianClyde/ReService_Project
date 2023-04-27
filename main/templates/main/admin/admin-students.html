@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student.css' %}">
+
+<div id="main" class="clearfix">
+    <h1 id="header">ReService:Students</h1>
+    <div id="navbar-left">
+        <div id="search-br-wrapper">
+            <form method="GET" action="{% url 'admin-students'%}">
+                <input class="search" name="q" type="text" placeholder="Search..">
+            </form>
+            
+        
+        </div>
+        <div id="filters-wrapper">
+            <h3>Filter by</h3>
+            <ul class="filters__list">
+                <li class="list">
+                    <a href="{% url 'admin-students'%}" class="list">All</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-students' %}?q=PENDING" class="list">Pending</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-students' %}?q=SUCCESSFULL" class="list">Successful</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-students' %}?q=DECLINED" class="list">Declined</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-students' %}?q=FORCANCELATION" class="list">for cancelation</a>
+                </li>
+        
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="clearfix">
+
+            <div id="checkbox-col-lbl">
+                <input type="checkbox"  name="checkbox">
+            </div>
+           <div id="id-col-lbl">
+            <h3 id="col-label">ID</h3>
+           </div> 
+           <div id="name-col-lbl">
+            <h3 id="col-label">Name</h3>
+           </div>
+           <div id="oprt-col-lbl">
+            <h3 id="col-label">Operations</h3>
+           </div>
+
+        </div>
+        {% for user in users%}
+            <a><div id="user-card" class="clearfix">
+                <div id="card-info" class="clearfix">
+                    <div id="check-box">
+                        <input type="checkbox" value="{{user.id}}" name="checkbox">
+                    </div>
+                    <div id="user-id">
+                        {{user.id}}
+                    </div>
+                    <div id="user-name">
+                        <b>{{user.last_name}} {{user.first_name}} {{user.middle_name}}</b>
+                    </div>
+                         
+                </div>
+                <div id="operations">
+                    <a href="{% url 'admin-stdnt-info' user.id%}"><div class="btn">Show</div></a>
+                    <a class="btn" href="{% url 'stdnt-dlt' user.id%}">Delete</a>
+                </div>
+            
+            </div></a>
+
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

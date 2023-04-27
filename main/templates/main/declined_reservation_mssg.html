@@ -1,0 +1,19 @@
+{% autoescape off %}
+Hello {{ user.last_name }}, we are sad to tell you that your registration, {{reservation.reservation_id}} has been declined/
+
+Your reservation has been declined due the following reasons:
+
+    1. Credentials does not match any records in our database
+    2. Vehicle has its full capacity
+    3. Driver reasons
+
+    For more information you can email reservicesystems@gmail.com, or you can call your driver {{driver.contact_no}}
+
+
+
+Note: Reservation is not considered untli payment is accomplished.
+
+Sincerely,
+ReService
+
+{% endautoescape %}

@@ -1,0 +1,150 @@
+#main{
+    width: 100%;
+    padding: 3%;
+}
+
+#account{
+    width: 90%;
+    padding: 2%;
+    background-color: white;
+    padding: 2%;
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 3%;
+
+}
+#header{
+    font-family: "Bebas Neue";
+}
+#profile-img{
+    width: 100%;
+}
+#img-wrapper{
+    border-right: solid black;
+    width: 20%;
+    float: left;
+    padding: 2%;
+}
+
+#acct-info{
+    width: 40%;
+    float: left;
+    padding: 2%;
+    border-right: solid black;
+}
+#row{
+    width: 100%;
+    margin-bottom: 3%;
+}
+#label{
+    width: 30%;
+    float: left;
+    font-family: "Bebas Neue";
+    font-size: 18px;
+}
+
+#content{
+    width: 70%;
+    float: right;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+}
+#permissions{
+    float: left;
+    width: 40%;
+    padding: 2%;
+}
+#btn{
+    width: 10%;
+    padding: 2%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-left: 80%;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#profile-content1{
+    width: 50%;
+    padding: 2%;
+    float: left;
+    border-right: solid #001c69;
+}
+#profile-content2{
+    width: 50%;
+    padding: 2%;
+    float: right;
+    
+}
+
+.form-input{
+    width: 70%;
+    float: right;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+}
+.form-input-add{
+    width: 70%;
+    float: right;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+}
+.form-input-add2{
+    width: 70%;
+    float: right;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+}
+.save{
+    width: 10%;
+    padding: 2%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-left: 80%;
+}
+#vehicle-img-wrapper{
+    width: 50%;
+    float: left;
+    border-right: solid #001c69;
+    padding: 1%;
+}
+#vehicle-img{
+    width: 100%;
+}
+#service-info{
+    width: 50%;
+    float: right;
+    padding: 1%;
+}
+
+h3{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+}
+
+#serve{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    padding: 1%;
+    width: 40%;
+    background-color: #deaf39;
+    border-radius: 5px;
+    margin-bottom: 1%;
+}

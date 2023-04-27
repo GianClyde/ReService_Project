@@ -1,0 +1,253 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#stdnt-profilepg-main-wrapper{
+    width: 100%;
+}
+#profilepg-left-wrapper{
+    width: 30%;
+    background-color: #001c69;
+    float: left;
+    margin-top: 0;
+    min-height: 1100px;
+}
+#profilepg-right-wrapper{
+    width: 70%;
+    float: right;
+    background-color: white;
+    margin-top: 0;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+#LW-header{
+    width: 100%;
+    padding-left: 3%;
+    border-bottom: solid #deaf39;
+}
+#reservice-text-hdr{
+    font-family: Signika;
+    color: #deaf39;
+    font-size: 12px;
+    display: inline;
+    
+}
+#account-text-hdr{
+    font-family: Montserrat;
+    color: white;
+    font-size: 11px;
+    display: inline;
+    margin-left: 3%;
+}
+#LW-sidebar-wrapper{
+    width: 100%;
+    min-height: 565px;
+}
+#LW-nav-btn{
+    width: 100%;
+    padding-left: 3%;
+    padding-top: 2%;
+    padding-right: 3%;
+    margin-top: 5%;
+}
+#LW-navbtn-icon-wrapper{
+    width: 18%;
+    float: left;
+}
+#LW-navbtn-icon{
+    width: 100%;
+}
+#LW-navbtn-text-wrapper{
+    width: 78%;
+    float: right;
+    padding-top: 10%;
+    
+}
+#LW-navbtn-text{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 8px;
+    color: white;
+    
+}
+#RW-profile-header{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 12px;
+    
+}
+#RW-top-profile-wrapper{
+    width: 100%;
+}
+#RW-profile-img-wrapper{
+    width: 20%;
+    float: left;
+    
+}
+#RW-profile-img{
+    width: 100%;
+    border-radius: 50%;
+}
+#RW-profile-fullname-wrapper{
+    width: 50%;
+    float: left;
+    margin-top: 6%;
+}
+#RW-profile-fullname{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 12px;
+}
+#RW-profile-btns-wrapper{
+    width: 30%;
+    float: left;
+    margin-top: 13%;
+}
+
+#RW-profile-edit-btn{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 8px;
+    background-color: #deaf39;
+    color: white;
+    border: solid #deaf39;
+    display: inline;
+    transition: 0.5s;
+    
+}
+.edit-btn:hover{
+    border: solid #001c69;
+    background-color: #001c69;
+}
+#RW-profile-subheader{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 12px;
+}
+#profile-label{
+    font-family: 'Signika';
+    font-size: 10px;
+    color:  #deaf39;
+}
+#proile-content-wrapper{
+    width: 60%;
+    min-height: 20px;
+    border: solid #001c69;
+    border-width: 3px;
+    margin-left: 3%;
+    border-radius: 20px;
+    font-size: 11px;
+
+}
+#profile-address-info-wrapper{
+    width: 100%;
+    display: inline;
+}
+#proile-address-content-wrapper{
+    border: solid #001c69;;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline;
+    margin-left: 2%;
+    width: 30%;
+    min-height: 20px;
+    border-width: 3px;
+    border-radius: 20px;
+
+}
+#save-btn{
+    background-color: #deaf39;
+    color: white;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: bold;   
+    border: none;
+    padding: 1%;
+    padding-left: 1.5%;
+    
+}
+#edit-btn-link{
+    color: white;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 50%; /* Full width */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+@media screen and (min-width:1000px){
+
+    #profilepg-left-wrapper{
+        width: 20%;
+    }
+    #profilepg-right-wrapper{
+        width: 80%;
+    }
+    #RW-profile-img-wrapper{
+        width: 15%;   
+    }
+    #LW-navbtn-text{
+        font-size: 13px;
+        
+    }
+    #LW-navbtn-text-wrapper{
+        padding-top: 5%;
+        
+    }
+    #reservice-text-hdr{
+        font-size: 20px;
+
+        
+    }
+    #account-text-hdr{
+        font-size: 18px;
+
+    }
+    #RW-profile-edit-btn{
+        font-size: 12px;
+        color: white;
+        width: 40%;
+        padding: 4%;
+        
+    }
+    #save-btn{
+        font-size: 12px;
+        color: white;
+        width: 40%;
+        padding: 4%;
+        
+    }
+
+}

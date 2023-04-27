@@ -1,0 +1,30 @@
+#forgot-pass-main-wrapper{
+    width: 100%;
+    min-height: 565px;
+    padding: 10%;
+    
+}
+#forgot-pass-form-wrapper{
+    width: 95%;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: #001c69;
+    min-height: 400px;
+    padding: 5%;
+}
+#forgot-pass-header{
+    font-family: 'Signika';
+    color: #001c69;
+    font-size: 20px;
+}
+#forgot-pass-message{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #001c69; 
+    font-size: 10px;
+}
+#forgot-pass-subheader{
+    font-family: 'Signika';
+    color: #001c69;
+    font-size: 12px;
+}

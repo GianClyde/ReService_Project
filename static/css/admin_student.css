@@ -1,0 +1,136 @@
+.clearfix::after{
+    display: block;
+    content: "";
+    clear: both;
+}
+#main{
+    width: 100%;
+    padding: 3%;
+}
+#navbar-left{
+    width: 22%;
+    background-color: white;
+    margin-right: 3%;
+    float: left;
+    padding: 2%;
+    height: 100vh;
+}
+#content{
+    width: 75%;
+    background-color: white;
+    float: right;
+    padding: 2%;
+    height: 100vh;
+}
+
+#header{
+    font-family: 'Bebas Neue';
+    color: #deaf39;
+}
+#user-card{
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 2%;
+    font-family: 'Courier New', Courier, monospace;
+}
+#col-label{
+    font-family: 'Bebas Neue';
+    color: #deaf39;
+
+}
+#card-info{
+    width: 70%;
+    float: left;
+}
+#check-box{
+    width: 5%;
+    float: left;
+    background-color: #deaf39;
+
+}
+#user-id{
+    width: 50%;
+    background-color: antiquewhite;
+    float: left;
+    padding: 1%;
+}
+#user-name{
+    width: 40%;
+    background-color: aqua;
+    float: left;
+    padding: 1%;
+}
+#operations{
+    width: 30%;
+    float: right;
+    padding: 1%;
+
+}
+
+#checkbox-col-lbl{
+    width: 5%;
+    float: left;
+    background-color: #deaf39;
+    padding-bottom: 0;
+    text-align: center;
+}
+#id-col-lbl{
+    width: 34%;
+    background-color: antiquewhite;
+    float: left;
+    padding: 1%;
+    padding-bottom: 0;
+}
+#name-col-lbl{
+    width: 27%;
+    background-color: aqua;
+    float: left;
+    padding: 1%;
+    padding-bottom: 0;
+}
+#oprt-col-lbl{
+    padding-bottom: 0;
+    width: 10%;
+    float: left;
+    padding: 1%;
+}
+.btn{
+    padding: 1%;
+    font-family: 'Bebas Neue';
+    background-color: #deaf39;
+    width: 50%;
+    display: inline;
+}
+#search-br-wrapper{
+    width: 100%;
+    background-color: #deaf39;
+    margin-bottom: 2%;
+}
+
+.search{
+    width: 100%;
+    border: solid #deaf39;
+    font-family: 'Courier New', Courier, monospace;
+}
+#filters-wrapper{
+    width: 100%;
+}
+.filters__list{
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+
+h3{
+    font-family: "Bebas Neue"
+}
+
+.list{
+    width: 100%;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 2%;
+}

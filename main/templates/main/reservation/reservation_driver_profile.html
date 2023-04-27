@@ -1,0 +1,283 @@
+
+{%extends 'main.html'%}
+<!DOCTYPE html>
+{%block content%}
+{%load static%}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/reservation_driver_profile.css' %}"/>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+    
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+    
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+    
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+    
+    .modal-body{
+       padding: 3%;
+    
+    }
+    
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+    #modal-header{
+        margin-right: 30%;
+    }
+    </style>
+
+</head>
+
+<body>
+    <div id="main-wrapper" class="clearfix">
+        <div id="left-wrapper">
+            <div id="img-wrapper">
+                {% if driver.driverprofile.image %}
+                    <img id="img" src="{{driver.driverprofile.image.url}}">
+                {%else%}
+                    <img id="img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+        
+            </div>
+            <h2 id="drvr-name">{{driver.first_name}} {{driver.last_name}}</h2>
+            <h3 id="sub-header">Personal Infromation</h3>
+            <label id="label">Last Name:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.last_name}}
+                </div>
+                <label id="label">First Name:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.first_name}}
+                </div>
+                <label id="label">Middle Name:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.middle_name}}
+                </div>
+                <label id="label">Birth Date:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.driverprofile.birth_date}}<br>
+                </div>
+                <label id="label">Age:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.driverprofile.age}}
+                </div>
+           
+    
+        </div>
+    
+        <div id="right-wrapper">
+    
+            <h3 id="sub-header1">Address </h3>
+            <label id="label1">Address:</label>
+            <div id="proile-content-wrapper-r">
+               Lot {{driver.driverprofile.lot}} {{driver.driverprofile.street}}, {{driver.driverprofile.village}}, {{driver.driverprofile.city}}
+            </div>
+            <label id="label1">Email:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.email}}
+            </div>
+            <label id="label1">Contact No.:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.contact_no}}
+            </div>
+            <hr>
+            <h3 id="sub-header1">School Infromation</h3>       
+            <label id="label1">School Branch:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.driverprofile.school_branch}}
+            </div>
+            <label id="label1">Assigned Route:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.driverprofile.assigned_route}}
+       
+            </div>
+            <hr>
+            <h3 id="sub-header1">Franchise Infromation </h3>
+            <label id="label1">Franchise:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.driverprofile.franchise}}
+            </div>
+            <label id="label1">Franchise No.:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.driverprofile.franchise_no}}
+            </div>
+            <label id="label1">Operator:</label>
+            <div id="proile-content-wrapper-r">
+                {{driver.driverprofile.operator}}
+            </div>
+    
+            <button class="reserve-btn" id="myBtn">Reserve</button>
+        </div>
+    
+        
+    
+    </div>
+
+<!-- Trigger/Open The Modal -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+    <h2 id="modal-header">Confirm Reservation</h2>
+      <span class="close">&times;</span>
+      
+    </div>
+    <div class="modal-body">
+        <h2 id="forgot-pass-header">School Service Information:</h2>
+        <label id="forgot-pass-subheader">Diver Name:</label>
+        <div id="proile-content-wrapper">
+            {{driver.last_name}},{{driver.first_name}},{{driver.middle_name}}
+        </div>
+        <label id="forgot-pass-subheader">Operator:</label>
+        <div id="proile-content-wrapper">
+            {{profile_driver.operator}}
+        </div>
+        <label id="forgot-pass-subheader">Vehicle:</label>
+        <div id="proile-content-wrapper">
+            {{profile_driver.vehicle.model}}
+        </div>
+        <label id="forgot-pass-subheader">Plate No:</label>
+        <div id="proile-content-wrapper">
+            {{profile_driver.vehicle.plate_no}}
+        </div>
+        
+        <hr>
+        <br>
+        <h2 id="forgot-pass-header">Student Information:</h2>
+        <label id="forgot-pass-subheader">Student Name:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.last_name}},{{request.user.first_name}},{{request.user.middle_name}}
+        </div>
+        <label id="forgot-pass-subheader">Address:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.lot}} {{request.user.profile.street}},{{request.user.profile.village}},{{request.user.profile.city}},{{request.user.profile.zipcode}}
+        </div>
+        <label id="forgot-pass-subheader">Year and Section:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.year_level}}-{{request.user.profile.section}}
+        </div>
+        <label id="forgot-pass-subheader">School Branch:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.school_branch}}
+        </div>
+
+        <h2 id="forgot-pass-header">Emergency Contact:</h2>
+        <label id="forgot-pass-subheader">Name:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.parent}}
+        </div>
+        <label id="forgot-pass-subheader">Address:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.parent_address}}
+        </div>
+        <label id="forgot-pass-subheader">Contact No:</label>
+        <div id="proile-content-wrapper">
+            {{request.user.profile.parent_contactNo}}
+        </div>
+        <br>
+        <br>
+        <a href="{% url 'reserve-service' driver.id%}">Confirm</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+
+</body>
+
+</html>
+{%endblock%}

@@ -1,0 +1,70 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Reservation CancelationInformation</h2>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Cancelation ID:
+                </div>
+                <div id="content">
+                    {{cancelation.cancelation_id}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Client:
+                </div>
+                <div id="content">
+                    {{cancelation.reservation.user.last_name}}, {{cancelation.reservation.user.first_name}}, {{cancelation.reservation.user.middle_name}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Reservation ID:
+                </div>
+                <div id="content">
+                    {{cancelation.reservation.reservation_id}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Cancelation Status:
+                </div>
+                <div id="content">
+                    {{cancelation.status}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Created:
+                </div>
+                <div id="content">
+                    {{cancelation.created}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Reason:
+                </div>
+                <div id="content">
+                    {{cancelation.reason}}
+                </div>
+            </div>
+        
+
+            <a href="{% url 'accept-cancel' cancelation.cancelation_id%}"><div class="btn" style="background-color: #5cb85c;">Accept</div></a>
+            <a href="{% url 'admin-cancelation-decline' cancelation.cancelation_id%}"><div class="btn"style="background-color: red;" >Decline</div></a>
+            
+        </div>
+    </div>
+    </div>
+</div>
+{%endblock%}

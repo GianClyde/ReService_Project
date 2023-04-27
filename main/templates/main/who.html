@@ -1,0 +1,43 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/who.css' %}">
+<style>
+    #who-main-wrappper{
+        background-image: url("{%static 'images/bg.png'%}");
+        background-repeat: no-repeat;
+        width: 100%;
+        padding: 10%;
+        min-height: 570px;
+    }
+</style>
+<div id="who-main-wrappper" >
+    <h1 id="header">Choose what's appropriate for you</h1>
+    <div class="clearfix" >
+        <a href="{% url 'register'%}">
+            <div class="card1" >
+                <div id="img1-holder">
+                    <img id="img1" src="{%static 'images/stud.png'%}" alt="Avatar" >
+                    
+                </div>
+                <div id="label" class="text">
+                    <label id="label">I am a Student</label>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'driver-register'%}">
+            <div i class="card2">
+                <div id="img1-holder">
+                    <img id="img1" src="{%static 'images/2.png'%}" alt="Avatar" >
+                </div>
+                <div id="label">
+                    <label id="label">I am a Driver</label>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+    
+</div>
+{%endblock%}

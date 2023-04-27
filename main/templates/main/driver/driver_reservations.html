@@ -1,0 +1,14 @@
+{% extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver_reservations.css' %}">
+<div id="main-wrapper">
+    {%for reservation in reservations%}
+        <a href="{%url 'driver-reserve-info' reservation.reservation_id %}"><div id="reservations-wrapper">
+            <label>Reservation ID:{{reservation.reservation_id}}</label> <label style="margin-left: 3%;">Client Name:</label>{{reservation.user}}
+            <label  style="margin-left: 3%;">Address:</label>{{reservation.user.profile.lot}} {{reservation.user.profile.street}}, {{reservation.user.profile.village}}, {{reservation.user.profile.city}}   
+        </div></a>
+    {%endfor%}
+</div>
+{%endblock%}

@@ -1,0 +1,21 @@
+
+{%extends 'main.html'%}
+{%block content%}
+{%load static%}
+<style>
+    #not-allowed-main-wrapper{
+        background-image: url("{%static 'images/restricted.png'%}");
+        object-fit: contain;
+}
+</style><link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/not_allowed.css' %}">
+<div id="not-allowed-main-wrapper">
+    <meta http-equiv = "refresh" content = "2; url = {% url 'identify'%}" />
+    <div id="not-allowed-header">
+        <h2 style="font-size: 92px; margin-left: 55%; color: red;">Restricted<br> Page</h2>
+    </div>
+    
+    <div id="not-allowed-pic">
+
+    </div>
+</div>
+{%endblock%}

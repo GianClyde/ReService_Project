@@ -1,0 +1,166 @@
+
+{%load static%}
+<style>
+      .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    }
+
+
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    #navbar-main-wrapper{
+        background-color: #001c69;
+        width: 100%;
+        transition: margin-left .5s;
+        
+    }
+    #navbar-logo-wrapper{
+        width: 50%;
+        padding: 2%;
+    }
+    #navbar-logo{
+        width: 100%;
+    }#navbar-btn-wrapper{
+        background-color: #deaf39;
+        padding: 1%;
+
+    }
+    #navbar-btns{
+      display: inline;  
+      padding: 2%;
+      
+    }
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #001c69;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+#side-navbtn-icon{
+    width: 15%;
+    margin-right: 5%;
+    line-height: 18px;
+}
+ul a{
+    font-family: "Arial";
+      color: white;
+      font-size: 12px;
+}
+
+#logout-btn{
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+}
+@media screen and (min-width:750px){
+    #navbar-logo-wrapper{
+        width: 20%;
+    }
+
+}
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div id="navbar-main-wrapper">
+    <div id="navbar-logo-wrapper">
+        <img id="navbar-logo" src="{% static 'images/logo.png' %}" />
+    </div>
+    <div id="navbar-btn-wrapper">
+        <span style="display: inline; font-size:20px;cursor:pointer," onclick="openNav()">&#9776;</span>
+        
+        <ul style="display: inline; padding: 0;">
+            <li id="navbar-btns" class="navbtn"><a href="https://www.integratedmontessori.edu.ph/home/">IMC Website</a></li>
+            {%if request.user.is_student%}
+              <li id="navbar-btns"><a href="{%url 'navPage'%}">Home</a></li>
+            {%elif request.user.is_superuser%}
+            <li id="navbar-btns"><a href="{%url 'admin-nav'%}">Home</a></li>
+            {%else%}
+            <li id="navbar-btns"><a href="{%url 'DrivernavPage'%}">Home</a></li>
+            {%endif%}
+
+            <li id="navbar-btns"><a href="{%url 'announcement'%}">Announcements</a></li>   
+            <li id="navbar-btns"><a href="{% url 'identify'%}">About us</a></li>                                     
+            
+            
+         </ul>
+         {% if request.user.is_authenticated%}
+         <a href="{%url 'logout'%}" id="logout-btn">Logout</a>
+        {%else%}
+        <li id="navbar-btns"><a style="color: white;" href="{% url 'login'%}">Login</a></li>       
+        {%endif%}
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'profile' request.user.id%}"><img id="side-navbtn-icon" src="{% static 'images/personalinf-icon.png' %}" />Profile</a>
+            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/security-icon.png' %}" />Security</a>
+            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/bus-icon.png' %}"/>My Service</a>
+            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/payment-icon.png' %}"/>Payments</a>
+            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/about-icon.png' %}"/>About</a>
+          </div>
+    </div>
+
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        // Get the navbar
+        var navbar = document.getElementById("navbar-btn-wrapper");
+
+        // Get the offset position of the navbar
+        var sticky = navbar.offsetTop;
+
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+        }
+
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("navbar-main-wrapper").style.marginLeft = "250px";
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("navbar-main-wrapper").style.marginLeft= "0";
+          document.body.style.backgroundColor = "white";
+        }
+    </script>
+
+</div>

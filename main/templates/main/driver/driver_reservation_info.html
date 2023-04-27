@@ -1,0 +1,85 @@
+{%extends 'main.html'%}
+
+
+{%block content%}
+{%load static%}
+<style>
+    #forgot-pass-main-wrapper{
+        background-image: url("{%static 'images/landing.png'%}");
+    }
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver-confirm.css' %}">
+<div id="forgot-pass-main-wrapper">
+
+    <div id="forgot-pass-form-wrapper">
+        <h2 id="forgot-pass-header">Confirm Reservation</h2>
+        <p id="forgot-pass-message">check if the infomration provided is correct</p>
+        <hr>
+        <br>
+        <div class="form-fields">
+            
+                {% csrf_token %}
+                <h2 id="forgot-pass-header">School Service Information:</h2>
+                <label id="forgot-pass-subheader">Driver Name:</label>
+                <div id="proile-content-wrapper">
+                    {{driver_user.last_name}},{{driver_user.first_name}},{{driver_user.middle_name}}
+                </div>
+                <label id="forgot-pass-subheader">Operator:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.operator}}
+                </div>
+                <label id="forgot-pass-subheader">Vehicle:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.vehicle}}
+                </div>
+                <label id="forgot-pass-subheader">Plate No:</label>
+                <div id="proile-content-wrapper">
+                    {{driver.vehicle.plate_no}}
+                </div>
+                
+                <hr>
+                <br>
+                <h2 id="forgot-pass-header">Student Information:</h2>
+                <label id="forgot-pass-subheader">Student Name:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.last_name}},{{reservation.user.first_name}},{{reservation.user.middle_name}}
+                </div>
+                <label id="forgot-pass-subheader">Address:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.lot}} {{reservation.user.profile.street}},{{reservation.user.profile.village}},{{reservation.user.profile.city}},{{reservation.user.profile.zipcode}}
+                </div>
+                <label id="forgot-pass-subheader">Year and Section:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.year_level}}-{{reservation.user.profile.section}}
+                </div>
+                <label id="forgot-pass-subheader">School Branch:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.school_branch}}
+                </div>
+
+                <h2 id="forgot-pass-header">Emergency Contact:</h2>
+                <label id="forgot-pass-subheader">Name:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.parent}}
+                </div>
+                <label id="forgot-pass-subheader">Address:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.parent_address}}
+                </div>
+                <label id="forgot-pass-subheader">Contact No:</label>
+                <div id="proile-content-wrapper">
+                    {{reservation.user.profile.parent_contactNo}}
+                </div>
+                <br>
+                <br>
+                <a href="{% url 'drvr-accept-rsrv' reservation.reservation_id%}">Confirm</a><br>
+                <a href="{%url 'drvr-decline-rsrv' reservation.reservation_id%}">Decline</a>
+            
+
+         </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

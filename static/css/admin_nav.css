@@ -1,0 +1,44 @@
+#page-header{
+    font-family: 'Bebas Neue';
+    color: white;
+    text-align: center;
+}
+#main{
+    width: 100%;
+    padding: 3%;
+}
+#user-card{
+    width: 100%;
+    margin-bottom: 3%;
+    padding: 3%;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#accts-card{
+    width: 20%;
+    background-color: #deaf39;
+    border-radius: 7px;
+    float: left;
+    margin-right: 3%;
+    padding: 3%;
+}
+#card-icon{
+    width: 70%;
+    margin-left: 15%;
+}
+#card-label{
+    font-family: 'Bebas Neue';
+    color: #001c69;
+    text-align: center;
+}
+
+#sub-header{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}

@@ -1,0 +1,62 @@
+{% extends 'main.html'%}
+
+
+{%block content%}
+{% load static %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <title>Announcement</title>
+        <link rel="stylesheet" href="AnnouncementStyle.css">
+        <style type="text/css"></style>
+        <style>
+            *,
+            *::before,
+            *::after{
+                box-sizing: border-box;
+            }
+
+            body{
+                margin:1em;
+                line-height: .8em;
+                background-color: #001C69;
+                background-image: url("{% static 'images/AnnouncementBG.png'%}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment:fixed;
+                background-position: center;
+            }
+
+
+            .back{
+                display: inline-block;
+                width: 350%;
+                margin-left: -10%;
+            }
+            .content{
+                color: aliceblue;
+                position: absolute;
+                margin-top: 0%;
+                font-size: clamp(.4em, 2.2vw, 4.5rem);
+                line-height: 100%;
+                text-shadow: 2px 2px 4px #000000;
+            }
+            .bold{
+                text-shadow: 0 0 9px #000000;
+
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="content">
+            <h1 class="bold">ANNOUNCEMENTS</h1>
+            {%for announcement in announcements%}
+            <p class="content1">- {{announcement.content}}</p>
+            {%endfor%}
+        </div>
+
+    </body>
+</html>
+
+{%endblock%}

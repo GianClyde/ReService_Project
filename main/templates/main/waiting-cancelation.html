@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{%load static%}
+{%block content%}
+<style>
+    #main{
+        background-image: url("{%static 'images/road.png'%}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: 10%;
+    }
+    #card{
+        padding: 3%;
+        background-color: white;
+        border-radius: 5px;
+    }
+    h1{
+        font-family: 'Signika';
+        text-align: center;
+    }
+    #wait-img{
+        margin-left: 30%;
+    }
+</style>
+<div id="main">
+    <div id="card">
+        <h1>It looks like you have a pending cancelation, kindly wait for the confirmation of the cancelation</h1>
+        <img src="{% static 'images/wait.gif'%}" id="wait-img">
+    </div>
+</div>
+{%endblock%}

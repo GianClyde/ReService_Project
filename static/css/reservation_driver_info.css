@@ -1,0 +1,124 @@
+.reservation-driver-info-box{
+    width: 450px;
+    background: rgba(0,0,0,0.4);
+    padding: 40px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    color: cyan;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-wrap: wrap;
+}
+
+.reservation-driver-info-box-img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.reservation-driver-info-box h1 {
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: 100;
+}
+
+.reservation-driver-info-box h5 {
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 100;
+}
+
+.reservation-driver-info-box p {
+    text-align: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.reservation-driver-info-box li {
+    display: inline-block;
+    margin: 6px;
+    list-style: none;
+}
+
+.reservation-driver-info-box li a {
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    transition: all ease-in-out 250ms;
+}
+
+.reservation-driver-info-box li a:hover {
+    color: rgb(17, 229, 236);
+}
+.reservation-driver-info-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+.reservation-driver-info-card{
+    position: relative;
+    background: white;
+    width: 350px;
+    box-shadow: 0 5px 25px black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.reservation-driver-info-card .reservation-driver-info-card-img{
+    position: relative;
+    width: 350px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation-driver-info-card .reservation-driver-info-card-img p img {
+    width: 102%;
+    height: 102%;
+}
+
+.reservation-driver-info-card-content{
+    position: relative;
+    text-align: center;
+    margin: 15px;
+}
+.reservation-driver-info-card-content .reservation-driver-info-card-text{
+    position: relative;
+    font-size: .9em;
+    text-align: left;
+    height: 100px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.reservation-driver-info-card-content .reservation-driver-info-card-text::before{
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgb(103, 195, 248), transparent);
+    display: none;
+}
+
+.reservation-driver-info-card-content .see-more-btn{
+    font-size: .85em;
+    color: skyblue;
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.reservation-driver-info-card-content .see-more-btn:hover{
+    color: rgb(43, 218, 224);
+}
+
+.reservation-driver-info-card.gradient .reservation-driver-info-card-content .reservation-driver-info-card-text::before{
+    display: block;
+}

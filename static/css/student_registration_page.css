@@ -1,0 +1,70 @@
+#main-registration-wrapper{
+    width: 100%;
+    min-height: 565px;
+    padding: 5%;
+    
+
+}
+#registration-form-wrapper{
+    width: 100%;
+    min-height: 500px;
+    padding:2%;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 7px;
+    
+}
+#regform-header{
+    font-family: 'Signika';
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+
+}
+#form-content-wrapper{
+    margin-left: 12%;
+}
+#form-label{
+    color: #001c69;
+    font-size: 17px;
+}
+.form-input{
+    border-radius: 5px;
+    margin-left: 2%;
+    width: 85%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 15px;
+    border: solid #001c69;
+    margin-bottom: 2%;
+    
+}
+
+#registration-page-btn{
+    margin-top: 3%;
+    padding: 1%;
+    width: 30%;
+    font-family: 'Signika';
+    font-size: 15px;
+    text-align: center;
+    margin-left: 30%;
+    background-color: #001c69;
+    color: white;
+    border-radius: 10px;
+}
+
+@media screen and (min-width:750px){
+    #main-registration-wrapper{
+        background-size: cover;
+    }
+
+    #registration-form-wrapper{
+        width: 40%;
+        min-height: 500px;
+        padding:2%;
+        background-color: white;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        border-radius: 7px;
+    
+    }
+
+}

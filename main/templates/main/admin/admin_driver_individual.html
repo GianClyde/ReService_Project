@@ -1,0 +1,207 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student_indiv.css' %}">
+<div id="main">
+    <div id="account" class="clearfix">
+        <h2 id="header">User Information</h2>
+        <div id="img-wrapper">
+            {% if user.driverprofile.image %}
+                <img id="profile-img" src="{{user.driverprofile.image.url}}">
+            {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+            {%endif%}
+        </div>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Last Name:
+                </div>
+                <div id="content">
+                    {{user.last_name}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    First Name:
+                </div>
+                <div id="content">
+                    {{user.first_name}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Middle Name:
+                </div>
+                <div id="content">
+                    {{user.middle_name}}
+                </div>
+            </div>
+         
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Email:
+                </div>
+                <div id="content">
+                    {{user.email}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Contact No:
+                </div>
+                <div id="content">
+                    {{user.contact_no}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Birth Date:
+                </div>
+                <div id="content">
+                    {{user.driverprofile.birth_date}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Age:
+                </div>
+                <div id="content">
+                    {{user.driverprofile.age}}
+                </div>
+            </div>
+        </div>
+        <div id="permissions">
+            <h3>Franchise Information</h3>
+
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Franchise:
+                </div>
+                <div id="content">
+                    {{user.driverprofile.franchise}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Franchise No.:
+                </div>
+                <div id="content">
+                    {{user.driverprofile.franchise_no}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Operator:
+                </div>
+                <div id="content">
+                    {{user.driverprofile.operator}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="account" class="clearfix">
+        <h2 id="header">Profile Information</h2>
+        <div id="profile-content1">
+            <h3 id="header">Address </h3>
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Lot:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.lot}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Stret:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.street}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Village:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.village}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   City:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.city}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Zip Code:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.zipcode}}
+                </div>
+            </div>
+        </div>
+        <div id="profile-content2">
+            <h3 id="header">School </h3>
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   School Branch:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.school_branch}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Assigned route:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {{user.driverprofile.assigned_route}}
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div id="account" class="clearfix">
+        <h2 id="header">Service Information</h2>
+        <div id="vehicle-img-wrapper">
+            <h3>Vehicle ID: {{user.driverprofile.vehicle.vehicle_id}}</h3>
+            <h3>Vehicle Model: {{user.driverprofile.vehicle.model}}</h3>
+            <h3>Plate No.: {{user.driverprofile.vehicle.plate_no}}</h3>
+            <img id="vehicle-img"src="{{user.driverprofile.vehicle.image.url}}">
+        </div>
+        <div id="service-info">
+            <h3><b>Clients</b></h3>
+            <h3>Capcity:{{user.driverprofile.vehicle.included}} of {{user.driverprofile.vehicle.capacity}}</h3>
+            {%for reserve in reservation%}
+            <a><div id="serve">
+                {{reserve.user.last_name}} {{reserve.user.first_name}} {{reserve.user.profile.village}}
+            </div></a>
+            {%endfor%}
+        </div>
+
+    </div>
+    
+    <div id="btns">
+        <a href="{% url 'admin-drvr-edit' user.id%}"><div id="btn">Edit</div></a>
+    </div>
+</div>
+{%endblock%}

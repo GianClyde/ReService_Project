@@ -1,0 +1,136 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile Page</title>
+%
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+    <script src="script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/9f8720b081.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      href="jquery.js"></script>
+      <style>
+        body {
+          background-image: url("{%static 'images/bgg.png'%}");
+          background-repeat: no-repeat;
+          background-size: cover;
+          overflow-x: hidden;
+          min-height: 800px;
+  }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+    <form method="POST" action="" enctype="multipart/form-data">
+    {%csrf_token%}
+      <div class="leftbox">
+        <nav>
+          <a onclick="tabs(0)" class="tab active"><i class="fa fa-user"></i></a>
+          <a onclick="tabs(1)" class="tab"><i class="fa fa-credit-card"></i></a>
+          <a onclick="tabs(2)" class="tab"><i class="fa fa-television"></i></a>
+          <a onclick="tabs(3)" class="tab"><i class="fa fa-tasks"></i></a>
+          <input  type="image" src="{% static 'images/save.png'%}" alt="Submit" width="38" height="38" class="tab" style="margin-left: 25%;">
+        </nav>
+      </div>
+      <div class="rightbox">
+        
+        <div class="profile tabShow">
+          <div id="profille-img-wrapper">
+            {% if user.profile.image %}
+              {{pform.image}}
+            {%else%} 
+                {{pform.image}}
+            {%endif%}
+          </div>
+          <h1>Account Information</h1>
+          <h2>Last Name</h2>
+          {{form.last_name}}
+          <h2>First Name</h2>
+          {{form.first_name}}
+          <h2>Middle Name</h2>
+          {{form.middle_name}}
+          <h2>Email Address</h2>
+          <div class="input"> 
+            {{user.email}}
+          </div>
+          <h2>Contact No:</h2>
+          {{form.contact_no}}
+
+        </div>
+        <div class="payment tabShow">
+          <h1>Address Information</h1>
+          <h2>Lot</h2>
+          {{form_p.lot}}
+          <h2>Street</h2>
+          {{form_p.street}}
+          <h2>Village</h2>
+          {{form_p.village}}
+          <h2>City</h2>
+          {{form_p.city}}
+          <h2>Zip Code</h2>
+          {{form_p.zipcode}}
+
+        </div>
+        <div class="subscription tabShow">
+          <h1>Emergency Information</h1>
+          <h2>Parent or Guardian</h2>
+          {{form_p.parent}}
+          <h2>Contact No.</h2>
+          {{form_p.parent_contactNo}}
+          <h2>Address</h2>
+          {{form_p.parent_address}}
+          <h2>Relationship to student:</h2>
+          <input type="text" class="input" value="parent" />
+
+        </div>
+        <div class="privacy tabShow">
+          <h1>School Information and others</h1>
+          <h2>School Branch:</h2>
+          <input type="text" class="input" value="{{user.profile.school_branch}}" />
+          <h2>Year level</h2>
+          <input type="text" class="input" value="{{user.profile.year_level}}" />
+          <h2>Section</h2>
+          <input type="text" class="input" value="{{user.profile.section}}" />
+          <h2>Birth Date:</h2> 
+          {{form_p.birth_date}}
+          <h2>Age</h2>
+          {{form_p.age}}
+        </div>
+       
+      </div>
+      </form>
+    </div>
+
+    <script src="jquery/jquery.js"></script>
+    <script>
+      const tab8tn = document.querySelectorAll(".tab");
+      const tab = document.querySelectorAll(".tabShow");
+    
+    function tabs(panelIndex) {
+    tab.forEach(function(node) {
+        node.style.display = "none";
+    });
+    tab[panelIndex].style.display = "block";
+    }
+    tabs(0);
+
+  </script>
+
+  <script>
+    $(".tab").click(function() {
+      $(".this").addClass("active").siblings().removeClass("active");
+    })
+  </script>
+
+  </body>
+</html>
+
+{%endblock%}
+

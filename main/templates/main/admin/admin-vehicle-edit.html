@@ -1,0 +1,61 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student_indiv.css' %}">
+<div id="main">
+    <div id="account" class="clearfix">
+    <form method = "POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h2 id="header">Vehicle Information</h2>
+        <div id="img-wrapper" style="width:30%;">
+                <img id="profile-img" src="{{vehicle.image.url}}">
+                {{form.image}}
+        </div>
+    
+        <div id="acct-info" style="width:70%; float: right; border-right:none;">
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Vehicle ID:
+                </div>
+                <div id="content" style="color:red;">
+                    {{vehicle.vehicle_id}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Model:
+                </div>
+                {{form.model}}
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Plate No.:
+                </div>
+                {{form.plate_no}}
+            </div>
+         
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Capacity:
+                </div>
+                {{form.capacity}}
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Reserved:
+                </div>
+                {{form.included}}
+            </div>
+        </div>
+        <input class="save"  type="submit" value="Save"/>
+    </form>
+    </div>
+
+    
+
+</div>
+{%endblock%}

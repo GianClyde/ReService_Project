@@ -1,0 +1,48 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<style>
+    #main{
+        background-image: url("{%static 'images/road.png'%}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: 5%;
+    }
+
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/reserved_notconfirmed.css' %}">
+<div id="main">
+    <div id="card">
+        <div id="img-wrapper">
+            <img src="{% static 'images/buser.gif'%}">
+        </div>
+        <h2 id="text">It seems you have a reservation waiting for confirmation, kindly wait for your driver to confirm your reservation</h2>
+        <button class="btn" onclick="history.back()">Go back</button>
+        <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Cancel Reservation</a>
+
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    
+    <div class="modal-content">
+      <div class="modal-body">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <h4>Cancel Reservation</h4>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <p id="prompt">Are you sure you want to delete current reservation <br> Reservation ID: {{reservation.reservation_id}}?</p>
+            <p id="prompt">Reason for Cancelation:</p>
+            {{form.reason}}
+            <input class="conf-btn" type="submit" value="Confirm"/>
+        </form>
+      </div>
+    </div>
+  </div>  
+</div>
+    </div>
+</div>
+
+
+
+{%endblock%}

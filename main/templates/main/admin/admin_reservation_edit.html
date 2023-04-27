@@ -1,0 +1,63 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <form method="POST" action="">
+    {% csrf_token %}
+    <div id="content-wrapper">
+        <h2 id="header">Reservation Information</h2>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Reservation ID:
+                </div>
+                <div id="content" style="color:red;">
+                    {{reservation.reservation_id}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Client:
+                </div>
+                {{form.user}}
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Driver:
+                </div>
+                {{form.driver}}
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Reservation Status:
+                </div>
+                {{form.reservation_status}}
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Payment Status:
+                </div>
+                {{form.payment_status}}
+            </div>
+   
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Created:
+                </div>
+                <div id="content">
+                    {{reservation.created}}
+                </div>
+            </div>
+            <input class="save"  type="submit" value="Save"/>
+            
+        </div>
+    </div>
+    </form>
+    
+</div>
+{%endblock%}

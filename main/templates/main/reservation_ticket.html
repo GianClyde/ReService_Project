@@ -1,0 +1,21 @@
+{% autoescape off %}
+Hello {{ user.last_name }},
+
+We received your reservation request. To finalize reservation, kindly complete the payment.
+
+See Reservation ticket bellow,
+    Reservation ID:{{reservation.reservation_id}}
+    Client name: {{ user.last_name }},{{ user.first_name }},{{ user.middle_name }}
+    Driver Name: {{ driver }}
+    Reservation Status:{{reservationstatus}}
+    Payment status: {{payment}}
+    Reservation Date:{{date}}
+
+
+
+Note: Reservation is not considered untli payment is accomplished.
+
+Sincerely,
+ReService
+
+{% endautoescape %}

@@ -1,0 +1,29 @@
+{% extends 'main.html'%}
+
+
+{% block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_login_page.css' %}">
+    <div id="login-main-wrapper" class="clearfix">
+        <div id="left-wrapper">
+            <img style="width:60%; margin-left: 20%;" id="loginpage-img" src="{% static 'images/skulbas.png'%}" >
+            <p id="loginpage-img-text">Manage Payments and Services <br>Billing payments</p>
+        </div>
+        <div id="right-wrapper">
+            <img id="bus-logo-login-icon" src="{% static 'images/buslogo.png'%}">
+            <h2 id="loginForm-header-text">Driver Log in</h2>
+            <p id="loginForm-header-subtext">Your  data  is  treated  with  utmost<br> confidentialllity</p>
+
+            <form method="POST" action="">
+                {% csrf_token %} 
+                <input id="form-field" type="text" name="email" placeholder="Email"/><br>
+                <input id="form-field" type="password" name="password1" placeholder="Password"/><br>
+
+                <input id="login-page-btn" type="submit" value="Login"/>
+                <br>
+                <a href="{%url 'password_reset'%}" id="forgotpass-text">Forgot Password</a><br><br>
+            </form>
+            <p id="signup-prompt">Not yet a member? Click here to <a href="{%url 'driver-register'%}">sign-up</a></p>
+        </div>
+    </div>
+{%endblock%}

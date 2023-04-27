@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
+
+<div id="main" class="clearfix">
+    <h1 id="header">ReService:Vehicles</h1>
+    <div id="navbar-left">
+        <div id="search-br-wrapper">
+            <form method="GET" action="{% url 'admin-reservations'%}">
+                <input class="search" name="q" type="text" placeholder="Search..">
+            </form>
+        </div>
+        <div id="filters-wrapper">
+            <h3>Filter by</h3>
+            <ul class="filters__list">
+                <li class="list">
+                    <a href="{% url 'admin-reservations'%}" class="list">All</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
+                </li>
+        
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="clearfix" id="lbl-wrapper">
+
+            <div id="checkbox-col-lbl">
+                <input type="checkbox"  name="checkbox">
+            </div>
+           <div id="id-col-lbl" style="width: 41%;">
+            <h3 id="col-label" >ID</h3>
+           </div> 
+           <div id="name-col-lbl">
+            <h3 id="col-label">Model</h3>
+           </div>
+
+
+        </div>
+        {% for v in vehicles%}
+            <a><div id="user-card" class="clearfix">
+                <div id="card-info" class="clearfix">
+                    <div id="check-box">
+                        <input type="checkbox" value="{{reservation.id}}" name="checkbox">
+                    </div>
+                    <div id="user-id">
+                        {{v.vehicle_id}}
+                    </div>
+                    <div id="user-name">
+                        {{v.driver.last_name}}
+                    </div>
+        
+                    <div id="created">
+                        {{v.model}}
+                    </div>
+                         
+                </div>
+                <div id="operations">
+                    <a href="{% url 'vehicles-individual' v.vehicle_id%}"><div class="btn">Show</div></a>
+                    <a class="btn" href="{% url 'vhcl-dlt' v.vehicle_id%}">Delete</a>
+                    
+                </div>
+            </div></a>
+
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

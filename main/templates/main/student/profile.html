@@ -1,0 +1,174 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile Page</title>
+%
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+    <script src="script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/9f8720b081.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      href="jquery.js"></script>
+    <style>
+      body {
+        background-image: url("{%static 'images/bgg.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="leftbox">
+        <nav>
+          <a onclick="tabs(0)" class="tab active"><i class="fa fa-user"></i></a>
+          <a onclick="tabs(1)" class="tab"><i class="fa fa-credit-card"></i></a>
+          <a onclick="tabs(2)" class="tab"><i class="fa fa-television"></i></a>
+          <a onclick="tabs(3)" class="tab"><i class="fa fa-tasks"></i></a>
+          <a href="{% url 'edit-profile' request.user.id%}" class="tab"><i class="fa fa-refresh"></i></a>
+        </nav>
+      </div>
+      <div class="rightbox">
+        <div class="profile tabShow">
+          <div id="profille-img-wrapper">
+            {% if user.profile.image %}
+              <img id="profile-img" src="{{user.profile.image.url}}">
+            {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+            {%endif%}
+          </div>
+          <h1>Account Information</h1>
+          <h2>Last Name</h2>
+          <div class="input"> 
+            {{user.last_name}}
+          </div>
+          <h2>First Name</h2>
+          <div class="input"> 
+            {{user.first_name}}
+          </div>
+          <h2>Middle Name</h2>
+          <div class="input"> 
+            {{user.middle_name}}
+          </div>
+          <h2>Email Address</h2>
+          <div class="input"> 
+            {{user.email}}
+          </div>
+          <h2>Contact No:</h2>
+          <div class="input"> 
+            {{user.contact_no}}
+          </div>
+        </div>
+        <div class="payment tabShow">
+          <h1>Address Information</h1>
+          <h2>Lot</h2>
+          <div class="input"> 
+            {{user.profile.lot}}
+          </div>
+          <h2>Street</h2>
+          <div class="input"> 
+            {{user.profile.street}}
+          </div>
+          <h2>Village</h2>
+          <div class="input"> 
+            {{user.profile.village}}
+          </div>
+          <h2>City</h2>
+          <div class="input"> 
+            {{user.profile.city}}
+          </div>
+          <h2>Zip Code</h2>
+          <div class="input"> 
+            {{user.profile.zipcode}}
+          </div>
+
+        </div>
+        <div class="subscription tabShow">
+          <h1>Emergency Information</h1>
+          <h2>Parent or Guardian</h2>
+          <div class="input"> 
+            {{user.profile.parent}}
+          </div>
+          <h2>Contact No.</h2>
+          <div class="input"> 
+            {{user.profile.parent_contactNo}}
+          </div>
+          <h2>Address</h2>
+          <div class="input"> 
+            {{user.profile.parent_address}}
+          </div>
+          <h2>Relationship to student:</h2>
+          <input type="text" class="input" value="parent" disabled/>
+
+        </div>
+        <div class="privacy tabShow">
+          <h1>School Information</h1>
+          <h2>School Branch:</h2>
+          <div class="input"> 
+            {{user.profile.school_branch}}
+          </div>
+          <h2>Year level</h2>
+          <div class="input"> 
+            {{user.profile.year_level}}
+          </div>
+          <h2>Section</h2>
+          <div class="input"> 
+            {{user.profile.section}}
+          </div>
+          <h1>Other Information</h1>
+          <h2>Birth Date:</h2>
+          <div class="input"> 
+            {{user.profile.birth_date}}
+          </div>
+          <h2>Age</h2>
+          <div class="input"> 
+            {{user.profile.age}}
+          </div>
+
+        </div>
+        <div class="settings tabShow">
+          <h1>Other Information</h1>
+          <h2>Birth Date</h2>
+          <input type="text" class="input" value="{{user.profile.birth_date}}" disabled/>
+          <h2>Age</h2>
+          <input type="text" class="input" value="{{user.profile.age}}" disabled/>
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="jquery/jquery.js"></script>
+    <script>
+      const tab8tn = document.querySelectorAll(".tab");
+      const tab = document.querySelectorAll(".tabShow");
+    
+    function tabs(panelIndex) {
+    tab.forEach(function(node) {
+        node.style.display = "none";
+    });
+    tab[panelIndex].style.display = "block";
+    }
+    tabs(0);
+
+  </script>
+
+  <script>
+    $(".tab").click(function() {
+      $(".this").addClass("active").siblings().removeClass("active");
+    })
+  </script>
+
+  </body>
+</html>
+
+{%endblock%}
+

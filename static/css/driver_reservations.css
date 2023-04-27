@@ -1,0 +1,10 @@
+#reservations-wrapper{
+    width: 100%;
+    background-color: white;
+    margin-top: 2%;
+    padding: 2%;
+}
+#main-wrapper{
+    width: 100%;
+    padding: 5%;
+}

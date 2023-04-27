@@ -1,0 +1,12 @@
+#not-allowed-main-wrapper{
+    width: 100%;
+    min-height: 800px;
+    background-repeat: no-repeat;
+    background-size: 1280px 800px;
+}
+
+#not-allowed-header{
+    width: 100%;
+    font-family: 'Delicious Handrawn', cursive;
+    padding-top: 5%
+}

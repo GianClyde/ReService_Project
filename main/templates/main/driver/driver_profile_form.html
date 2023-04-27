@@ -1,0 +1,70 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_profile_form.css' %}">
+<style>
+    #stdnt-profile-fillup-main-wrapper{
+        background-image: url("{%static 'images/bg.png'%}");
+        background-repeat: no-repeat;
+        padding: 3%;
+}   
+</style>
+<div id="stdnt-profile-fillup-main-wrapper" class="clearfix">
+    <div id="stdnt-profile-form-wrapper">
+        <h2 id="stdnt-profile-form-header">Driver Profile</h2>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {%csrf_token%}
+            <div id="stdnt-form-content3">
+                <h2 id="stdnt-sub-header">Personal Information</h2>
+                <label id="stdnt-profile-form-field-label">Birth Date:</label><br>
+                    {{form.birth_date}}<br>
+                <label id="stdnt-profile-form-field-label">Age:</label><br>
+                    {{form.age}}<br>
+                <hr>
+            </div>
+            <div id="stdnt-form-content2">
+                <h2 id="stdnt-sub-header" style="display: block;">Address</h2>
+                <label id="stdnt-profile-form-field-label">Lot/House no./Blg no.:</label>
+                {{form.lot}}
+                <label id="stdnt-profile-form-field-label">Street:</label>
+                {{form.street}}<br>
+                <label id="stdnt-profile-form-field-label">Village:</label>
+                {{form.village}}
+                <label id="stdnt-profile-form-field-label">City:</label>
+                {{form.city}}<br>
+                <label id="stdnt-profile-form-field-label">Zip Code:</label>
+                {{form.zipcode}}
+                <hr>
+            </div>
+            <div id="stdnt-form-content3">
+                <h2 id="stdnt-sub-header">School</h2>
+                <label id="stdnt-profile-form-field-label">School Brach:</label><br>
+                    {{form.school_branch}}<br>
+                <label id="stdnt-profile-form-field-label">Assigned Route::</label><br>
+                    {{form.assigned_route}}<br>
+                    <label id="stdnt-profile-form-field-label">Vehicle:</label><br>
+                    {{form.vehicle}}<br>
+                <hr>
+            </div>
+            <div id="stdnt-form-content3">
+                <h2 id="stdnt-sub-header">Franchise</h2>
+                <label id="stdnt-profile-form-field-label">Franchise name:</label><br>
+                    {{form.franchise}}<br>
+                <label id="stdnt-profile-form-field-label">Operator:</label><br>
+                    {{form.operator}}<br>
+                <label id="stdnt-profile-form-field-label">Franchise No:</label><br>
+                    {{form.franchise_no}}<br>
+                    <label id="stdnt-profile-form-field-label">ID picture:</label><br>
+                    {{form.image}}<br>
+                <hr>
+            </div>
+            <input id="submit-page-btn"  type="submit" value="Submit"/>
+        </form>
+    </div>
+     <div id="stdnt-profile-img-wrapper">
+        <img id="stdnt-profile-img" src="{%static 'images/letsknow.png'%}">
+    </div>
+</div>
+
+{%endblock%}

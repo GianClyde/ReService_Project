@@ -1,0 +1,47 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_nav.css' %}">
+<div id="main">
+    <h1 id="page-header">ReService Admin</h1>
+
+    <div id="user-card" class="clearfix">
+        <h2 id="sub-header">Users</h2>
+        <hr>
+        <a href="{% url 'admin-students'%}"><div id="accts-card" style="margin-left:30%;">
+            <img id="card-icon" src="{%static 'images/profile.png'%}" alt="Avatar" >
+            <h3 id="card-label">Students</h3>
+        </div></a>
+       <a href="{% url 'admin-drivers' %}"><div id="accts-card">
+            <img id="card-icon" src="{%static 'images/driver.png'%}" alt="Avatar" >
+            <h3 id="card-label">Drivers</h3>
+        </div></a>
+    </div>
+
+    <div id="user-card" class="clearfix">
+        <h2 id="sub-header">Reservations</h2>
+        <hr>
+        <a href="{% url 'admin-reservations'%}"><div id="accts-card" style="margin-left:30%;">
+            <img id="card-icon" src="{%static 'images/calendar.png'%}" alt="Avatar" >
+            <h3 id="card-label">Reservations</h3>
+        </div></a>
+       <a href="{% url 'reservation-cancelation' %}"><div id="accts-card">
+            <img id="card-icon" src="{%static 'images/cancel.png'%}" alt="Avatar" >
+            <h3 id="card-label">Cancelations</h3>
+        </div></a>
+    </div>
+
+    <div id="user-card" class="clearfix">
+        <h2 id="sub-header">Vehicles</h2>
+        <hr>
+        <a href="{% url 'vehicles'%}"><div id="accts-card" style="margin-left:40%;">
+            <img id="card-icon" src="{%static 'images/schoolbus-icon.png'%}" alt="Avatar" >
+            <h3 id="card-label">Vehicles</h3>
+        </div></a>
+    
+    </div>
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,193 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#login-main-wrapper{
+    width: 100%;
+    padding: 5%;
+    min-height: 570px;
+}
+#left-wrapper{
+    background-color: #001c69;
+    float: left;
+    display: none;
+    padding-top: 5%;
+}
+#loginpage-img{
+    width: 100%;
+    min-height: 300px;
+}
+#loginpage-img-text{
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+#right-wrapper{
+    float: right;
+    min-height: 540px;
+    width: 100%;
+    padding-top: 10%;
+    background-color: white;
+}
+#bus-logo-login-icon{
+    width: 15%;
+    min-height: 30px;
+    margin-left: 43%;
+    margin-bottom: 3%;
+}
+#loginForm-header-text{
+    margin-left: 42%;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+#loginForm-header-subtext{
+    margin-left: 4%;
+    font-size: 12px;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+}
+
+#form-field{
+    width: 60%;
+    min-height: 30px;
+    border: solid #001c69;
+    border-width: 3px;
+    margin-top: 5%;
+    margin-left: 22%;
+    border-radius: 20px;
+}
+#login-page-btn{
+    width: 40%;
+    min-height: 25px;
+    color: white;
+    border-width: 3px;
+    margin-top: 5%;
+    margin-left: 32%;
+    border-radius: 20px;
+    font-family: 'Signika';
+    background-color: #001c69;
+    border: none;
+}
+#forgotpass-text{
+    font-size: 10px;
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #deaf39;
+    margin-left: 40%;      
+}
+#signup-prompt{
+    margin-left: 4%;
+    font-size: 10px;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-align: center;
+    color: #deaf39;
+}
+#register-main-wrapper{
+    width: 100%;
+    padding: 3%;
+    background-color: #001c69;
+
+
+}
+#form-wrapper{
+    width: 90%;
+    min-height: 550px;
+    border-radius: 15px;
+    background-color: white;
+    margin-left: 5%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 3%;
+
+}
+#main-regform-header{
+    font-family: 'Signika';
+    font-size: 18px;
+    text-align: center;
+    color: #001c69;
+    font-weight: bold;
+}
+#regform-subheader{
+    font-family: 'Signika';
+    font-size: 15px;
+    color: #001c69;
+
+}
+#form-label{
+    font-family: 'Signika';
+    font-size: 12px;
+    color:  #deaf39;
+}
+.form-input{
+    width: 80%;
+    min-height: 20px;
+    border: solid #001c69;
+    border-width: 3px;
+    margin-left: 3%;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+@media screen and (min-width:1000px){
+    #left-wrapper{
+        float: left;
+        display: block;
+        min-height:800px;
+        width: 50%;
+    }
+    #right-wrapper{
+        min-height: 700px;
+        width: 50%;
+        padding-top: 10%;
+    }
+    #login-main-wrapper{
+        width: 100%;
+        padding: 0;
+        min-height: 800px;
+        background-color: white;
+    }
+    #right-wrapper{
+        padding-top: 5%;
+    }
+    #loginForm-header-text{
+        margin-left: 45%;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Merriweather Sans', sans-serif;
+    }
+    #bus-logo-login-icon{
+        margin-left: 44%;
+    }
+
+    #loginForm-header-subtext{
+        font-size: 15px;
+    }
+    #form-field{
+        min-height: 40px;
+    }
+    #forgotpass-text{
+        font-size: 12px;
+        font-family: 'Merriweather Sans', sans-serif;
+        color: #deaf39;
+        margin-left: 45%;      
+    }
+    #signup-prompt{
+        font-size: 12px;
+    }
+    .form-input{
+        width: 40%;
+        min-height: 20px;
+        border: solid #001c69;
+        border-width: 3px;
+        margin-left: 3%;
+        border-radius: 20px;
+        font-size: 11px;
+    }
+    #form-label{
+        margin-left: 10%;
+    }
+    
+}
