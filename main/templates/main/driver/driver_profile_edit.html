@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Profile Page</title>
-%
+
     <link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
     <script src="script.js"></script>
     <script
@@ -16,134 +16,105 @@
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"
       href="jquery.js"></script>
-    <style>
-      body {
-        background-image: url("{%static 'images/bgg.png'%}");
-        background-repeat: no-repeat;
-        background-size: cover;
-        overflow-x: hidden;
-        min-height: 800px;
-}
-    </style>
+      <style>
+        body {
+          background-image: url("{%static 'images/bgg.png'%}");
+          background-repeat: no-repeat;
+          background-size: cover;
+          overflow-x: hidden;
+          min-height: 800px;
+  }
+      </style>
   </head>
   <body>
     <div class="container">
+    <form method="POST" action="" enctype="multipart/form-data">
+    {%csrf_token%}
       <div class="leftbox">
         <nav>
           <a onclick="tabs(0)" class="tab active"><i class="fa fa-user"></i></a>
           <a onclick="tabs(1)" class="tab"><i class="fa fa-credit-card"></i></a>
           <a onclick="tabs(2)" class="tab"><i class="fa fa-television"></i></a>
           <a onclick="tabs(3)" class="tab"><i class="fa fa-tasks"></i></a>
-          <a href="{% url 'driver-edit-profile' request.user.id%}" class="tab"><i class="fa fa-refresh"></i></a>
+          <input  type="image" src="{% static 'images/save.png'%}" alt="Submit" width="38" height="38" class="tab" style="margin-left: 25%;">
         </nav>
       </div>
       <div class="rightbox">
+        
         <div class="profile tabShow">
           <div id="profille-img-wrapper">
             {% if user.driverprofile.image %}
-              <img id="profile-img" src="{{user.driverprofile.image.url}}">
-            {%else%}
-                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+              {{form_p.image}}
+            {%else%} 
+                {{form_p.image}}
             {%endif%}
           </div>
           <h1>Account Information</h1>
           <h2>Last Name</h2>
-          <div class="input"> 
-            {{user.last_name}}
-          </div>
+          {{form.last_name}}
           <h2>First Name</h2>
-          <div class="input"> 
-            {{user.first_name}}
-          </div>
+          {{form.first_name}}
           <h2>Middle Name</h2>
-          <div class="input"> 
-            {{user.middle_name}}
-          </div>
+          {{form.middle_name}}
           <h2>Email Address</h2>
           <div class="input"> 
             {{user.email}}
           </div>
           <h2>Contact No:</h2>
-          <div class="input"> 
-            {{user.contact_no}}
-          </div>
+          {{form.contact_no}}
+
         </div>
         <div class="payment tabShow">
           <h1>Address Information</h1>
           <h2>Lot</h2>
-          <div class="input"> 
-            {{user.driverprofile.lot}}
-          </div>
+          {{form_p.lot}}
           <h2>Street</h2>
-          <div class="input"> 
-            {{user.driverprofile.street}}
-          </div>
+          {{form_p.street}}
           <h2>Village</h2>
-          <div class="input"> 
-            {{user.driverprofile.village}}
-          </div>
+          {{form_p.village}}
           <h2>City</h2>
-          <div class="input"> 
-            {{user.driverprofile.city}}
-          </div>
+          {{form_p.city}}
           <h2>Zip Code</h2>
-          <div class="input"> 
-            {{user.driverprofile.zipcode}}
-          </div>
+          {{form_p.zipcode}}
 
         </div>
         <div class="subscription tabShow">
-          <h1>Franchise Information</h1>
-          <h2>Franchise:</h2>
-          <div class="input"> 
-            {{user.driverprofile.franchise.franchise_name}}
-          </div>
-          <h2>Franchise No.</h2>
-          <div class="input"> 
-            {{user.driverprofile.franchise.franchise_no}}
-          </div>
-          <h2>Operator</h2>
-          <div class="input"> 
-            {{user.driverprofile.franchise.operator}}
-          </div>
-          <h2>Vehicle</h2>
-          <div class="input"> 
-            {{user.driverprofile.vehicle}}
-          </div>
-
+            <h1>Franchise Information</h1>
+            <h2>Franchise:</h2>
+            <div class="input"> 
+              {{user.driverprofile.franchise.franchise_name}}
+            </div>
+            <h2>Franchise No.</h2>
+            <div class="input"> 
+              {{user.driverprofile.franchise.franchise_no}}
+            </div>
+            <h2>Operator</h2>
+            <div class="input"> 
+              {{user.driverprofile.franchise.operator}}
+            </div>
+            <h2>Vehicle</h2>
+            <div class="input"> 
+              {{user.driverprofile.vehicle}}
+            </div>
         </div>
         <div class="privacy tabShow">
-          <h1>School Information</h1>
+          <h1>School Information and others</h1>
           <h2>School Branch:</h2>
           <div class="input"> 
             {{user.driverprofile.school_branch}}
           </div>
-          <h2>Assigned Route</h2>
+          <h2>Assigend Route</h2>
           <div class="input"> 
             {{user.driverprofile.assigned_route}}
           </div>
-          <h1>Other Information</h1>
-          <h2>Birth Date:</h2>
-          <div class="input"> 
-            {{user.driverprofile.birth_date}}
-          </div>
+          <h2>Birth Date:</h2> 
+          {{form_p.birth_date}}
           <h2>Age</h2>
-          <div class="input"> 
-            {{user.driverprofile.age}}
-          </div>
-
+          {{form_p.age}}
         </div>
-        <div class="settings tabShow">
-
-          <h1>Other Information</h1>
-
-          <h2>Birth Date</h2>
-          <input type="text" class="input" value="{{user.driverprofile.birth_date}}" disabled/>
-          <h2>Age</h2>
-          <input type="text" class="input" value="{{user.driverprofile.age}}" disabled/>
-          
-        </div>
+       
       </div>
+      </form>
     </div>
 
     <script src="jquery/jquery.js"></script>

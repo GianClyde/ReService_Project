@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm,SetPasswordForm,PasswordResetForm
 from django.forms import ModelForm
-from .models import Reservation,User,Profile,Driverprofile,StudentUser,DriverUser,Vehicle,ReservationCancelation
+from .models import Reservation,User,Profile,Driverprofile,StudentUser,DriverUser,Vehicle,ReservationCancelation,Announcement,Franchise
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
@@ -99,7 +99,44 @@ class DriverUserForm(UserCreationForm):
             'id':'contact_no',
             'type':'text',
             'placeholder':'contact_no'})
-        
+
+
+class NotAdminDriverUserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','middle_name','contact_no')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'first_name',
+            'id':'first_name',
+            'type':'text',
+            'placeholder':'First Name'})
+        self.fields['last_name'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'last_name',
+            'id':'last_name',
+            'type':'text',
+            'placeholder':'Last Name'})
+        self.fields['middle_name'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'middle_name',
+            'id':'middle_name',
+            'type':'text',
+            'placeholder':'Middle Name'})
+        self.fields['contact_no'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'contact_no',
+            'id':'contact_no',
+            'type':'text',
+            'placeholder':'contact_no'})
+
+ 
 class StudentUserForm(UserCreationForm):
     class Meta:
         model = StudentUser
@@ -286,62 +323,6 @@ class ProfileForm(ModelForm):
             'id':'year_level',
             'type':'text',
             'placeholder':'year level'})
-class EditDriverProfileForm(ModelForm):
-    class Meta:
-        model=Driverprofile
-        fields= ('birth_date','lot','street','village','city','zipcode',
-                 'age')
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['birth_date'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'birth_date',
-            'id':'birth_date',
-            'type': 'date',
-            'placeholder': 'yyyy-mm-dd (DOB)'})
-        self.fields['lot'].widget.attrs.update({
-            'class': 'form-input-add',
-            'required':'',
-            'name':'lot',
-            'id':'lot',
-            'type':'text',
-            'placeholder':'lot/house no,/bldg no.'})
-        self.fields['street'].widget.attrs.update({
-            'class': 'form-input-add',
-            'required':'',
-            'name':'street',
-            'id':'street',
-            'type':'text',
-            'placeholder':'street'})
-        self.fields['village'].widget.attrs.update({
-            'class': 'form-input-add2',
-            'required':'',
-            'name':'village',
-            'id':'village',
-            'type':'text',
-            'placeholder':'village'})
-        self.fields['city'].widget.attrs.update({
-            'class': 'form-input-add2',
-            'required':'',
-            'name':'city',
-            'id':'city',
-            'type':'text',
-            'placeholder':'city'})
-        self.fields['zipcode'].widget.attrs.update({
-            'class': 'form-input-add2',
-            'required':'',
-            'name':'zipcode',
-            'id':'zipcode',
-            'type':'text',
-            'placeholder':'zipcode'})
-        self.fields['age'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'age',
-            'id':'age',
-            'type':'text',
-            'placeholder':'age'})
         
 
 
@@ -349,30 +330,9 @@ class AdminEditDriverProfileForm(ModelForm):
     class Meta:
         model=Driverprofile
         fields= ('birth_date','lot','street','village','city','zipcode',
-                 'age','franchise','franchise_no','operator',)
+                 'age',)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['franchise'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'franchise',
-            'id':'franchise',
-            'type': 'text',
-            'placeholder': 'franchise'})
-        self.fields['franchise_no'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'franchise_no',
-            'id':'franchise_no',
-            'type': 'text',
-            'placeholder': 'franchise_no'})
-        self.fields['operator'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'operator',
-            'id':'operator',
-            'type': 'text',
-            'placeholder': 'franchise_no'})
         self.fields['birth_date'].widget.attrs.update({
             'class': 'form-input',
             'required':'',
@@ -506,9 +466,16 @@ class DriverProfileForm(ModelForm):
     class Meta:
         model=Driverprofile
         fields= ('image','birth_date','lot','street','village','city','zipcode',
-                 'age','school_branch','franchise','assigned_route','franchise_no','operator','vehicle')
+                 'age','school_branch','assigned_route','vehicle','franchise')
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['franchise'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'franchise',
+            'id':'franchise',
+            'type': 'franchise',
+            'placeholder': 'Franchise'})
         self.fields['vehicle'].widget.attrs.update({
             'class': 'form-input',
             'required':'',
@@ -516,20 +483,7 @@ class DriverProfileForm(ModelForm):
             'id':'vehicle',
             'type':'text',
             'placeholder':'Vehicle'})
-        self.fields['franchise_no'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'franchise_no',
-            'id':'franchise_no',
-            'type':'text',
-            'placeholder':'Franchise no.'})
-        self.fields['operator'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'operator',
-            'id':'operator',
-            'type':'text',
-            'placeholder':'Operator'})
+
         self.fields['assigned_route'].widget.attrs.update({
             'class': 'form-input',
             'required':'',
@@ -537,13 +491,7 @@ class DriverProfileForm(ModelForm):
             'id':'assigned_route',
             'type':'text',
             'placeholder':'Route'})
-        self.fields['franchise'].widget.attrs.update({
-            'class': 'form-input',
-            'required':'',
-            'name':'franchise',
-            'id':'franchise',
-            'type':'text',
-            'placeholder':'franchise'})
+
         self.fields['birth_date'].widget.attrs.update({
             'class': 'form-input',
             'required':'',
@@ -601,6 +549,64 @@ class DriverProfileForm(ModelForm):
             'placeholder':'school_branch'})
     
 
+class NotAdminDriverProfileForm(ModelForm):
+    class Meta:
+        model=Driverprofile
+        fields= ('image','birth_date','lot','street','village','city','zipcode',
+                 'age',)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+        self.fields['birth_date'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'birth_date',
+            'id':'birth_date',
+            'type': 'date',
+            'placeholder': 'yyyy-mm-dd (DOB)'})
+        self.fields['lot'].widget.attrs.update({
+            'class': 'form-input-add',
+            'required':'',
+            'name':'lot',
+            'id':'lot',
+            'type':'text',
+            'placeholder':'lot/house no,/bldg no.'})
+        self.fields['street'].widget.attrs.update({
+            'class': 'form-input-add',
+            'required':'',
+            'name':'street',
+            'id':'street',
+            'type':'text',
+            'placeholder':'street'})
+        self.fields['village'].widget.attrs.update({
+            'class': 'form-input-add2',
+            'required':'',
+            'name':'village',
+            'id':'village',
+            'type':'text',
+            'placeholder':'village'})
+        self.fields['city'].widget.attrs.update({
+            'class': 'form-input-add2',
+            'required':'',
+            'name':'city',
+            'id':'city',
+            'type':'text',
+            'placeholder':'city'})
+        self.fields['zipcode'].widget.attrs.update({
+            'class': 'form-input-add2',
+            'required':'',
+            'name':'zipcode',
+            'id':'zipcode',
+            'type':'text',
+            'placeholder':'zipcode'})
+        self.fields['age'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'age',
+            'id':'age',
+            'type':'text',
+            'placeholder':'age'})
 
     
 class EditUserForm(ModelForm):
@@ -748,3 +754,52 @@ class VehicleForm(ModelForm):
             'id':'included',
             'type':'text',
             'placeholder':'included'})
+        
+class AnnouncementForm(ModelForm):
+    class Meta:
+        model = Announcement
+        fields = ('title','content',)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'title',
+            'id':'title',
+            'type':'text',
+            'placeholder':'title'})
+        self.fields['content'].widget.attrs.update({
+            'class': 'form-input',
+            'required':'',
+            'name':'content',
+            'id':'content',
+            'type':'text',
+            'placeholder':'content'})
+        
+class FranchiseForm(ModelForm):
+    class Meta:
+        model = Franchise
+        fields = ('franchise_name','franchise_no','operator')
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['franchise_name'].widget.attrs.update({
+                'class': 'form-input',
+                'required':'',
+                'name':'franchise_name',
+                'id':'franchise_name',
+                'type':'text',
+                'placeholder':'franchise_name'})
+            self.fields['franchise_no'].widget.attrs.update({
+                'class': 'form-input1',
+                'required':'',
+                'name':'franchise_no',
+                'id':'franchise_no',
+                'type':'text',
+                'placeholder':'franchise_no'})
+            self.fields['operator'].widget.attrs.update({
+                'class': 'form-input1',
+                'required':'',
+                'name':'operator',
+                'id':'operator',
+                'type':'text',
+                'placeholder':'operator'})

@@ -61,5 +61,9 @@ urlpatterns = [
     path('admin-vehicles/',views.admin_vehicles,name='vehicles'),
     path('admin-vehicles-individual/<str:pk>/',views.admin_vehicles_individual,name='vehicles-individual'),
     path('admin-vehicle/delete/<str:pk>/' ,views.admin_vehicle_delete,name="vhcl-dlt"),
-    path('admin-vhcl-edit/<str:pk>/',views.admin_vehicle_edit,name="vhcl-edit")
+    path('admin-vhcl-edit/<str:pk>/',views.admin_vehicle_edit,name="vhcl-edit"),
+    path('admin-announcements/',views.admin_announcements,name="admin-anncmnts"),
+    path('admin-announcements-individual/<str:pk>/',views.admin_announcements_individual,name="admin-anncmnts-indiv"),
+    path('admin-announcements-edit/<str:pk>/',views.admin_announcements_edit,name="admin-anncmnts-edit"),
+    path('admin-announcements-delete/<str:pk>/',views.admin_announcements_delete,name="admin-anncmnts-delete"),
 ]

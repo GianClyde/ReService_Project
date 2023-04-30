@@ -1,0 +1,38 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#main{
+    width: 100%;
+    background-color: white;
+}
+
+#row{
+    width: 100%;
+    background-color: white;
+}
+
+#col{
+    width: 30%;
+    padding: 2%;
+    float: left;
+    margin: 1%;
+}
+
+#imc-logo-wrapper{
+    width: 100%;
+}
+#imc-logo{
+    width: 50%;
+}
+
+#content{
+    width: 100%;
+    padding: 2%;
+}
+
+h2{
+    font-size: 20px;
+}

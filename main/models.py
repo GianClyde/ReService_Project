@@ -131,7 +131,6 @@ class Profile(models.Model):
     
 class Driverprofile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    franchise= models.CharField(max_length=100, null=True,blank=True)
     birth_date=models.DateField(null=True,blank=True)
     lot = models.CharField(max_length=100, null=True,blank=True)
     street = models.CharField(max_length=100, null=True,blank=True)
@@ -143,9 +142,8 @@ class Driverprofile(models.Model):
     school_branch=models.CharField(max_length=100,choices=branch, default='bayani rd')
     assigned_route = models.CharField(max_length=100, null=True,blank=True)
     liscense_no = models.CharField(max_length=100, null=True,blank=True)
-    operator=models.CharField(max_length=100, null=True,blank=True)
-    franchise_no =  models.CharField(max_length=100, null=True,blank=True)
     vehicle = models.OneToOneField('Vehicle',on_delete=models.CASCADE, null=True)
+    franchise = models.ForeignKey('Franchise', on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
         return str(self.user)
@@ -207,7 +205,19 @@ class ReservationCancelation(models.Model):
             )
             
         print(message.sid)
+class Franchise(models.Model):
+    franchise_id = models.UUIDField(
+         primary_key = True,
+         unique=True,
+         default=uuid.uuid4,
+         editable = False)
+    franchise_name = models.CharField(max_length=100, null=False, blank=False)
+    franchise_no = models.CharField(max_length=100, null=False, blank=False)
+    operator = models.CharField(max_length=100, null=False, blank=False)
     
+    def __str__(self):
+        return self.franchise_name
+       
 class Vehicle(models.Model):
     vehicle_id  = models.UUIDField(
          primary_key = True,
@@ -219,16 +229,18 @@ class Vehicle(models.Model):
     plate_no = models.CharField(max_length=10)
     capacity = models.IntegerField(null=False,default=0)
     included = models.IntegerField(null=False,default=0)
+
     def __str__(self):
         return str(self.model + str(self.vehicle_id))
 
 
 class Announcement(models.Model):
     title = models.CharField(null=True,max_length=100)
-    content=models.CharField(null=True,max_length=100)
+    content=models.TextField(null=True,max_length=100)
+    created = models.DateTimeField(auto_now_add=True, null=True)
     
     def __str__(self):
-        return self.title
+        return self.content
     
     
     

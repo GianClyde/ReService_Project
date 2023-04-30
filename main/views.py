@@ -5,7 +5,7 @@ from .models import User,Profile,Driverprofile,Reservation,Announcement,Reservat
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditDriverProfileForm,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
+from .forms import NotAdminDriverProfileForm, NotAdminDriverUserForm,FranchiseForm,AnnouncementForm,VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -308,7 +308,6 @@ def reserve_service(request,pk):
 @allowed_users(allowed_roles=['driver','admin'])
 def driver_profile_fillUp(request):
     form = DriverProfileForm()
-
     if request.method == 'POST':
         form = DriverProfileForm(request.POST, request.FILES,instance=request.user.driverprofile)
        
@@ -327,25 +326,22 @@ def driver_profile_fillUp(request):
 def edit_driver_profile(request,pk):
     user = User.objects.get(id=pk)
     profile_user = Driverprofile.objects.get(user__id=request.user.id)
-    form = DriverUserForm(instance=user)
-    pform=DriverProfilePicture(instance=profile_user)
-    form_p=EditDriverProfileForm(instance=profile_user)
+    form = NotAdminDriverUserForm(instance=user)
+    form_p=NotAdminDriverProfileForm(instance=profile_user)
 
     if request.method == 'POST':
-        form = EditUserForm(request.POST, request.FILES, instance=user)
-        pform=DriverProfilePicture(request.POST, request.FILES, instance=profile_user)
-        form_p= EditDriverProfileForm(request.POST, request.FILES, instance=profile_user)
-        if form.is_valid() and pform.is_valid() and form_p.is_valid():
+        form = NotAdminDriverUserForm(request.POST, request.FILES, instance=user)
+        form_p= NotAdminDriverProfileForm(request.POST, request.FILES, instance=profile_user)
+        if form.is_valid()  and form_p.is_valid():
             form.save()
-            pform.save()
             form_p.save()
             messages.success(request,"Profile updated succesfully")
             return redirect('driver-profile', pk=pk)
         else:
             for error in list(form.errors.values()):
                 messages.error(request, error)
-    context ={'form':form,'pform':pform, "profile_user":profile_user,'form_p':form_p,'pform':pform}
-    return render(request,'main/driver/driver_profile_page.html',context)
+    context ={'form':form, "profile_user":profile_user,'form_p':form_p}
+    return render(request,'main/driver/driver_profile_edit.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['driver','admin'])
@@ -581,15 +577,17 @@ def admin_driver_edit(request,pk):
     if request.method == 'POST':
         form = EditUserForm(request.POST, request.FILES, instance=user)
         form_p= DriverProfileForm(request.POST, request.FILES, instance=profile_user)
-        if form.is_valid() and form_p.is_valid():
+        form_f = FranchiseForm(request.POST, request.FILES,instance = profile_user)
+        if form.is_valid() and form_p.is_valid() :
             form.save()
             form_p.save()
+
             messages.success(request,"Profile updated succesfully")
             return redirect('admin-drvr-info', pk=pk)
         else:
             for error in list(form.errors.values()):
                 messages.error(request, error)
-    context ={'form':form, "profile_user":profile_user,'form_p':form_p,'pform':pform}
+    context ={'form':form, "profile_user":profile_user,'form_p':form_p,'pform':pform,'user':user}
     return render(request,'main/admin/admin-driver-edit.html',context)
 
 
@@ -666,7 +664,13 @@ def admin_reservation_decline(request,pk):
     return redirect('admin-reservations')
 
 def admin_reservation_cancelations(request):
-    cancelations = ReservationCancelation.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    cancelations = ReservationCancelation.objects.filter(
+        Q(cancelation_id__icontains = q) |
+        Q(reservation__reservation_id__icontains = q) |
+        Q(status__icontains = q)
+        
+    )
     context={'cancelations':cancelations}
     return render(request,'main/admin/admin_reservation_cancelations.html', context)
 
@@ -722,9 +726,14 @@ def admin_cancelation_decline(request,pk):
 
 
 def admin_vehicles(request):
-    vehicles = Vehicle.objects.all()
-    int = 0
-    context = {'vehicles':vehicles,'int':int}
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    vehicles = Vehicle.objects.filter(
+        Q(model__icontains = q) |
+        Q(plate_no__icontains = q) |
+        Q(vehicle_id__icontains =q) 
+    )
+    franchise = Driverprofile.objects.values_list('franchise', flat=True)
+    context = {'vehicles':vehicles,'int':int, 'franchise':franchise}
     return render(request,'main/admin/admin_vehicles.html', context)
 
 def admin_vehicles_individual(request,pk):
@@ -758,3 +767,34 @@ def admin_vehicle_edit(request,pk):
                 messages.error(request, error)
     context ={'form':form,'vehicle':vehicle}
     return render(request,'main/admin/admin-vehicle-edit.html',context)
+
+def admin_announcements(request):
+    announcements = Announcement.objects.all()
+    context = {'announcements':announcements}
+    return render(request,'main/admin/admin-announcements.html',context)
+
+def admin_announcements_individual(request,pk):
+    announcement = Announcement.objects.get(title = pk)
+    context = {'announcement':announcement}
+    return render(request,'main/admin/admin-announcements-individual.html',context)
+
+def admin_announcements_edit(request,pk):
+    
+    announcement = Announcement.objects.get(title = pk)
+    form = AnnouncementForm(instance=announcement)
+    if request.method == "POST":
+        form = AnnouncementForm(request.POST,instance=announcement)
+        if form.is_valid():
+            form.save()
+            return redirect('admin-anncmnts-indiv', pk=pk)
+    context = {'announcement':announcement,'form':form}
+    return render(request,'main/admin/admin-announcements-edit.html',context)
+
+def admin_announcements_delete(request,pk):
+    announcement = Announcement.objects.get(title = pk)
+    
+    if request.method == "POST":
+        announcement.delete()
+        return redirect('admin-anncmnts')
+    context = {'announcement':announcement}
+    return render(request,'main/admin/admin-announcements-delete.html',context)

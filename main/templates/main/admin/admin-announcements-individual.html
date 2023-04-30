@@ -1,0 +1,44 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Announcement Information</h2>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Subject:
+                </div>
+                <div id="content">
+                    {{announcement.title}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Created:
+                </div>
+                <div id="content">
+                    {{announcement.created}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Content:
+                </div>
+                <div id="content">
+                    {{announcement.content}}
+                </div>
+            </div>
+
+
+        
+            <a href="{% url 'admin-anncmnts-edit' announcement.title%}"><div id="btn">Edit</div></a>
+            
+        </div>
+    </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,42 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Announcement Information</h2>
+        <form method="POST" action="" >
+            {% csrf_token %}
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Subject:
+                </div>
+                {{form.title}}
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Created:
+                </div>
+                <div id="content">
+                    {{announcement.created}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Content:
+                </div>
+                {{form.content}}
+            </div>
+
+
+        
+            <input class="save"  type="submit" value="Save"/>
+        </form>   
+        </div>
+    </div>
+    </div>
+</div>
+{%endblock%}

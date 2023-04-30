@@ -91,6 +91,15 @@
     border-bottom: solid #001c69;
     font-family: 'Courier New', Courier, monospace;
 }
+.form-input1{
+    width: 70%;
+    float: right;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+}
 .form-input-add{
     width: 70%;
     float: right;

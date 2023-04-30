@@ -1,0 +1,45 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Confirm Delete</h2>
+    <form method="POST" action="">
+            {%csrf_token%}
+        <p>Are you sure you want to delete announcement {{announcement.title}}?</p>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Subject:
+                </div>
+                <div id="content">
+                    {{announcement.title}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Created:
+                </div>
+                <div id="content">
+                    {{announcement.created}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Content:
+                </div>
+                <div id="content">
+                    {{announcement.content}}
+                </div>
+            </div>
+            <input type="submit" value="Confirm" class="btn" style="width:15%;">
+            <button class="btn" onclick="history.back()" style="width:15%;">Go back</button>
+            
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+{%endblock%}

@@ -8,7 +8,7 @@
     <h1 id="header">ReService:Vehicles</h1>
     <div id="navbar-left">
         <div id="search-br-wrapper">
-            <form method="GET" action="{% url 'admin-reservations'%}">
+            <form method="GET" action="{% url 'vehicles'%}">
                 <input class="search" name="q" type="text" placeholder="Search..">
             </form>
         </div>
@@ -16,20 +16,14 @@
             <h3>Filter by</h3>
             <ul class="filters__list">
                 <li class="list">
-                    <a href="{% url 'admin-reservations'%}" class="list">All</a>
+                    <a href="{% url 'vehicles'%}" class="list">All</a>
                 </li>
+                {% for f in franchise%}         
                 <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
+                    <a href="{% url 'vehicles' %}?q={{f}}" class="list">{{f}}</a>
                 </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
-                </li>
+                
+                {%endfor%}
         
             </ul>
         </div>
