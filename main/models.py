@@ -155,6 +155,7 @@ class Reservation(models.Model):
          default=uuid.uuid4,
          editable = False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    service = models.ForeignKey('Services', on_delete=models.CASCADE, null=True)
     reserved = models.BooleanField(default=False)
     driver = models.ForeignKey(Driverprofile,on_delete=models.CASCADE, null=True)
     reservation_status = models.CharField(max_length=100,choices=reservation_status, default='PENDING')
@@ -178,6 +179,19 @@ class Reservation(models.Model):
             
         print(message.sid)
 
+class Services (models.Model):
+    service_id =   models.UUIDField(
+         primary_key = True,
+         unique=True,
+         default=uuid.uuid4,
+         editable = False)
+    price = models.FloatField(default=0, null=False)
+    pick_up = models.CharField(max_length=100, null=True)
+    franchise = models.OneToOneField('Franchise', on_delete=models.CASCADE, null=True)
+    
+    def __str__(self):
+        return f"{self.franchise.franchise_name} - from:{self.pick_up}"
+    
     
 class ReservationCancelation(models.Model):
     cancelation_id = models.UUIDField(
@@ -242,7 +256,13 @@ class Announcement(models.Model):
     def __str__(self):
         return self.content
     
-    
+class PaidCustomer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    stripeCustomerId = models.CharField(max_length=255)
+    stripeSubscriptionId = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.user.last_name + self.user.first_name
     
 @receiver(post_save, sender=StudentUser)
 def create_user_profile(sender, instance, created, **kwargs):

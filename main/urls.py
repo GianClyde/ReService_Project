@@ -66,4 +66,11 @@ urlpatterns = [
     path('admin-announcements-individual/<str:pk>/',views.admin_announcements_individual,name="admin-anncmnts-indiv"),
     path('admin-announcements-edit/<str:pk>/',views.admin_announcements_edit,name="admin-anncmnts-edit"),
     path('admin-announcements-delete/<str:pk>/',views.admin_announcements_delete,name="admin-anncmnts-delete"),
+    
+    path('checkout', views.checkout, name='checkout'),
+    path('config/', views.stripe_config),
+    path('create-checkout-session/', views.create_checkout_session),
+    path('success/', views.success),  # new
+    path('cancel/', views.cancel), 
+    path('webhook/', views.stripe_webhook), 
 ]

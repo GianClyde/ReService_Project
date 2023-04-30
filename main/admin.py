@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User,Profile,Driverprofile,Vehicle,Reservation,Announcement,ReservationCancelation,Franchise
+from .models import PaidCustomer,User,Profile,Driverprofile,Vehicle,Reservation,Announcement,ReservationCancelation,Franchise,Services
 from django.contrib.auth.admin import UserAdmin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -148,4 +148,6 @@ admin.site.register(Vehicle)
 admin.site.register(Reservation,ReservationAdmin)
 admin.site.register(Announcement)
 admin.site.register(Franchise)
+admin.site.register(Services)
 admin.site.register(ReservationCancelation,ReservationCancelationAdmin)
+admin.site.register(PaidCustomer)

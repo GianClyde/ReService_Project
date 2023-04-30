@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.http import HttpResponse
-from .models import User,Profile,Driverprofile,Reservation,Announcement,ReservationCancelation,Vehicle
+from .models import User,Profile,Driverprofile,Reservation,Announcement,ReservationCancelation,Vehicle,Services,PaidCustomer
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
@@ -18,6 +18,11 @@ from django.conf import settings
 from django.core.mail import send_mail
 import datetime
 from twilio.rest import Client
+from django.http.response import JsonResponse # new
+from django.views.decorators.csrf import csrf_exempt # new
+import stripe
+from django.conf import settings # new
+
 import uuid
 # Create your views here.
 
@@ -147,6 +152,8 @@ def identify(request):
 
 def main_reservation(request):
     return render(request, 'main/comingsoon.html')
+
+
 def profile_fillUp(request):
     form = ProfileForm()
     if request.method == 'POST':
@@ -288,10 +295,11 @@ def reservation_driver_info(request,pk):
 def reserve_service(request,pk):
     current_driver = User.objects.get(id=pk)
     profile_driver = Driverprofile.objects.get(user__id=pk)
-
+    service = Services.objects.get(franchise = profile_driver.franchise)
     reservation = Reservation.objects.create(user=request.user)
     
     reservation.driver=profile_driver
+    reservation.service = service
     reservation.save()
     mssg = f'hi{reservation.user.last_name}, your reservation has been recorded plesase wait for your driver to confirm your reservation', 
     reservation.send_sms(mssg)
@@ -798,3 +806,103 @@ def admin_announcements_delete(request,pk):
         return redirect('admin-anncmnts')
     context = {'announcement':announcement}
     return render(request,'main/admin/admin-announcements-delete.html',context)
+
+
+def checkout(request):
+        try:
+            # Retrieve the subscription & product
+            stripe_customer = PaidCustomer.objects.get(user=request.user)
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            subscription = stripe.Subscription.retrieve(stripe_customer.stripeSubscriptionId)
+            product = stripe.Product.retrieve(subscription.plan.product)
+
+            # Feel free to fetch any additional data from 'subscription' or 'product'
+            # https://stripe.com/docs/api/subscriptions/object
+            # https://stripe.com/docs/api/products/object
+
+            return render(request, 'main/comingsoon.html', {
+                'subscription': subscription,
+                'product': product,
+            })
+
+        except PaidCustomer.DoesNotExist:
+            return render(request, 'main/comingsoon.html')
+
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                client_reference_id=request.user.id if request.user.is_authenticated else None,
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancel/',
+                payment_method_types=['card'],
+                mode='subscription',
+                line_items=[
+                    {
+                        'price': settings.STRIPE_PRICE_ID,
+                        'quantity': 1,
+                    }
+                ]
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+
+def success(request):
+
+    return render(request, 'main/success.html')
+
+
+
+def cancel(request):
+    return render(request, 'main/cancel.html')
+
+@csrf_exempt
+def stripe_webhook(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+
+        # Fetch all the required data from session
+        client_reference_id = session.get('client_reference_id')
+        stripe_customer_id = session.get('customer')
+        stripe_subscription_id = session.get('subscription')
+
+        # Get the user and create a new StripeCustomer
+        user = User.objects.get(id=client_reference_id)
+        PaidCustomer.objects.create(
+            user=user,
+            stripeCustomerId=stripe_customer_id,
+            stripeSubscriptionId=stripe_subscription_id,
+        )
+        PaidCustomer.save()
+        print(user.username + ' just subscribed.')
+
+    return HttpResponse(status=200)

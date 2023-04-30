@@ -78,6 +78,9 @@ DATABASES = {
     }
 }
 
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51N2OKMK0YGQ1meD4c8c03txik0fddbuJ4aOWSf57lcmgpCuqnqYCdM0qzon9D8a302VUujf09JSPaGlNL43rFxR100Td4yKuKb'
+STRIPE_SECRET_KEY = 'sk_test_51N2OKMK0YGQ1meD4aujG0QLF6E072TCOPa7BcaH5rUFc48RMRLTbReNLQNj0LtesJlaP33II52PZ2klje099PEXW00oYoJMQk5'
+STRIPE_PRICE_ID = 'price_1N2OoXK0YGQ1meD42amxrcVx'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
