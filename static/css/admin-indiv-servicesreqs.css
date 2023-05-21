@@ -1,0 +1,63 @@
+#row{
+    width: 100%;
+    font-family: "Bebas Neue";
+    padding: 2%;
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+    margin-bottom: 3%;
+}
+
+#header{
+    width: 100%;
+    font-family: "Bebas Neue";
+    padding: 1%;
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+}
+#content{
+    width: 100%;
+    padding: 1%;
+    background-color: white;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 25px;
+    color: black;
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-size: 20px;
+    display: inline;
+    margin-left: 1%;
+}
+
+.btn{
+    width: 10%;
+    float: left;
+    padding: 1%;
+    background-color: #deaf39;
+    color: white;
+    margin-right: 2%;
+
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#subleft{
+    width: 10%;
+    float: left;
+}
+
+#subright{
+    width: 90%;
+    float: right;
+ 
+}

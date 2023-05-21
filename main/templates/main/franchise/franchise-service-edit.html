@@ -1,0 +1,91 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Service application{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-servicesreqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    </style>
+
+<div id="main">
+   <div id="row">
+        Service ID: {{service.service_id}}
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+            <div id="header">
+                Service Information
+            </div>
+            <div id="content">
+                <div id="sub-row" class="clearfix">
+                    <div id="subleft">
+                        <label>Franchise:</label>
+                    </div>
+                    <div id="subright">
+                        <p>{{service.franchise.franchise_name}} </p>
+                    </div>
+                   
+                    
+                </div>
+                <div id="sub-row" class="clearfix">
+                    <div id="subleft">
+                        <label>Driver :</label>
+                    </div>
+                    <div id="subright">
+                        <p>{{form.driver}}</p>
+                    </div>
+                
+                    
+                </div>
+                <div id="sub-row" class="clearfix">
+                    <div id="subleft">
+                        <label>From:</label>
+                    </div>
+                    <div id="subright">
+                        <p>{{form.pick_up}}</p>
+                    </div>
+
+                </div>
+                <div id="sub-row" class="clearfix">
+                    <div id="subleft">
+                        <label>Price:</label>
+                    </div>
+                    <div id="subright">
+                        <p>{{form.price}} pesos</p>
+                    </div>
+                  
+                   
+                </div>
+                <div id="sub-row" class="clearfix">
+                    <div id="subleft">
+                        <label>Created:</label>
+                    </div>
+                    <div id="subright">
+                        <p>{{service.created}}</p>
+                    </div>
+                
+               
+                </div>
+            </div>
+        </div>
+
+        <div id="row" class="clearfix" >
+            <input class="btn" type="submit" value="Save"> 
+
+        </div>
+    </form>
+      
+</div>
+
+
+{%endblock%}

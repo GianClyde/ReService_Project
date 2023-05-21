@@ -1,0 +1,76 @@
+#main{
+    width: 100%;
+}
+
+#form{
+    width: 80%;
+    padding: 2%;
+    background-color: #001c69;
+    margin: auto;
+}
+
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+}
+
+#student-list{
+    width: 100%;
+    background-color: #001c69;
+}
+
+#content{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 2%;
+}
+
+#table-lbl-wrapper{
+    width: 100%;
+
+    padding: 2%;
+    border-bottom: solid white;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#table-lbl{
+    float: left;
+   
+    font-family: "Bebas Neue";
+    font-size: 20px;
+    width: 30%;
+    color: white;
+}
+
+#content-wrapper{
+    width: 100%;
+    background-color: white;
+    padding: 1%;
+    margin-bottom: 3%;
+}
+
+#table-cntnt{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    width: 30%;
+    float: left;
+}
+
+#sbmt{
+    width: 10%;
+    background-color: #deaf39;
+    padding: 1%;
+    font-family: "Bebas Neue";
+    color: white;
+}
+
+span{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+

@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%}ReService: Reservation Cancelations{%endblock%}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
@@ -54,7 +54,7 @@
 
         </div>
         {% for cancel in cancelations%}
-            <a><div id="user-card" class="clearfix">
+            <a href="{% url 'admin-cancelations-info' cancel.cancelation_id%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
                     <div id="check-box">
                         <input type="checkbox" value="{{reservation.id}}" name="checkbox">
@@ -84,9 +84,7 @@
                          
                 </div>
                 <div id="operations">
-                    <a href="{% url 'admin-cancelations-info' cancel.cancelation_id%}"><div class="btn">Show</div></a>
-                    <a href="{% url 'accept-cancel' cancel.cancelation_id%}"><div class="btn" style="background-color: #5cb85c;">Accept</div></a>
-                    <a href="{% url 'admin-cancelation-decline' cancel.cancelation_id%}"><div class="btn"style="background-color: red;" >Decline</div></a>
+                  
                 </div>
             
             </div></a>

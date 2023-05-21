@@ -1,0 +1,157 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Driver Feedbacks{%endblock%}
+{% block content %}
+{% load static %}
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+    
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+    
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+    
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-header {
+      padding: 2px 16px;
+      background-color: red;
+      color: white;
+    }
+    
+    .modal-body{
+       padding: 3%;
+    
+    }
+    
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+    #modal-header{
+        margin-right: 30%;
+    }
+    </style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
+
+<div id="main" class="clearfix">
+    <h1 id="header">ReService:Service Feedbacks</h1>
+    <div id="navbar-left">
+        <div id="search-br-wrapper">
+            <form method="GET" action="{% url 'admin-feedbacks'%}">
+                <input class="search" name="q" type="text" placeholder="Search..">
+            </form>
+        </div>
+        <div id="filters-wrapper">
+            <h3>Filter by</h3>
+            <ul class="filters__list">
+                <li class="list">
+                    <a href="{% url 'admin-feedbacks'%}" class="list">All</a>
+                </li>
+                {% for f in franchise_list%}
+                <li class="list">
+                    <a href="{% url 'admin-feedbacks' %}?q={{f}}" class="list">{{f}}</a>
+                </li>
+                {%endfor%}
+        
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="clearfix" id="lbl-wrapper">
+
+           <div id="id-col-lbl" style='width: 20%;' >
+            <h3 id="col-label">Driver</h3>
+           </div> 
+           <div id="name-col-lbl" style='width: 20%;  '>
+            <h3 id="col-label">User</h3>
+           </div>
+           <div id="sts-col-lbl" style='width: 20%;'>
+            <h3 id="col-label">Franchise</h3>
+           </div>
+           <div id="crtd-col-lbl " >
+            <h3 id="col-label">Created</h3>
+           </div>
+           
+
+        </div>
+        {% for f in feedbacks%}
+            <a href="{% url 'feedback-indiv' f.rep_id%}"><div id="user-card" class="clearfix">
+                <div id="card-info" class="clearfix">
+                    <div id="check-box">
+                        <input type="checkbox" value="{{reservation.id}}" name="checkbox">
+                    </div>
+                    <div id="user-id" style='width: 25%;'>
+                        {{f.driver.user.first_name}} {{f.driver.user.middle_name}} {{f.driver.user.last_name}}
+                    </div>
+                    <div id="user-name" style='width: 25%;'>
+                        {{f.user.first_name}} {{f.user.middle_name}} {{f.user.last_name}}
+                    </div>
+                    <div id="reserv-sts" style='width: 20%;'>
+                            {{f.driver.franchise.franchise_name}}
+                    </div>
+                
+                    <div id="created">
+                        {{f.created}}
+                    </div>
+                         
+                </div>
+                
+            
+            </div></a>
+
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

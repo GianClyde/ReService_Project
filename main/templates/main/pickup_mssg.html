@@ -1,0 +1,18 @@
+{% autoescape off %}
+
+Hello {{profile.user.first_name}}, your driver has set your pick up time:
+
+Day            PickUp
+Monday          {{sched.monday_pickUp}}
+Tuesday         {{sched.tuesday_pickUp}}
+Wednesday       {{sched.wednesday_pickUp}}
+Thursday        {{sched.thursday_pickUp}}
+Friday          {{sched.friday_pickUp}}
+
+
+For concers, you can contact your driver or message us at reservicesystems@gmail.com
+
+Sincerely,
+ReService
+
+{% endautoescape %}

@@ -1,0 +1,139 @@
+#main{
+    background-color: white;
+    width: 100%;
+   
+    padding: 2%;
+}
+h2{
+    font-family: "Bebas Neue";
+    text-align: center;
+}
+
+#table{
+    width: 60%;
+    padding: 1%;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 5%;
+    min-height: 600px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.clearfix:active{
+    content: "";
+    display: block;
+    clear: both;
+}
+#status{
+    padding: 1%;
+    float: left;
+    background-color: white;
+    width: 10%;
+    border-right: solid wheat;
+}
+#stat-img{
+    width: 40%;
+    margin: auto;
+}
+#period-lbl{
+    padding: 1%;
+    float: left;
+    background-color: white;
+    width: 45%;
+    border-right: solid wheat;
+}
+#amt-hdr{
+    padding: 1%;
+    float: left;
+    background-color: white;
+    width: 45%;
+}
+
+#header{
+    width: 100%;
+}
+h3{
+    font-family: "Bebas Neue";
+}
+#content{
+    width: 100%;
+}
+#row{
+    width:100%;
+}
+
+#info{
+    width: 100%;
+    background-color: #001c69;
+    padding: 2%;
+}
+
+h4{
+    font-family: "Bebas Neue";
+    color: white;
+    text-align: center;
+}
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    margin-bottom: 1%;
+    text-align: center;
+}
+p{
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+#button{
+    width: 60%;
+    margin-top: 5%;
+    margin: auto;
+   
+}
+.btn{
+    padding: 1%;
+    background-color: #001c69;
+    font-family: "Bebas Neue";
+    color: white;
+    
+}
+
+label{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+#pay{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    border-color: #001c69;
+}
+
+th{
+    font-family: "Bebas Neue";
+    padding: 1%;
+    font-size: 25px;
+    color:#deaf39;
+    background-color: #001c69;
+    border-right: solid white;
+
+}
+
+td{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    padding: 1%;
+}
+
+#statth{
+    width: 20%;
+}
+
+.pay{
+    padding: 1%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+    color: white;
+    text-align: center;
+}

@@ -1,7 +1,39 @@
 #main{
-    background-color: white;
+    width: 100%;
+    padding: 5%;
 }
 
-p{
+h3{
+    color: white;
+    font-size: 35px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#buttons-wrapper{
+    width: 100;
+    padding: 3%;
+}
+#card{
+    width: 20%;
+    float:left;
+    background-color: #deaf39;
+    padding: 2%;
+    border-radius: 7px;
+    margin-right: 5%;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#img{
+    width: 100%;
+    
+}
+
+h4{
+    text-align: center;
     color: white;
 }

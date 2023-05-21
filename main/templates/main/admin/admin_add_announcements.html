@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Add Announcements{%endblock%}
+{% load static %}
+
+{% block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/add-reservation.css' %}">
+<div id="main">
+    <div id="card">
+        <h2>Announcement Form</h2>
+        <hr>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <label>Title:</label>
+            {{form.title}}<br>
+            <label>Content:</label>
+            {{form.content}}<br>
+            
+            <input type ="submit" value="create" id="submit">
+
+        </form>
+    </div>
+    
+
+</div>
+
+{% endblock  %}

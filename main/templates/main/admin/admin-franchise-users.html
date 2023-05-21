@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Franchise Accounts{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student.css' %}">
+
+<div id="main" class="clearfix">
+    <h1 id="header">ReService:Franchise</h1>
+    <div id="navbar-left">
+        <div id="search-br-wrapper">
+            <form method="GET" action="">
+                <input class="search" name="q" type="text" placeholder="Search..">
+            </form>
+            
+        
+        </div>
+        <div id="filters-wrapper">
+            <h3>Filter by</h3>
+            <hr>
+            
+            <h3>Franchise</h3>
+            <ul class="filters__list">
+                <li class="list">
+                    <a href="{% url 'add-franchise-users'%}" class="list">All</a>
+                </li>
+                {% for franchise in franchise_list%}
+                <li class="list">
+                    <a href="{% url 'add-franchise-users' %}?q={{franchise}}" class="list">{{franchise}}</a>
+                </li>
+                {%endfor%}
+            
+        
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="clearfix" id="tbl-hdr">
+           <div id="id-col-lbl">
+            <h3 id="col-label">ID</h3>
+           </div> 
+           <div id="name-col-lbl">
+            <h3 id="col-label">Name</h3>
+           </div>
+           <div id="oprt-col-lbl" style="padding-top:1%;">
+                <a href="{%url 'add-franchise-admin'%}"><div id="create-btn" >Register</div></a>
+           </div>
+
+        </div>
+        {% for user in franchises%}
+            <a href="{% url 'indiv-franchise-users' user.user.id%}"><div id="user-card" class="clearfix">
+                <div id="card-info" class="clearfix">
+                    <div id="user-id">
+                        {{user.franchise_id}}
+                    </div>
+                    <div id="user-name">
+                        <b>{{user.franchise_name}}</b>
+                    </div>
+                        
+                </div>
+                <div id="operations" >
+                    <a  href="{%url 'admin-dlt-franchise' user.user.id%}" ><div class="delete-btn" >Delete</div></a>
+                </div>
+            
+            </div></a>
+
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

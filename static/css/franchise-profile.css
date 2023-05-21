@@ -1,0 +1,145 @@
+#header{
+    background-color: #001c69;
+    width: 100%;
+    padding: 3%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+h1{
+    font-family: "Bebas Neue";
+    font-size: 50px;
+    color: #deaf39;
+}
+#row{
+    padding: 2%;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin-bottom: 3%;
+}
+#main-row{
+    width: 100%;
+    padding: 1%;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#left{
+    float: left;
+    width: 20%;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    height: 100vh;
+}
+#right{
+    float: right;
+    width: 78%;
+    
+    
+}
+h2{
+    font-family: "Bebas Neue";
+    font-size: 42px;
+    color: #001c69;
+}
+
+#content-row{
+    width: 100%;
+    
+}
+#content{
+    width: 100%;
+    min-height: none;
+   
+}
+#left1{
+    float: left;
+    width: 50%;
+    background-color: white;
+
+    padding: 2%;
+    
+}
+#right1{
+    float: right;
+    width: 50%;
+    background-color: white;
+    padding: 2%;
+    
+    
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+  
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+   
+}
+#label{
+    float: left;
+   
+    width: 20%;
+}
+#info{
+    float: left;
+    line-height: 30px;
+    margin-left: 2%;
+    width: 70%;
+    text-align: left;
+   
+}
+
+#card{
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    float: left;
+    margin-right: 3%;
+    min-height: 300px;
+    
+}
+
+#card-header{
+    width: 100%;
+    background-color: #001c69;
+    padding: 3%;
+}
+
+#card-content{
+    width: 100%;
+    padding: 2%;
+    overflow: auto
+}
+#cont{
+    padding: 1%;
+    width: 100%;
+    background-color: #deaf39;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    margin-bottom: 1%;
+}
+
+#left-header{
+    background-color: #001c69;
+    margin-top: 0;
+    color: white;
+    padding: 2%;
+}
+#left-content{
+    padding: 2%;
+}
+#card-total{
+    background-color: #001c69;
+    color: white;
+    padding: 2%;
+    
+}

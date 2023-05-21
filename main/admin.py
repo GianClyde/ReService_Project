@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PaidCustomer,User,Profile,Driverprofile,Vehicle,Reservation,Announcement,ReservationCancelation,Franchise,Services
+from .models import User,DriverFeedback,DriverPayment,DriverStudents,Schedule,VehicleRequest,VehicleUpdateRequest,Profile,Driverprofile,Vehicle,Reservation,Announcement,ReservationCancelation,Franchise,Services,Payment,Accounts,FranchiseDrivers
 from django.contrib.auth.admin import UserAdmin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
@@ -21,11 +21,11 @@ class UserAdminConfig(UserAdmin):
     #inlines=[UserPorfileInline]
     search_fields = ('email','first_name','last_name','middle_name','contact_no')
     list_filter = ('email','first_name','last_name','middle_name','contact_no','is_active','is_superuser')
-    list_display = ('email','first_name','last_name','middle_name','contact_no','role','is_active','is_superuser','is_staff','is_student','last_login')
+    list_display = ('email','first_name','last_name','middle_name','contact_no','role','is_active','is_superuser','is_staff','is_franchise','is_student','last_login')
     ordering = ('email',)
     fieldsets = (
         (None,{'fields':('email',)}),
-        ('Permission',{'fields':('is_active','is_superuser','is_staff','is_student','is_driver','last_login','role','groups')}),
+        ('Permission',{'fields':('is_active','is_superuser','is_staff','is_student','is_driver','is_franchise','last_login','role','groups')}),
         ('Personal',{'fields':('first_name','last_name','middle_name','contact_no')}),
     )
     filter_horizontal = ('groups', 'user_permissions',)
@@ -149,5 +149,14 @@ admin.site.register(Reservation,ReservationAdmin)
 admin.site.register(Announcement)
 admin.site.register(Franchise)
 admin.site.register(Services)
+admin.site.register(Payment)
+admin.site.register(Accounts)
+admin.site.register(FranchiseDrivers)
+admin.site.register(VehicleUpdateRequest)
+admin.site.register(VehicleRequest)
+admin.site.register(DriverFeedback)
+admin.site.register(Schedule)
+admin.site.register(DriverStudents)
+admin.site.register(DriverPayment)
 admin.site.register(ReservationCancelation,ReservationCancelationAdmin)
-admin.site.register(PaidCustomer)
+

@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{%load static%}
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/otc.css' %}">
+<div id="main">
+    <div id="partners">
+        <h3>ReService partners:</h3>
+        <div id="partner-logos" class="clearfix">
+            <img id="img" src="{%static 'images/drgnpay.png'%}" >
+            <img id="img" src="{%static 'images/bydcntr.png'%}" style="width: 5%;">
+        </div>
+        
+    </div>
+    <hr>
+    <form method="POST" action="">
+    {%csrf_token%}
+    <!--
+    <div id="dgpay">
+        <div id="table">
+            <div id="row-label" class="clearfix">
+                <div id="chckbox">
+                    <input type="checkbox" id="all_payment" name="pay" value="100">
+                </div>
+                <div id="period">
+                    <h2 id="tbl-header">Period</h2>
+                </div>
+                <div id="amount">
+                    <h2 id="tbl-header">Amount Due</h2>
+                </div>
+            </div>
+            {% for m in months%}
+                <div id="row-label" class="clearfix">
+                    <div id="chckbox">
+                        <input type="checkbox"  name="pay" value="3000">
+                    </div>
+                    <div id="period">
+                        <h4 style="font-size: 15px;">{{m}}</h4>
+                    </div>
+                    <div id="amount">
+                        <h4 style="font-size: 15px;">{{reservation.service.price}}</h4>
+                    </div>
+                </div>
+            {%endfor%}
+            <div id="row-label" class="clearfix">
+                <div id="chckbox">
+               
+                </div>
+                <div id="period">
+                    <h4>Total amount:</h4>
+                </div>
+                <div id="amount">
+                    <input type="text" value="{{sum}}">
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <div id="row-label" class="clearfix" style="border-bottom: none;">
+        <label>Select Payment Option</label>
+        <select name="payment" id="payment">
+            <option value="">---</option>
+            <option value="dragonpay">Dragon Pay</option>
+            <option value="bayadcntr">Bayad Center</option>
+            <option value="imc">IMC Tellering</option>
+          </select>
+    </div>
+
+    <input class="pay-btn" type="submit" value="Pay Now"/>
+    </form>
+</div>
+
+
+{%endblock%}

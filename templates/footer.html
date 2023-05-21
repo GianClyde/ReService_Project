@@ -1,40 +1,44 @@
 {%load static%}
-<link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
-<div id="main-wrapper">
-    <div id="row" class="clearfix">
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/footer.css' %}">
+
+
+<div id="footer-main-wrapper" style="background-color: #deaf39;">
+    <div id="footer-row">
+        <img id="footer-imc-logo" src="{% static 'images/logo.png' %}" />
+    </div>
+    <div id="footer-row" class="clearfix">
         <div id="col">
-            <div id="imc-logo-wrapper"> 
-                 <img id="imc-logo" src="{% static 'images/logo.png' %}" />
-            </div>
-            <div id="content">
-                <h2>Contact Us</h2>
-                <label>Address:</label><p>51 Diego Silang St. Phase 2 AFPOVAI Fort Bonifacio Taguig, 1630 Metro Manila, Philippines</p>
+            <div id="subheader">Contact Us</div>
+            <div id="fcontent">
+                <div id="label">Address:</div>
+                <div id="fcontent">51 Diego Silang St. Phase 2 AFPOVAI Fort Bonifacio Taguig, 1630 Metro Manila, Philippines</div>
+                <div id="label">Telephone:</div>
+                <div id="fcontent"> +63 2 8556 2075  +63 2 8553 0721</div>
+                <div id="label">Email:</div>
+                <div id="fcontent"> reservicesystem@gmail.com</div>
+                <div id="label">Social Media:</div>
+                <a href="https://www.facebook.com/Integrated-Montessori-Center-103944088563861"><div id="fcontent"> Facebook</div></a>
 
-                <label>Telephone:</label><p>+63 2 8556 2075  +63 2 8553 0721</p>
-                <label>Mobile:</label><p>+639984365570</p>
-
-                <label>Social Media:</label> <a href="https://www.facebook.com/integratedmontessoricenter"><p>Facebook</p></a>
             </div>
-            
         </div>
         <div id="col">
-            <h2>About</h2>
-            <a><p>About us</p></a>
-            <a><p>Privacy Policies</p></a>
-            <a><p>Terms & Conditions</p></a>
-            <a><p>Contact Us</p></a>
+            <div id="subheader">About</div>
+            <a><div id="fcontent"> About Us</div></a>
+            <a><div id="fcontent"> Privacy Policies</div></a>
+            <a><div id="fcontent"> Terms and Conditions</div></a>
         </div>
         <div id="col">
-            <h2>Sign up</h2>
-            <a><p>Home</p></a>
-            <a><p>My Reservations</p></a>
-
+            <div id="subheader">Quick Links</div>
+            <a href="{% url 'identify'%}"><div id="fcontent"> About Us</div></a>
+            <a href="{% url 'login'%}"><div id="fcontent"> Log in</div></a>
+            <a href="{% url 'register' %}"><div id="fcontent"> Student Sign up</div></a>
+            <a href="{%url 'franchise-register'%}"><div id="fcontent"> Be a member</div></a>
         </div>
     </div>
-
-    <div id="row">
-
-    </div>
-
 
 </div>
+
+
+
+

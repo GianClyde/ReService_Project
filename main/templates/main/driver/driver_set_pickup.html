@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver-setpick.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/bgg.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>        
+
+<div id="main">
+    <div id="form">
+        <h1>Set Student Pick up Time for {{profile.user.first_name}}</h1>
+        <span>{{profile.lot}} {{profile.street}}, {{profile.village}} {{profile.city}}</span>
+        <hr>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <div id="student-list">
+                <div id="table-lbl-wrapper" class="clearfix">
+                    <div id="table-lbl">
+                        Day
+                    </div>
+                    <div id="table-lbl" style="width: 40%;">
+                        Schedule
+                    </div>
+                    <div id="table-lbl" style="width: 20%;">
+                        Pick Up Time
+                    </div>
+                    
+                </div>
+                <form>
+                <div id="content-wrapper">
+                        <div id="content" class="clearfix">
+                            <div id="table-cntnt">
+                                Monday
+                            </div>
+                            <div id="table-cntnt" style="width: 40%;" >
+                                {{profile.schedule.monday_start}} -  {{profile.schedule.mondy_dismiss}}
+                            </div>
+                            <div id="table-cntnt"   style="width: 30%;">
+                                {{form.monday_pickUp}}
+                            </div>
+       
+                        </div>
+                        <div id="content" class="clearfix">
+                            <div id="table-cntnt">
+                                Tuesday
+                            </div>
+                            <div id="table-cntnt" style="width: 40%;" >
+                                {{profile.schedule.tuesday_start}} -  {{profile.schedule.tuesday_dismiss}}
+                            </div>
+                            <div id="table-cntnt"   style="width: 30%;">
+                                {{form.tuesday_pickUp}}
+                            </div>
+       
+                        </div>
+                        <div id="content" class="clearfix">
+                            <div id="table-cntnt">
+                                Wednesday
+                            </div>
+                            <div id="table-cntnt" style="width: 40%;" >
+                                {{profile.schedule.wednesday_start}} -  {{profile.schedule.wednesday_dismiss}}
+                            </div>
+                            <div id="table-cntnt"   style="width: 30%;">
+                                {{form.wednesday_pickUp}}
+                            </div>
+       
+                        </div>
+                        <div id="content" class="clearfix">
+                            <div id="table-cntnt">
+                                Thursday
+                            </div>
+                            <div id="table-cntnt" style="width: 40%;" >
+                                {{profile.schedule.thursday_start}} -  {{profile.schedule.thursday_dismiss}}
+                            </div>
+                            <div id="table-cntnt"   style="width: 30%;">
+                                {{form.thursday_pickUp}}
+                            </div>
+       
+                        </div>
+                        <div id="content" class="clearfix">
+                            <div id="table-cntnt">
+                                Friday
+                            </div>
+                            <div id="table-cntnt" style="width: 40%;" >
+                                {{profile.schedule.friday_start}} -  {{profile.schedule.friday_dismiss}}
+                            </div>
+                            <div id="table-cntnt"   style="width: 30%;">
+                                {{form.friday_pickUp}}
+                            </div>
+       
+                        </div>
+            
+                </div>
+                <div id="submit">
+                    <input id="sbmt" type="submit" value="Submit">
+                </div>
+                </form>
+            </div>
+        </form>
+        
+
+    </div>
+
+</div>
+{% endblock %}

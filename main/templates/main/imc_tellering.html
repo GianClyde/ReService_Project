@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/imc-tellering.css' %}">
+
+<div id="main">
+    <p>After paying on site, you can now submit you proof of payment below.</p>
+    Reference No:{{payment.ref_no}}
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="image-preview-container">
+            <div class="preview">
+                <img id="preview-selected-image" />
+            </div>
+            {{form}}
+        </div>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+</div>
+
+{% endblock content %}

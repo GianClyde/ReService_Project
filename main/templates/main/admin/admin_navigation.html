@@ -1,0 +1,203 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Admin{%endblock%}
+{% block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-navigation.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/bgg.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+
+<div id="main">
+    <h1>ReService:Admin</h1>
+    <hr>
+    <div id="form">
+        
+        <div id="row">
+            <h2>Applications</h2>
+            <div id="sub-row" class="clearfix">
+                <a  href="{% url 'admin-requests-services'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/serv.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Services
+                    </div>
+                </div></a>
+
+                <a href="{% url 'admin-vehicle-req'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/vreq.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Vehicle
+                    </div>
+                </div></a>
+
+                <a href="{% url 'driver-requests-admin'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/apply.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Drivers
+                    </div>
+                </div></a>
+
+                <a href="{% url 'admin-franchise'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/ol.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Franchise
+                    </div>
+                </div></a>
+            </div>
+        </div>
+
+
+        <div id="row">
+            <h2>Reservations</h2>
+            <div id="sub-row" class="clearfix">
+                <a href="{% url 'admin-reservations'%}"><div id="link" class="clearfix" >
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/calendar.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Reservation
+                    </div>
+                </div></a>
+
+              
+
+                
+                <a href="{% url 'reservation-cancelation' %}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/cancel.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                         Cancelation
+                    </div>
+                </div></a>
+
+
+                
+            </div>
+        </div>
+
+        <div id="row">
+            <h2>Users</h2>
+            <div id="sub-row" class="clearfix">
+                <a href="{% url 'admin-students'%}"><div id="link" class="clearfix" >
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/profile.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Student
+                    </div>
+                </div></a>
+
+                <a href="{% url 'admin-drivers' %}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/driver.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Driver
+                    </div>
+                </div></a>
+
+                
+                <a href="{% url 'add-franchise-users' %}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/fran.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Operator
+                    </div>
+                </div></a>
+
+                <a href="{% url 'vehicles'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/schoolbus-icon.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Vehicle
+                    </div>
+                </div></a>
+
+                
+            </div>
+        </div>
+
+        <div id="row">
+            <h2>Payments</h2>
+            
+            <div id="sub-row" class="clearfix">
+                <a href="{% url 'admin-membership'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/profile.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Membership
+                    </div>
+                </div></a>
+
+                <a href="{% url 'admin-payments'%}"><div id="link" class="clearfix">
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/pay.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Reservations
+                    </div>
+                </div></a>
+
+                
+            </div>
+        </div>
+
+        <div id="row">
+            <h2>Others</h2>
+            <div id="sub-row" class="clearfix">
+                <a href="{% url 'admin-anncmnts'%}"><div id="link" class="clearfix" >
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/announcement.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Announcement
+                    </div>
+                </div></a>
+                <a href="{% url 'admin-feedbacks'%}"><div id="link" class="clearfix" >
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/report.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Feedbacks
+                    </div>
+                </div></a>
+                <a href="{% url 'admin-reports'%}"><div id="link" class="clearfix" >
+                    <div id="link-icon">
+                        <img id="card-icon" src="{%static 'images/report.png'%}" alt="Avatar" >
+                    </div>
+                    <div id="link-label">
+                        Reports
+                    </div>
+                </div></a>
+
+
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{%endblock%}

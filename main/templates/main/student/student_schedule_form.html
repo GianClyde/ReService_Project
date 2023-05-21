@@ -1,0 +1,99 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_schdule.form.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/bg.png'%}");
+        background-repeat: no-repeat;
+        padding: 3%;
+        width: 100%;
+        padding: 5%;
+}   
+</style>
+<div id="main">
+    <div id="card">
+        <h1>Student Schedule</h1>
+        <hr>
+        <div id="table">
+            <div id="tbl-lbl-wrapper" class="clearfix">
+                <div id="tbl-lbl" style="width: 20%;">
+                   Day
+                </div>
+                <div id="tbl-lbl" style="width: 33%;">
+                    Start of Class
+                </div>
+                <div id="tbl-lbl">
+                    Dismissal
+                </div>
+            </div>
+            <form method="POST" action="">
+                {%csrf_token%}
+                <div id="tbl-content-wrapper">
+                    <div id="row" class="clearfix">
+                        <div id="form" style="width: 20%;">
+                            Monday
+                        </div>
+                        <div id="form" >
+                            {{form.monday_start}}
+                        </div>
+                        <div id="form" style="margin-left: 3%;">
+                            {{form.mondy_dismiss}}
+                        </div>
+                    </div>
+                    <div id="row" class="clearfix">
+                        <div id="form" style="width: 20%;">
+                            Tuesday
+                        </div>
+                        <div id="form" >
+                            {{form.tuesday_start}}
+                        </div>
+                        <div id="form" style="margin-left: 3%;">
+                            {{form.tuesday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="row" class="clearfix">
+                        <div id="form" style="width: 20%;">
+                            Wednesday
+                        </div>
+                        <div id="form" >
+                            {{form.wednesday_start}}
+                        </div>
+                        <div id="form" style="margin-left: 3%;">
+                            {{form.wednesday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="row" class="clearfix">
+                        <div id="form" style="width: 20%;">
+                            Thursday
+                        </div>
+                        <div id="form" >
+                            {{form.thursday_start}}
+                        </div>
+                        <div id="form" style="margin-left: 3%;">
+                            {{form.thursday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="row" class="clearfix">
+                        <div id="form" style="width: 20%;">
+                            Friday
+                        </div>
+                        <div id="form" >
+                            {{form.friday_start}}
+                        </div>
+                        <div id="form" style="margin-left: 3%;">
+                            {{form.friday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="row" class="clearfix">
+                        <input type="submit" value="Submit" class="btn">
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+       
+    </div>
+</div>
+{%endblock%}

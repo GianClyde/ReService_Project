@@ -1,0 +1,76 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Membership Payment{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-membership.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    </style>
+
+<div id="main">
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row">
+            Payment Ref #{{payment.ref_no}}
+        
+        </div>
+        <div id="row" style="background-color: transparent;" class="clearfix">
+            <div id="left">
+                <div id="header">
+                    Payment Information
+                </div>
+                <div id="content">
+                    <div id="subrow">
+                        <label>Payer:</label><p>{{payment.driver.driver_first_name}} {{payment.driver.driver_middle_name}} {{payment.driver.driver_last_name}}</p>
+                    </div>
+                    <div id="subrow">
+                        <label>Franchise:</label><p>{{payment.franchise.franchise_name}}</p>
+                    </div>
+                    <div id="subrow">
+                        <label>email:</label><p>{{payment.driver.email}}</p>
+                    </div>
+                    <hr>
+                    <div id="subrow">
+                        <label>Purpose:</label><p style="font-size: 15px;">Driver Membership</p>
+                    </div>
+                    <div id="subrow">
+                        <label>Date :</label><p >{{payment.created}}</p>
+                    </div>
+                    <hr>
+                    <div id="subrow" style="background-color: #001c69; padding: 5%;">
+                        <label style="color: #deaf39;">Amount:</label><p style="color: white; ">{{payment.total}} pesos</p>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <div id="header">
+                    Proof of Payment 
+                
+                </div>
+                <div id="content">
+                    {% if payment.proof%}
+                    <img src="{{payment.proof.url}}">
+                    {%else%}
+                    <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <input type="submit" value="Approve" class="btn"> <a href=""><div class="btn" style="background-color: red;">Decline</div></a>
+        </div>
+    </form>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,77 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/paybalance.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+  
+    </style>
+<div id="main">
+    <div id="info">
+        <h1>ReService Payments</h1>
+        <h4>User ID</h4>
+        <p style="color: white; text-align: center;">{{request.user.id}}</p >
+    </div>
+    <h2>Payments</h2>
+    <div id="table">
+        
+        <div id="header" class="clearfix">
+            <div id="status">
+                <h3>Status</h3>
+            </div>
+            <div id="period-lbl">
+                <h3>Period</h3>
+            </div>
+            <div id="amt-hdr">
+                <h3>Amount Due</h3>
+            </div>
+        </div>
+<form action="" method="POST">
+            {%csrf_token%}
+            <div id="content">
+                {%for m in period%}
+                <div id="row" class="clearfix">
+                    <div id="status">
+                        <p><input type="checkbox" id="pay" name="pay" value="{{service.price}}"></p>
+                    </div>
+                    <div id="period-lbl">
+                        <p>{{m}}</p>
+                    </div>
+                    <div id="amt-hdr">
+                        <p>{{service.price}}</p>
+                    </div>
+                </div>
+                {%endfor%}
+                
+        </div>
+    </div>
+    
+        <div>
+
+        
+
+        <div id="button">
+            <label for="cars">Choose payment method:</label>
+            <select name="payment" id="pay">
+            <option value="IMC">IMC Tellering</option>
+            <option value="Stripe">Stripe</option>
+            </select>
+            <br><br>
+            
+            <span style="color: red;">Note: not all services are available in Stripe payment</span><br>
+            <input type="submit" value="Submit" class="btn">
+        </div>
+</form>
+</div>
+
+{%endblock%}

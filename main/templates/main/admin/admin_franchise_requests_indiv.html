@@ -1,0 +1,120 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Franchise Applications{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Driver ID:<p style="color: white; display: inline;">{{request.driver_code}}</p>
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Driver
+                </div>
+                <div id="content">
+                    {% if request.id_pic %}
+                        <img src="{{request.id_pic.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper">
+                <div id="header">
+                    Driver information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Franchise:</label><p>{{request.franchise.franchise_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Last Name:</label><p>{{request.driver_last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>First Name:</label><p>{{request.driver_first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Middle Name:</label><p>{{request.driver_middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Vehicle:</label><p>{{request.vehicle}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{request.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No:</label><p>{{request.contact_no}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Created:</label><p>{{request.created}}</p>
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+        </div>
+    
+        <div id="row">
+            Documents
+        </div>
+    
+        <div id="row"  style="background-color: transparent; margin-bottom: 0; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Liscense
+                </div>
+                <div id="content">
+                    {% if request.liscense %}
+                        <img src="{{request.liscense.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    Certificate of Registration
+                </div>
+                <div id="content">
+                    {% if request.nbi_clearance %}
+                        <img src="{{request.nbi_clearance.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <input type="submit" value="Approve" class="btn"> <a href=""><div class="btn" style="background-color: red;">Decline</div></a>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

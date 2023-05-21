@@ -1,0 +1,56 @@
+
+{% extends 'main.html' %}
+{%block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/faq.css' %}"/>
+<style>
+    #main{
+        background-image: url("{%static 'images/bgg.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div class="container">
+        <h1>Frequently asked questions?</h1>
+        <div class="tab">
+            <input type="radio" name="acc" id="acc1">
+            <label for="acc1">
+                <h2>01</h2>
+                <h3>What makes IMC different?</h3>
+            </label>
+            <div class="content">
+                <p>Through the "Prepared Environment," IMC has consistently maintained a great academic program, providing the best quality education necessary for the "whole man concept" of positively developing pupils academically, emotionally, mentally, socially, psychologically, and spiritually.</p>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="acc" id="acc2">
+            <label for="acc2">
+                <h2>02</h2>
+                <h3>What are the advantages of enrolling my child in IMC?</h3>
+            </label>
+            <div class="content">
+                <p>IMC assists children in developing the foundations for creative learning attitudes and abilities that are necessary for academic and life success. It provides a thirst for learning, concentration, initiative, order, persistence, creativity and originality.</p>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="acc" id="acc3">
+            <label for="acc3">
+                <h2>03</h2>
+                <h3>Which teachers will my children have?</h3>
+            </label>
+            <div class="content">
+                <p>Teachers are carefully chosen not only for their professional skills, but also for their understanding of and affection for children. Teachers gain fulfillment from working to make the world a better place for tomorrow's adults.</p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{%endblock%}

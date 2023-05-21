@@ -9,37 +9,88 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         padding: 5%;
+        height:100vh;
     }
 
 </style>
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/reserved_notconfirmed.css' %}">
-<div id="main">
-    <div id="card">
-        <div id="img-wrapper">
-            <img src="{% static 'images/buser.gif'%}">
-        </div>
-        <h2 id="text">It seems you have a reservation waiting for confirmation, kindly wait for your driver to confirm your reservation</h2>
-        <button class="btn" onclick="history.back()">Go back</button>
-        <a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Cancel Reservation</a>
 
-<div id="login" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    
-    <div class="modal-content">
-      <div class="modal-body">
-        <button data-dismiss="modal" class="close">&times;</button>
-        <h4>Cancel Reservation</h4>
-        <form method="POST" action="">
-            {%csrf_token%}
-            <p id="prompt">Are you sure you want to delete current reservation <br> Reservation ID: {{reservation.reservation_id}}?</p>
-            <p id="prompt">Reason for Cancelation:</p>
-            {{form.reason}}
-            <input class="conf-btn" type="submit" value="Confirm"/>
-        </form>
+<div id="main">
+    <div id="form">
+      <h1>Reservations</h1>
+      <div id="table">
+        <div id="table-hdr-wrapper" class="clearfix">
+          <div id="table-hdr" style="width: 15%;">
+            Payment
+        </div>
+          <div id="table-hdr" style="width: 35%;">
+              id
+          </div>
+          <div id="table-hdr" style="width: 20%;">
+              Created
+          </div>
+        </div>
+        {%for r in reservations%}
+          {% if r.created.year == year%}
+            <div id="table-cntnt">
+              <div id="content-row"  class="clearfix">
+                {% if r.payment_status == "PENDING" %}
+                  <div id="content" style="width: 15%; color:#deaf39;">
+                    {{r.payment_status}}
+                  </div>
+                {% elif r.payment_status == "SUCCESSFULL" %}
+                  <div id="content" style="width: 35%; color: green;">
+                    {{r.reservation_id}}
+                  </div>
+                {%else%}
+                  <div id="content" style="width: 35%; color: red;">
+                    {{r.reservation_id}}
+                  </div>
+                {%endif%}
+                <div id="content" style="width: 35%;">
+                  {{r.reservation_id}}
+                </div>
+                <div id="content" style="width: 20%;">
+                  {{r.created}}
+                </div>
+                <div id="content" style="width: 20%; margin-left: 5%;">
+                  <a href="{% url 'pay-reservation' r.reservation_id%}"><div class="btn">Pay Now</div></a>
+                  <a><div class="btn">Cancel</div></a>
+                </div>
+              </div>
+            </div>
+
+          {%else%}
+          <div id="table-cntnt">
+            <div id="content-row"  class="clearfix" style="color: whitesmoke;">
+              {% if r.payment_status == "PENDING" %}
+                <div id="content" style="width: 15%; color:#deaf39;">
+                  {{r.payment_status}}
+                </div>
+              {% elif r.payment_status == "SUCCESSFULL" %}
+                <div id="content" style="width: 35%; color: green;">
+                  {{r.reservation_id}}
+                </div>
+              {%else%}
+                <div id="content" style="width: 35%; color: red;">
+                  {{r.reservation_id}}
+                </div>
+              {%endif%}
+              <div id="content" style="width: 35%;">
+                {{r.reservation_id}}
+              </div>
+              <div id="content" style="width: 20%;">
+                {{r.created}}
+              </div>
+              <div id="content" style="width: 20%; margin-left: 5%;">
+                <a href="javascript:void(0)">Google.com</a><div class="btn">Pay Now</div></a>
+                <a href="javascript:void(0)">Google.com</a><div class="btn">Cancel</div></a>
+              </div>
+            </div>
+          </div>
+          {%endif%}
+        {%endfor%}
       </div>
-    </div>
-  </div>  
-</div>
     </div>
 </div>
 

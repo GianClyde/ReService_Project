@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hi {{ user.email }},
+
+You are registered as a Driver for {{franchise.franchise.franchise_name}}
+
+Your account infomration is show below, use this to access your ReServicer account and manage your School Service:
+
+Email:{{ driver.email }}
+Password:{{pass}}
+Please click on the link below to confirm your registration:
+
+{{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

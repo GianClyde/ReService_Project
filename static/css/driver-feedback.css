@@ -1,0 +1,50 @@
+#form{
+    width:60%;
+    margin: auto;
+   
+}
+#hdr{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+    width: 100%;
+    padding: 2%;
+}
+
+#cnt{
+    background-color: white;
+    width: 100%;
+    padding: 2%;
+}
+
+#rdo-btn-wrapper{
+    width: 80%;
+    background-color: aqua;
+    display: inline;
+    
+}
+
+#form-hldr{
+    margin-left: 10%;
+}
+
+.eval{
+    border: inset;
+    border-radius: 10px;
+    width: 80%;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+}
+
+.btn{
+    width: 10%;
+    font-family: "Bebas Neue";
+    padding: 1%;
+    margin-top: 3%;
+    color: #deaf39;
+    background-color: #001c69;
+}

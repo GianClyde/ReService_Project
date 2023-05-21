@@ -1,0 +1,105 @@
+{%extends 'main.html'%}
+{%block title%}ReService Franchise:Vehicle Requests{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-vehicle-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Vehicle ID:<p style="color: white; display: inline;">{{vehicle.vehicle_id}}</p>
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Vehicle
+                </div>
+                <div id="content">
+                    {% if vehicle.image %}
+                        <img src="{{vehicle.image.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper">
+                <div id="header">
+                    Vehicle information
+                </div>
+                <div id="content">
+                    <div id="sub-row">
+                        <label>Franchise:</label><p>{{vehicle.franchise.franchise_name}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>Model:</label><p>{{vehicle.model}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>Plate No:</label><p>{{vehicle.plate_no}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>Capacity:</label><p>{{vehicle.capacity}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>application Date:</label><p>{{vehicle.created}}</p>
+                    </div>
+                   
+                   
+                </div>
+                
+            </div>
+        </div>
+    
+        <div id="row">
+            Documents
+        </div>
+    
+        <div id="row"  style="background-color: transparent; margin-bottom: 0; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Official Receipt
+                </div>
+                <div id="content">
+                    {% if vehicle.OR %}
+                        <img src="{{vehicle.OR.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    Certificate of Registration
+                </div>
+                <div id="content">
+                    {% if vehicle.CR %}
+                        <img src="{{vehicle.CR.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <a href="{%url 'franchise-vehicles-indiv-edit' vehicle.vehicle_id%}"><div class="btn">Edit</div></a>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

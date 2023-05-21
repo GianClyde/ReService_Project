@@ -1,0 +1,188 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Franchise account{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Franchise ID:<p style="color: white; display: inline;">{{franchise.franchise_id}}</p>
+    </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+
+            <div id="info-wrapper" style="margin-bottom:3%; width:100%;">
+                <div id="header">
+                    Franchise information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Owner Last Name:</label><p>{{owner.last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Owner First Name:</label><p>{{owner.first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Owner Middle Name:</label><p>{{owner.middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{owner.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No.:</label><p>{{owner.contact_no}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Franchise ID:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{owner.franchise.franchise_id}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Franchise:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{owner.franchise.franchise_name}}</p>
+                            </div>
+                           
+                        </div>
+                    
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+       
+
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Vehicles
+                </div>
+                <div id="content" >
+                        
+                       <table style="width:100%;">
+                            <tr>
+                                <th style="width:50%;">ID</th>
+                                <th>Model</th>
+                                <th>Plate No</th>
+                            </tr>
+                            {% for v in vehicles %}
+                            <tr>
+                                <td>{{v.vehicle.vehicle_id}}</td>
+                                <td>{{v.vehicle.model}}</td>
+                                <td>{{v.vehicle.plate_no}}</td>
+                            </tr>
+
+                            {%endfor%}
+
+                       </table>
+                    
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Drivers
+                </div>
+                <div id="content" >
+                        
+                       <table style="width:100%;">
+                            <tr>
+                                <th style="width:50%;">ID</th>
+                                <th>Name</th>
+                            </tr>
+                            {% for d in drivers %}
+                            <tr>
+                                <td>{{d.user.id}}</td>
+                                <td>{{d.user.first_name}} {{d.user.middle_name}} {{d.user.last_name}}</td>
+                        
+                            </tr>
+
+                            {%endfor%}
+
+                       </table>
+                    
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+   
+
+        
+        <div id="header" style="margin-bottom: 2%;">
+            Documents
+        </div>
+        <div id="row"  style="background-color: transparent; margin-bottom: 0; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Liscense
+                </div>
+                <div id="content">
+                    {% if franchise.valid_id %}
+                        <img src="{{franchise.valid_id.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    NBI Clearance
+                </div>
+                <div id="content">
+                    {% if franchise.franchise_doc %}
+                        <img src="{{franchise.franchise_doc.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    
+        
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <a href="{% url 'admin-franchise-users-indiv-edit' owner.id%}"><div class="btn">Edit</div></a>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

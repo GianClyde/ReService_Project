@@ -1,0 +1,35 @@
+#main{
+    width: 100%;
+    padding: 10%;
+
+}
+
+#form{
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+    background-color: white;
+}
+
+h2{
+    font-family: "Bebas Neue";
+}
+
+label{
+    font-size: 17px;
+}
+.form-input{
+    border-radius: 5px;
+    width: 60%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 12px;
+    border: solid #001c69;
+    margin-left: 7%;
+}
+.btn{
+    width: 20%;
+    padding: 1%;
+    background-color: #001c69;
+    color: white;
+    font-family: "Bebas Neue";
+}

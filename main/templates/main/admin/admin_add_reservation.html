@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Add Reservation{%endblock%}
+{% load static %}
+
+{% block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/add-reservation.css' %}">
+<div id="main">
+    <div id="card">
+        <h2>ReServation Form</h2>
+        <hr>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <label>User:</label>
+            {{form.user}}<br>
+            <label>Service offered:</label>
+            {{form.service}}<br>
+            <label>Driver:</label>
+            {{form.driver}}<br>
+            <label>Reservation Status:</label>
+            {{form.reservation_status}}<br>
+            <label>Payment Status:</label>
+            {{form.payment_status}}<br>
+            <input type ="submit" value="create" id="submit">
+
+        </form>
+    </div>
+    
+
+</div>
+
+{% endblock  %}

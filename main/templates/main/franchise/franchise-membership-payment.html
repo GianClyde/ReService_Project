@@ -1,0 +1,75 @@
+{%extends 'main.html'%}
+{%load static%}
+{%block title%} ReService:Driver Membership Payments{%endblock%}
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/membership_payments.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    table, th, td {
+        border:1px solid #001c69;
+        border-width: 3px;
+      }
+    </style>
+
+<div id="main">
+    <div id="info">
+        <h1>Membership Payments</h1>
+        <h4>Account No</h4>
+        <p style="color: white; text-align: center;">{{request.user.accounts.acct_no}}</p >
+    </div>
+    <h2>Payments</h2>
+    <div id="table">
+        
+        <table style="width:100%;">
+            {% if driver_payments%}
+                <tr>
+                <th id="statth">Status</th>
+                <th>Driver</th>
+                <th>Amount Due</th>
+                <th>Pay</th>
+                </tr>
+
+                {% for p in driver_payments%}
+                <tr>
+                    <td>{{p.status}}</td>
+                    <td>{{p.driver.driver_first_name}} {{p.driver.driver_last_name}}</td>
+                    <td>3000.00</td>
+                    <td><a href="{% url 'membership-indiv' p.ref_no%}"><div class="pay">Pay Now</div></><td>
+                </tr>
+                     
+                 {%endfor%}
+            {%else%}
+            <table style="width:100%;">
+                <tr>
+                    <th id="statth">Status</th>
+                    <th>Driver</th>
+                    <th>Amount Due</th>
+                    <th>Pay</th>
+                    
+
+                </tr>
+            </table>
+            <div style="width:100%; font-family:'Bebas Neue'; margin-left: 30%; margin-top:20%; font-size:50px;"  >
+                No Approved drivers
+            </div>
+                
+            
+            {%endif%}
+        
+           
+        </table>
+    </div>
+    <div id="button">
+        <a href="{% url 'membership-proof' %}"><div class="btn">Submit Proof of Payment</div></a>
+    </div>
+</div>
+{%endblock%}

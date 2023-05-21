@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+{%block title%}ReService:Driver Feedback{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-feedbacks-indiv.css' %}">
+<style>
+    #main{
+            background-image: url("{%static 'images/fed.jpg'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow-x: hidden;
+            min-height: 800px;
+            background-attachment: fixed;
+            width: 100%;
+            padding: 2%;
+        }
+</style>
+
+<div id="main">
+    <div id="card"> 
+        <div id="label">
+            Driver Feedback:{{feedback.driver.user.first_name}} {{feedback.driver.user.last_name}}({{feedback.driver.franchise.franchise_name}})
+        </div>
+        <div id="content">
+            <label>ID: </label><p>{{feedback.rep_id}}</p><br>
+            <label>From:</label><p>{{feedback.user.first_name}} {{feedback.user.last_name}}</p><br>
+            <hr>
+            <div id="eval">
+                <label>Rating:</label><p>{{feedback.rate}}</p><br>
+                <label>Evaluation:</label>
+                <div id="container">
+                    {{feedback.evaluation}}
+                </div>
+                <label>Concerns:</label>
+                <div id="container">
+                    {{feedback.concern}}
+                </div>
+
+                
+            </div>
+            <div id="eval">
+                <a href="{% url 'admin-notify' feedback.rep_id%}"><div id="submit">Notify Franchise</div></a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock%}
+
+

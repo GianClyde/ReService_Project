@@ -1,0 +1,174 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+    
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+    
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+    
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-header {
+      padding: 2px 16px;
+      background-color: red;
+      color: white;
+    }
+    
+    .modal-body{
+       padding: 3%;
+    
+    }
+    
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+    #modal-header{
+        margin-right: 30%;
+    }
+    </style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
+
+<div id="main" class="clearfix">
+    <h1 id="header">{{franchise.franchise_name}}:Vehicles</h1>
+    <div id="navbar-left">
+        <div id="search-br-wrapper">
+            <form method="GET" action="{% url 'franchise-vehicles'%}">
+                <input class="search" name="q" type="text" placeholder="Search..">
+            </form>
+        </div>
+        <div id="filters-wrapper">
+            <h3>Filter by</h3>
+            <ul class="filters__list">
+                <li class="list">
+                    <a href="{% url 'franchise-vehicles'%}" class="list">All</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'franchise-vehicles' %}?q=PENDING" class="list">Pending</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'franchise-vehicles' %}?q=APPROVED" class="list">Approved</a>
+                </li>
+                <li class="list">
+                    <a href="{% url 'franchise-vehicles' %}?q=DECLINED" class="list">Declined</a>
+                </li>
+                
+        
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="clearfix" id="lbl-wrapper">
+
+           <div id="id-col-lbl">
+            <h3 id="col-label">ID</h3>
+           </div> 
+           <div id="name-col-lbl">
+            <h3 id="col-label">Name</h3>
+           </div>
+           <div id="sts-col-lbl">
+            <h3 id="col-label">Status</h3>
+           </div>
+           <div id="crtd-col-lbl">
+            <h3 id="col-label">Created</h3>
+           </div>
+           <div id="oprtn-col-lbl">
+            <a href="{% url 'franchise-register-vehicle'%}"><div id="create-btn">
+                Register Vehicle
+            </div></a>
+           </div>
+
+        </div>
+        {% for v in vehicles%}
+            <a href="{% url 'franchise-vehicles-indiv' v.vehicle_id%}"><div id="user-card" class="clearfix">
+                <div id="card-info" class="clearfix">
+                    <div id="user-id">
+                        {{v.vehicle_id}}
+                    </div>
+                    <div id="user-name">
+                        {{v.model}}
+                    </div>
+                    {% if v.status == "PENDING"%}
+                        <div id="reserv-sts" style="color: #deaf39;">
+                            {{v.status}}
+                        </div>
+                    {%elif v.status == "APPROVED" %}
+                        <div id="reserv-sts" style="color: green;">
+                            {{v.status}}
+                        </div>
+                    {%else%}
+                        <div id="reserv-sts" style="color: red;">
+                            {{v.status}}
+                        </div>
+                    {%endif%}
+                    <div id="created">
+                        {{v.created}}
+                    </div>
+                         
+                </div>
+                <div id="operations">
+        
+                </div>
+            
+            </div></a>
+
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock content %}

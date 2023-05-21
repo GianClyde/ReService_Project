@@ -1,0 +1,80 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/pay.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    table, th, td {
+        border:1px solid #001c69;
+        border-width: 3px;
+      }
+    </style>
+
+<div id="main">
+    <div id="info">
+        <h1>ReService Payments</h1>
+        <h4>Account No</h4>
+        <p style="color: white; text-align: center;">{{request.user.accounts.acct_no}}</p >
+    </div>
+    <h2>Payments</h2>
+    {% if account.balance == 0.0%}
+        <div id="table">
+            <table style="width:100%">
+                <tr>
+            
+                <th>Period</th>
+                <th>Amount Due</th>
+                </tr>
+
+                
+            </table>
+            <div style="width:100% margin:auto;">
+                <img src="{% static 'images/full.gif'%}" style="margin-left:25%;">
+            </div>
+        </div>
+    {%else%}
+
+        <div id="table">
+            
+            <table style="width:100%">
+                <tr>
+            
+                <th>Period</th>
+                <th>Amount Due</th>
+                </tr>
+
+                {% for m in months%}
+                <tr>
+                
+                    <td>{{m}}</td>
+                    <td>{{service.price}}</td>
+                </tr>
+
+                {%endfor%}
+                <tr>
+                    
+                    <th>Total Balance</th>
+                    <td style="background-color: #001c69; color: white; font-family: 'Bebas Neue';">{{account.balance}}</td>
+                </tr>
+            </table>
+        </div>
+        <div id="button">
+            <a href="{% url 'payment' reservation.reservation_id%}"><div class="btn">Pay Balance</div></a>
+            <a href="{% url 'proof-payment' reservation.reservation_id%}"><div class="btn">Submit Proof of Payment</div></a>
+        </div>
+    {%endif%}
+
+</div>
+{%endblock%}
+
+

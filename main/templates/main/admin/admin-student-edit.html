@@ -1,5 +1,5 @@
 {%extends 'main.html'%}
-
+{%block title%}ReService:Edit Student{%endblock%}
 {%block content%}
 {%load static%}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student_indiv.css' %}">
@@ -45,7 +45,7 @@
                 <div id="label">
                     Email:
                 </div>
-                {{form.email}}
+                
             </div>
 
             <div id="row" class="clearfix">

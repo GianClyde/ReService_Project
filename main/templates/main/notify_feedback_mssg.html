@@ -1,0 +1,16 @@
+{% autoescape off %}
+Good day {{feedback.driver.franchise.franchise_name}}, the purpose of this email is to notify you about the feedabck about your driver, {{feedback.driver.user.first_name}} {{feedback.driver.user.last_name}},
+ID: {{feedback.driver.user.id}}.
+
+==============Driver Feedback==============
+Rating:{{feedback.rate}}
+Evaluation:
+    {{feedback.evaluation}}
+Concern:
+    {{feedback.concern}}
+
+
+Sincerely,
+ReService
+
+{% endautoescape %}

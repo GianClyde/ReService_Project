@@ -1,0 +1,84 @@
+#main{
+    width: 100%;
+    background-color: #001c69;
+}
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    
+}
+#row-main{
+    width: 80%;
+    margin: auto;
+    padding: 2%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 5%;
+}
+#row{
+    width: 100%;
+    margin-bottom: 3%;
+}
+#label{
+    width: 30%;
+    float: left;
+    font-family: "Bebas Neue";
+    font-size: 18px;
+    margin-bottom: 1%;
+}
+#wrapper{
+    width: 100%;
+}
+#content{
+    width: 70%;
+    float: right;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 1%;
+}
+.form{
+    width: 70%;
+    float: right;
+    border-bottom: solid #001c69;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 1%;
+}
+#profile-img{
+    width: 80%;
+}
+
+#btns-wrapper{
+    width:100%;
+    padding: 5%;
+}
+
+#btn{
+    background-color: #deaf39;
+    width: 8%;
+    padding: 1%;
+    font-family: "Bebas Neue";
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin-left: 7%;
+}
+
+.decline{
+    width: 8%;
+    padding: 1%;
+    font-family: "Bebas Neue";
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    margin-left: 7%;
+    background-color: red;
+    transition: 0.5s;
+    margin-top: 1%;
+}
+.decline:hover{
+    background-color: white;
+    color: red;
+}
+a{
+    text-decoration: none;
+}

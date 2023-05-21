@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%}ReService Admin: Reservations{%endblock%}
 {% block content %}
 {% load static %}
 <style>
@@ -93,24 +93,31 @@
         </div>
         <div id="filters-wrapper">
             <h3>Filter by</h3>
-            <ul class="filters__list">
-                <li class="list">
-                    <a href="{% url 'admin-reservations'%}" class="list">All</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
-                </li>
-        
-            </ul>
+            <hr>
+            <div id="filter-row">
+                <h2>Reservation Status</h2>
+                <ul class="filters__list">
+               
+
+                    <li class="list">
+                        <a href="{% url 'admin-reservations'%}" class="list">All</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
+                    </li>
+            
+                </ul>      
+            </div>
+            
         </div>
     </div>
 
@@ -132,10 +139,15 @@
            <div id="crtd-col-lbl">
             <h3 id="col-label">Created</h3>
            </div>
+           <div id="oprtn-col-lbl">
+            <a href="{% url 'add-reservation'%}"><div id="create-btn">
+                Add Reservation
+            </div></a>
+           </div>
 
         </div>
         {% for reservation in reservations%}
-            <a><div id="user-card" class="clearfix">
+            <a href="{% url 'admin-rsrv-info' reservation.reservation_id %}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
                     <div id="check-box">
                         <input type="checkbox" value="{{reservation.id}}" name="checkbox">
@@ -164,11 +176,7 @@
                     </div>
                          
                 </div>
-                <div id="operations">
-                    <a href="{% url 'admin-rsrv-info' reservation.reservation_id %}"><div class="btn">Show</div></a>
-                    <a href="{% url 'admin-rsrvtns-accept' reservation.reservation_id%}"><div class="btn" style="background-color: #5cb85c;">Accept</div></a>
-                    <a href="{% url 'admin-rsrvtns-decline' reservation.reservation_id%}"><div class="btn"style="background-color: red;" >Decline</div></a>
-                </div>
+             
             
             </div></a>
 

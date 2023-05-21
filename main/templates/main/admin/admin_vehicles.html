@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%}ReService:Vehicles{%endblock%}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
@@ -18,7 +18,7 @@
                 <li class="list">
                     <a href="{% url 'vehicles'%}" class="list">All</a>
                 </li>
-                {% for f in franchise%}         
+                {% for f in franchise_list%}         
                 <li class="list">
                     <a href="{% url 'vehicles' %}?q={{f}}" class="list">{{f}}</a>
                 </li>
@@ -38,32 +38,33 @@
            <div id="id-col-lbl" style="width: 41%;">
             <h3 id="col-label" >ID</h3>
            </div> 
-           <div id="name-col-lbl">
+           <div id="name-col-lbl" style="width: 30%;">
             <h3 id="col-label">Model</h3>
            </div>
-
+           <div id="oprtn-col-lbl" style="padding: 2%;">
+                <a href="{% url 'admin-add-vehicle'%}"><div class="btn" style="width: 100%;"> Add Vehicle</div></a>
+           </div>
 
         </div>
         {% for v in vehicles%}
-            <a><div id="user-card" class="clearfix">
+            <a href="{% url 'vehicles-individual' v.vehicle.vehicle_id%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
                     <div id="check-box">
                         <input type="checkbox" value="{{reservation.id}}" name="checkbox">
                     </div>
                     <div id="user-id">
-                        {{v.vehicle_id}}
+                        {{v.vehicle.vehicle_id}}
                     </div>
                     <div id="user-name">
-                        {{v.driver.last_name}}
+                        {{v.vehicle.driver.last_name}}
                     </div>
         
                     <div id="created">
-                        {{v.model}}
+                        {{v.vehicle.model}}
                     </div>
                          
                 </div>
                 <div id="operations">
-                    <a href="{% url 'vehicles-individual' v.vehicle_id%}"><div class="btn">Show</div></a>
                     <a class="btn" href="{% url 'vhcl-dlt' v.vehicle_id%}">Delete</a>
                     
                 </div>

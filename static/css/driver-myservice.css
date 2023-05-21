@@ -1,0 +1,113 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#row{
+    width: 100%;
+    
+}
+
+#left{
+    float: left;
+    width: 20%;
+    background-color: white;
+    
+}
+
+#hdr{
+    font-family: "Bebas Neue";
+    padding: 1%;
+    background-color: #001c69;
+    color: white;
+    text-align: center;
+}
+#image{
+    width: 100%;
+    overflow: hidden;
+
+}
+img{
+    width: 100%;
+}
+
+#right{
+    float: right;
+    width: 70%;
+    
+}
+
+#sub-row{
+    width: 100%;
+    background-color: white;
+    margin-bottom: 2%;
+}
+
+#content{
+    width: 100%;
+    overflow: auto;
+}
+
+#table-label{
+    width: 100%;
+}
+#tb-lbl{
+    width: 5%;
+    background-color: aliceblue;
+    font-family: "Bebas Neue";
+    padding: 1%;
+    text-align: left;
+    float: left;
+    font-size: 20px;
+
+}
+
+.add-btn{
+    color: white;
+    background-color: #deaf39;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    padding: 1%;
+    display: inline;
+    width: 10%;
+    border-radius: 20px;
+}
+
+#subhead{
+    font-family: "Bebas Neue";
+    padding: 1%;
+    text-align: center;
+    font-size: 20px;
+    display: inline;
+   
+}
+
+#main-content{
+    width: 100%;
+    background-color: white;
+}
+
+#tb-cnt{
+    width: 5%;
+    background-color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1%;
+    text-align: left;
+    float: left;
+}
+#cardo{
+    width: 50%;
+    margin: auto;
+}
+
+#weeknd{
+    width: 100%;
+}
+.btn{
+    padding: 1%;
+    width: 100%;
+    font-family: "Bebas Neue";
+    background-color: #001c69;
+    color: white;
+}

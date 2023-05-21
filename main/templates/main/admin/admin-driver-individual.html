@@ -1,0 +1,260 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Driver Profile{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Driver ID:<p style="color: white; display: inline;">{{userS.id}}</p>
+    </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Driver
+                </div>
+                <div id="content">
+                    {% if userS.driverprofile.image %}
+                        <img src="{{userS.driverprofile.image.url}}" alt="profile">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper" style="margin-bottom:3%;">
+                <div id="header">
+                    Driver information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Last Name:</label><p>{{userS.last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>First Name:</label><p>{{userS.first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Middle Name:</label><p>{{userS.middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{userS.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No.:</label><p>{{userS.contact_no}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Birth Date:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.driverprofile.birth_date}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Age:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.driverprofile.age}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Franchise:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.driverprofile.franchise.franchise_name}}</p>
+                            </div>
+                           
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+       
+
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Student Address
+                </div>
+                <div id="content" >
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col" >
+                                <div id="subleft" >
+                                    <label>Lot:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{userS.driverprofile.lot}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Street:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{userS.driverprofile.street}}</p>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Village:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{userS.driverprofile.village}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>City:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{userS.driverprofile.city}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft"  >
+                                <label>Zipcode</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.driverprofile.zipcode}}</p>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Driver's Vehicle
+                </div>
+                <div id="content">
+                    {% if userS.driverprofile.vehicle.vehicle.image %}
+                        <img src="{{userS.driverprofile.vehicle.vehicle.image.url}}" alt="profile">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper" style="margin-bottom:3%;">
+                <div id="header">
+                    Vehicle information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Model:</label><p>{{userS.driverprofile.vehicle.vehicle.model}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Plate No:</label><p>{{userS.driverprofile.vehicle.vehicle.plate_no}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Capacity:</label><p>{{userS.driverprofile.vehicle.vehicle.capacity}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                                <label>Enrolled Students</label><br>
+                                {% if reservation%}
+                                    {%for r in reservation%}
+                                        <div id="smol"><p>{{r.user.first_name}} {{r.user.middle_name}} {{r.user.last_name}}</p></div>
+                                       
+                                    {%endfor%}
+
+                                {%else%}
+                                    <p style="color: brown; width: 100%;"> No student enrolled</p>
+                                {%endif%}
+
+                           
+                           
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+        <div id="header" style="margin-bottom: 2%;">
+            Documents
+        </div>
+        <div id="row"  style="background-color: transparent; margin-bottom: 0; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Liscense
+                </div>
+                <div id="content">
+                    {% if userS.franchisedrivers.liscense %}
+                        <img src="{{userS.franchisedrivers.liscense.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    NBI Clearance
+                </div>
+                <div id="content">
+                    {% if userS.franchisedrivers.nbi_clearance %}
+                        <img src="{{userS.franchisedrivers.nbi_clearance.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    
+        
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <a href="{% url 'admin-drvr-edit' userS.id%}"><div class="btn">Edit</div></a>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,64 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise_membership_proof.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    table, th, td {
+        border:1px solid #001c69;
+        border-width: 3px;
+      }
+    </style>
+
+<div id="main">
+   <div id="form">
+    <div id="header">
+        Proof of Payment
+    </div>
+    </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="form">
+            <div id="content" >
+                 <div id="row" class="clearfix">
+                     <div id="left">
+                         Ref#
+                     </div>
+                     <div id="right">
+                         <select name="ref" id="ref">
+                             <option value="none">---</option>
+                             {% for d in list%}
+                             <option value="{{d}}">{{d}}</option>
+                             {%endfor%}
+                           </select>
+                     </div>
+                 </div>
+                 <div id="row" class="clearfix">
+                     <div id="left">
+                         Proof of Payment:
+                     </div>
+                     <div id="right">
+                         {{form.proof}}
+                     </div>
+                 </div>
+
+                 <div id="row">
+                    <input type="submit" value="Submit" class="btn">
+                 </div>
+            </div>
+         </div>
+    </form>
+    
+
+</div>
+{%endblock%}

@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hello {{ requests.franchise.operator_firstN }} {{ requests.franchise.operator_lastN }}, we are glad to tell you that your registration for {{requests.driver_code}} has been accepted
+
+You can now proceeed to the payment of membership fee
+
+Payment Information:
+Reference #:{{driver_pay.ref_no}}
+Franchise:{{driver_pay.franchise.franchise_name}}
+Driver: {{driver_pay.driver.driver_first_name}} {{driver_pay.driver.driver_middle_name}} {{driver_pay.driver.driver_last_name}}
+Total:{{driver_pay.total}}
+
+Sincerely,
+ReService
+
+{% endautoescape %}

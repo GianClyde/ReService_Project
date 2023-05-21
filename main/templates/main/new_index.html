@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{%block title%}ReService:School Service Reservation{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/newindex.css' %}">
+<style>
+    #row-hdr{
+        background-image: url("{%static 'images/mainNavpage_bg.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 200px;
+        width: 100%;
+        padding: 5%;
+        min-height: 600px;
+    }
+
+    #row1{
+        background-image: url("{%static 'images/a.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 200px;
+        width: 100%;
+        padding: 5%;
+        min-height: 700px;
+    }
+</style>
+<div id="main">
+    <div id="row-hdr">
+        <h1>Welcome to ReService</h1>
+        <span>your </span>
+    </div>
+    <div id="row1" class="clearfix">
+        <div id="left">
+            <h2>What is ReService?</h2>
+        <p>ReService is a reservation system, that allows Integrated Montessori Center students and parents to reserve their desired school service.</p>
+        <br><a><div class="more-btn">More about us</div></a>
+        </div>
+        <div id="right">
+            <img src="{% static 'images/franchise.png'%}">
+        </div>
+    </div>
+    <div id="row-2" class="clearfix">
+        <div id="left" style="padding:0;">
+            <img style="width:100%;" src="{% static 'images/bgg.png'%}">
+        </div>
+        <div id="right">
+            <h2>Want to be a ReService partner?</h2>
+            <p>Be one of our partners and help students have fun and safe trip from their home to their school.</p>
+            <br><a href="{%url 'franchise-register'%}"><div class="more-btn">be a ReService provider</div></a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+

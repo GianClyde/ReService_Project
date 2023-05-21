@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@700&family=Merriweather+Sans:wght@500&family=Raleway:wght@500&display=swap" rel="stylesheet">
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body style="padding: 0; margin: 0; ">
+    <div id="main" style="padding: 0; margin: 0; width: 100vh; ">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            ReService Report
+        <hr>
+         </h1>
+         <p>Reservations recorded as of {{today}}</p>
+
+         <h2>All Payments</h2>
+         {%for p in payments%}
+         <h3>Reference No#: {{p.ref_no}}({{p.user.first_name}} {{p.user.last_name}})</h3>
+         <table>
+            <tr>
+             
+              <th>Account</th>
+              <td style="overflow: hidden;">{{p.account.acct_no}}</td>
+              
+         
+
+            </tr>
+            <tr>
+              <th>Reservation</th>
+              <td>{{p.reservation.reservation_id}}</td>
+                
+               
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{{p.status}}</td>
+              
+            </tr>
+            <tr>
+              <th>Created</th>
+             
+                <td>{{p.created}}</td>
+            </tr>
+            
+          </table>
+
+          <div style="border: solid; padding: 10px;">
+            <h2>Summary</h2>
+            <label>No. of Payments: {{payments_count}}</label><br>
+            <label>No. of Successfull Payments: {{successful_payment_count}}</label><br>
+            <label>No. of Pending Payments: {{pending_payment_count}}</label><br>
+            <label>No. of Failed Payments: {{unsuccessfull_payment_count}}</label><br>
+            <label>Total Earnings: {{total}} pesos</label><br>
+            <p></p>
+          </div>
+          
+          {%endfor%}
+    </div>
+</body>
+</html>

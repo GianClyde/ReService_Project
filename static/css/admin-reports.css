@@ -1,0 +1,99 @@
+#row{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 5%;
+    min-height: 400px;
+}
+
+#header{
+    width: 100%;
+    background-color: #001c69;
+    padding: 1%;
+    
+}
+
+#hdr{
+    color: #deaf39;
+    font-family: "Bebas Neue";
+    font-size: 30px;
+    width: 30%;
+    float: left;
+}
+
+#oprt-wrapper{
+    width: 40%;
+    float: left;
+  
+}
+
+#printer{
+    width: 15%;
+    float: left;
+
+}
+
+
+.search{
+    width: 50%;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 30px;
+    margin-left: 10%;
+    display: inline;
+}
+
+.btn{
+    float: left;
+    width: 10%;
+    padding: 1%;
+    background-color: #deaf39;
+    font-family: "Bebas Neue";
+    display: inline;
+    margin-left: 5%;
+}
+
+#content{
+    background-color: white;
+    width: 100%;
+    overflow: auto;
+    min-height: 300px;
+}
+
+#sub-row{
+    width: 100%;
+    padding: 1%;
+}
+
+#sub-hdr{
+    width: 100%;
+    padding: 1%;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#lbl{
+    float: left;
+    width: 15%;
+    font-family: "Bebas Neue";
+    font-size: 20px;
+
+}
+#cnt{
+    width: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    float: left;
+}
+
+#print{
+    width: 100%;
+    border: #001c69;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 15px;
+    display: inline;
+}

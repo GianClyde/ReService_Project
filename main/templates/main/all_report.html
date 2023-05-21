@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@700&family=Merriweather+Sans:wght@500&family=Raleway:wght@500&display=swap" rel="stylesheet">
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body style="padding: 0; margin: 0; ">
+    <div id="main" style="padding: 0; margin: 0; width: 100vh; ">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            ReService Report
+        <hr>
+         </h1>
+         <p>Reservations recorded as of {{today}}</p>
+
+         <h2>Reservations </h2>
+         {%for r in reservation%}
+         <h3>Reservation ID: {{r.reservation_id}}</h3>
+         <table>
+            <tr>
+              <th>User</th>
+              <th>Driver</th>
+              <th>Reservation Status</th>
+              <th>Payment Status</th>
+              <th>Created</th>
+              <th>Valid Until</th>
+
+            </tr>
+            <tr>
+                <td>{{r.user.first_name}} {{r.user.last_name}}</td>
+                <td>{{r.driver.user.first_name}} {{r.driver.user.last_name}}</>
+                <td>{{r.reservation_status}}</td>
+                <td>{{r.payment_status}}</td>
+                <td>{{r.created}}</td>
+                <td>{{r.valid_until}}</td>
+            </tr>
+            
+          </table>
+
+          <div style="border: solid; padding: 10px;">
+            <h2>Summary</h2>
+            <label>No. of Reservations: {{count}}</label><br>
+            <label>No. of Pending Reservations: {{pending_reservations_count}}</label><br>
+            <label>No. of Unpaid Reservations: {{unpaid_reservation_count}}</label><br>
+            <p></p>
+          </div>
+          
+          {%endfor%}
+
+          <h2>All Payments</h2>
+         {%for p in payments%}
+         <h3>Reference No#: {{p.ref_no}}({{p.user.first_name}} {{p.user.last_name}})</h3>
+         <table>
+            <tr>
+             
+              <th>Account</th>
+              <td style="overflow: hidden;">{{p.account.acct_no}}</td>
+              
+         
+
+            </tr>
+            <tr>
+              <th>Reservation</th>
+              <td>{{p.reservation.reservation_id}}</td>
+                
+               
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{{p.status}}</td>
+              
+            </tr>
+            <tr>
+              <th>Created</th>
+             
+                <td>{{p.created}}</td>
+            </tr>
+            
+          </table>
+
+          {%endfor%}
+          {%for u in users%}
+         <h3>User ID#: {{u.id}}</h3>
+         <table>
+            <tr>
+             
+              <th>Name</th>
+              <td>{{u.first_name}} {{u.last_name}}</td>
+              
+         
+
+            </tr>
+            <tr>
+                
+                <th>Account</th>
+                {% if u.account%}
+                <td>{{u.account.acct_no}}</td>
+                {%else%}
+                <td>-----</td>
+                {%endif%}
+                
+               
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{{u.email}}</td>
+              
+            </tr>
+            <tr>
+              <th>Contact No</th>
+             
+                <td>{{u.contact_no}}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                    {% if u.profile.lot or u.profile.street or u.profile.street or u.profile.city %}
+                        <td>{{ u.profile.lot }} {{u.profile.street}} {{u.profile.street}} {{u.profile.city}}</td>
+                    {%else%}
+                        <td>-----</td>
+                    {%endif%}
+                  
+            </tr>
+
+            <tr>
+                <th>Role</th>
+               
+                  <td>{{u.role}}</td>
+              </tr>
+            
+          </table>
+          {%endfor%}
+
+
+          <div style="border: solid; padding: 10px;">
+            <h2>Summary</h2>
+            <label>No. of Users: {{user_count}}</label><br>
+            <label>No. of ReServations: {{reservation_count}}</label><br>
+            <label>No. of Payments: {{payments_count}}</label><br>
+            <label>Total Earnings: {{total}}</label><br>
+            <hr>
+
+           
+          </div>
+          
+         
+    </div>
+</body>
+</html>

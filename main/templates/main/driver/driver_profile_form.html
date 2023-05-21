@@ -1,5 +1,5 @@
 {%extends 'main.html'%}
-
+{%block title%} ReService:My Driver Profile{%endblock%}
 {%block content%}
 {%load static%}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_profile_form.css' %}">
@@ -41,16 +41,7 @@
                 <h2 id="stdnt-sub-header">School</h2>
                 <label id="stdnt-profile-form-field-label">School Brach:</label><br>
                     {{form.school_branch}}<br>
-                <label id="stdnt-profile-form-field-label">Assigned Route::</label><br>
-                    {{form.assigned_route}}<br>
-                    <label id="stdnt-profile-form-field-label">Vehicle:</label><br>
-                    {{form.vehicle}}<br>
-                <hr>
-            </div>
-            <div id="stdnt-form-content3">
-                <h2 id="stdnt-sub-header">Franchise</h2>
-                <label id="stdnt-profile-form-field-label">Franchise :</label><br>
-                    {{form.franchise}}<br>
+                
                 <hr>
             </div>
             <input id="submit-page-btn"  type="submit" value="Submit"/>

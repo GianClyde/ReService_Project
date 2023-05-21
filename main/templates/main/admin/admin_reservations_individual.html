@@ -1,75 +1,75 @@
 {%extends 'main.html'%}
-
+{%block title%}ReService: Reservation{%endblock%}
 {%block content%}
 {%load static%}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
 <div id="main">
-    <div id="content-wrapper">
-        <h2 id="header">Reservation Information</h2>
-        <div id="acct-info" >
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Reservation ID:
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="content-wrapper">
+            <h2 id="header">Reservation Information</h2>
+            <div id="acct-info" >
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Reservation ID:
+                    </div>
+                    <div id="content">
+                        {{reservation.reservation_id}}
+                    </div>
                 </div>
-                <div id="content">
-                    {{reservation.reservation_id}}
-                </div>
-            </div>
 
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Client:
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Client:
+                    </div>
+                    <div id="content">
+                        {{reservation.user.last_name}}, {{reservation.user.first_name}}, {{reservation.user.middle_name}}
+                    </div>
                 </div>
-                <div id="content">
-                    {{reservation.user.last_name}}, {{reservation.user.first_name}}, {{reservation.user.middle_name}}
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Driver:
+                    </div>
+                    <div id="content">
+                        {{reservation.driver}}
+                    </div>
                 </div>
-            </div>
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Driver:
-                </div>
-                <div id="content">
-                    {{reservation.driver}}
-                </div>
-            </div>
 
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Reservation Status:
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Reservation Status:
+                    </div>
+                    <div id="content">
+                        {{reservation.reservation_status}}
+                    </div>
                 </div>
-                <div id="content">
-                    {{reservation.reservation_status}}
-                </div>
-            </div>
 
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Payment Status:
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Payment Status:
+                    </div>
+                    <div id="content">
+                        {{reservation.payment_status}}
+                    </div>
                 </div>
-                <div id="content">
-                    {{reservation.payment_status}}
-                </div>
-            </div>
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Reserved:
-                </div>
-                <div id="content">
-                    {{reservation.reserved}}
-                </div>
-            </div>
-            <div id="row" class="clearfix">
-                <div id="label">
-                    Created:
-                </div>
-                <div id="content">
-                    {{reservation.created}}
-                </div>
-            </div>
-            <a href="{% url 'admin-rsrvtns-edit' reservation.reservation_id%}"><div id="btn">Edit</div></a>
             
+                <div id="row" class="clearfix">
+                    <div id="label">
+                        Created:
+                    </div>
+                    <div id="content">
+                        {{reservation.created}}
+                    </div>
+                </div>
+                <div id="row" class="clearfix">
+                    <input type="submit" value="Approve" id="btn" style="background-color:green;" >
+                    <a href="{% url 'admin-rsrvtns-decline' reservation.reservation_id%}"><div id="btn" style="margin-top:1%; background-color:red;" >Decline</div></a>
+                </div>
+
+             
+            </div>
         </div>
-    </div>
-    </div>
+        
+    </form>
 </div>
 {%endblock%}

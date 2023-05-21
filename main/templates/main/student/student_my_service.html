@@ -1,0 +1,200 @@
+{% extends 'main.html' %}
+
+{% block title %}My Service{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_my_service.css' %}">
+<style>
+#main{
+        background-image: url("{%static 'images/b.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+
+<div id="main">
+    <div id="row" class="clearfix">
+        <div id="left">
+            <div id="lbl">
+                My Driver
+            </div>
+            <div id="img-wrap">
+                {% if entry.assigned_driver.driverprofile.image%}
+                <img id="profile-img" src="{{entry.assigned_driver.driverprofile.image.url}}">
+                {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+            </div>
+        </div>
+        <div id="right" style="background-color: #001c69; width: 60%; padding: 1%;">
+            <div id="table">
+                <div id="tbl-hdr-wrap" class="clearfix">
+                    <div id="tb-lbl">
+                        Day
+                    </div>
+                    <div id="tb-lbl">
+                        Pick Up Time
+                    </div>
+                    <div id="tb-lbl">
+                        Dismissal Time 
+                    </div>
+                </div>
+                <div id="tb-cont">
+                    <div id="cont-row" class="clearfix">
+                        <div id="cont">
+                            Monday
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.monday_pickUp}}
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.mondy_dismiss}}
+                        </div>
+                    </div>
+                    <div id="cont-row" class="clearfix">
+                        <div id="cont">
+                            Tuesday
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.tuesday_pickUp}}
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.tuesday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="cont-row" class="clearfix">
+                        <div id="cont">
+                            Wednesday
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.wednesday_pickUp}}
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.wednesday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="cont-row" class="clearfix">
+                        <div id="cont">
+                            Thursday
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.thursday_pickUp}}
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.thursday_dismiss}}
+                        </div>
+                    </div>
+                    <div id="cont-row" class="clearfix">
+                        <div id="cont">
+                            Friday
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.friday_pickUp}}
+                        </div>
+                        <div id="cont">
+                            {{entry.student.schedule.friday_dismiss}}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="tb-cont" style="background-color: #001c69; color: white;">
+                
+                        <p>This schedule may not be followed at some cases due to certain factors such as traffic and vehicle status</p>
+                
+                </div>
+                <div id="tb-cont" style="background-color: #001c69; color: white;">
+                    
+                    How's my Driving ? <a href="{%url 'driver-feedback' entry.assigned_driver.id %}"><div class="btn">Driver Feedback/Report</div></a>
+                 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="row" class="clearfix" style=" margin-top: 5%; width: 90%; margin: auto;">
+        <div id="row-hrd">
+            Service Information
+        </div>
+        <div id="content" class="clearfix" style="padding: 0; background-color: transparent; display:flex;">
+            <div id="col" style="background-color: #001c69;">
+                <div id="lbl">
+                    Vehicle
+                </div>
+                {% if entry.assigned_driver.driverprofile.vehicle.vehicle.image%}
+                    <img id="profile-img" src="{{entry.assigned_driver.driverprofile.vehicle.vehicle.image.url}}">
+                {%else%}
+                    <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+            </div>
+            <div id="col">
+                <div id="subrow">
+                    <div id="lbl">
+                        Vehicle Information
+    
+                    </div>
+                    <div id="card-cont">
+                        
+                        <label>Model:</label>
+                        <p>{{entry.assigned_driver.driverprofile.vehicle.vehicle.model}}</p><br>
+                        <label>Plate No:</label>
+                        <p>{{entry.assigned_driver.driverprofile.vehicle.vehicle.plate_no}}</p>
+                    </div>
+                </div>
+
+                <div id="subrow">
+                    <div id="lbl">
+                        Franchise Information
+    
+                    </div>
+                    <div id="card-cont">
+                        
+                        <label>Franchise Name:</label>
+                        <p>{{entry.assigned_driver.driverprofile.franchise.franchise_name}}</p><br>
+                        <label>Franchise ID:</label>
+                        <p>{{entry.assigned_driver.driverprofile.franchise.franchise_id}}</p><br>
+                        <label>Operator:</label>
+                        <p>{{entry.assigned_driver.driverprofile.franchise.operator_firstN}} {{entry.assigned_driver.driverprofile.franchise.operator_lastN}}</p><br>
+                        <label>Contact No:</label>
+                        <p>{{entry.assigned_driver.driverprofile.franchise.contact_no}}</p><br>
+                        <label>Email:</label>
+                        <p>{{entry.assigned_driver.driverprofile.franchise.email}}</p><br>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="col">
+                <div id="lbl">
+                    Reservation Information
+                </div>
+                <div id="card-cont">
+                    <label>ID:</label>
+                    <p>{{reserve.reservation_id}}</p>
+                </div>
+                <div id="card-cont">
+                    <label>Reservation Date:</label>
+                    <p>{{reserve.created}}</p>
+                </div>
+                <div id="card-cont">
+                    <label>Payment Status:</label>
+                    <p>{{reserve.payment_status}}</p>
+                </div>
+
+                <div id="card-cont" style="background-color: #001c69;">
+                    <label style="font-size: 35px; color: #deaf39;">Total Payments:</label><br>
+                    <p style="margin-left: 40%; color: white;">P{{total}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

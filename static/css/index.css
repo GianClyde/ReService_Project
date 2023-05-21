@@ -19,12 +19,19 @@
 #row2-img-wrapper{
     width: 100%;
     padding: 2%;
+
 }
 #row2-img{
     width: 100%;
 }
 #row3{
     width: 100%;
+}
+#hdr{
+  width: 100%;
+  background-color: #deaf39;
+  padding: 1%;
+  padding-top:5%;
 }
 
 * {box-sizing: border-box;}

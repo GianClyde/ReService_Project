@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise-reg-services.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/vr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    </style>
+<div id="main">
+    <h1> Service Registration </h1>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="card">
+            <p id="instruct"> Please provide the followind details below.</p>
+            <hr>
+            <div id="row">
+                <div id="subrow" class="clearfix">
+                    <div id="left">
+                        Range:
+                    </div>  
+                    <div id="right">
+                        {{form.pick_up}}
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="left">
+                        Price:
+                    </div>  
+                    <div id="right">
+                        {{form.price}}
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="left">
+                        Driver:
+                    </div>  
+                    <div id="right">
+                        <select name="drivers" id="drivers">
+                            {% for u in drivers%}
+                                <option value="{{u.user.id}}">{{u.user.first_name}} {{u.user.middle_name}} {{u.user.last_name}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+               
+            </div>
+        </div>
+        
+    </form>
+    
+</div>
+{% endblock %}

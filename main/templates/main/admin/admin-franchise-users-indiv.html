@@ -1,0 +1,151 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Franchise Accounts{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student_indiv.css' %}">
+<div id="main">
+    <div id="account" class="clearfix">
+
+    
+        <div id="acct-info" >
+            <h2 id="header">Operator Information</h2>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    ID:
+                </div>
+                <div id="content">
+                    {{franchise.user.id}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Email:
+                </div>
+                <div id="content">
+                    {{franchise.user.email}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Last Name:
+                </div>
+                <div id="content">
+                    {{franchise.operator_lastN}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    First Name:
+                </div>
+                <div id="content">
+                    {{franchise.operator_firstN}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Middle Name:
+                </div>
+                <div id="content">
+                    {{franchise.operator_middleN}}
+                </div>
+            </div>
+            
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Contact No:
+                </div>
+                <div id="content">
+                    {{user.contact_no}}
+                </div>
+            </div>
+        </div>
+        <div id="permissions">
+            <h2 id="header">Franchise Information</h2>
+
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Franchise Name:
+                </div>
+                <div id="content">
+                    {{franchise.franchise_name}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Franchise No.:
+                </div>
+                <div id="content">
+                    {{franchise.franchise_no}}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="account" class="clearfix">
+        <h2 id="header">Franchise Documents</h2>
+        <div id="profile-content1">
+            <div id="row" class="clearfix">
+                
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label" style="width: 20%;">
+                   Valid ID:
+                </div>
+                <div id="content" style="width: 80%;">
+                    {% if franchise.franchise_doc %}
+                        <img id="profile-img" src="{{franchise.franchise_doc.url}}">
+                    {%else%}
+                        <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        <div id="profile-content2">
+            <div id="label" style="width: 20%;">
+                Registration:
+             </div>
+             <div id="content" style="width: 80%;">
+                {% if franchise.valid_id %}
+                    <img id="profile-img" src="{{franchise.valid_id.url}}">
+                {%else%}
+                    <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+             </div>
+        </div>
+    </div>
+   
+    <div id="account" class="clearfix">
+        <h2 id="header">Service Information</h2>
+        <div id="vehicle-img-wrapper">
+            <h3>My Drivers</h3>
+            {% for d in myDrivers%}
+                {{d.driver_last_name}}<br>
+            {%endfor%}
+            
+        </div>
+        <div id="service-info">
+            <h3><b>Clients</b></h3>
+            <h3>Capcity:{{user.driverprofile.vehicle.included}} of {{user.driverprofile.vehicle.capacity}}</h3>
+            {%for reserve in reservation%}
+            <a><div id="serve">
+                {{reserve.user.last_name}} {{reserve.user.first_name}} {{reserve.user.profile.village}}
+            </div></a>
+            {%endfor%}
+        </div>
+
+    </div>
+    
+    <div id="btns">
+        <a href="{% url 'admin-franchise-users-indiv-edit' franchise.franchise_id%}"><div id="btn">Edit</div></a>
+    </div>
+</div>
+{%endblock%}

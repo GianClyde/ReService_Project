@@ -1,0 +1,142 @@
+#card{
+    width: 100%;
+    background-color: white;
+    padding: 2%;
+    border-radius: 10px;
+    margin: auto;
+
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#table{
+    width: 100%;
+    background-color: #001c69;
+    padding: 1%;
+}
+#tbl-lbl-wrapper{
+    width: 100%;
+    padding: 1%;
+    background-color: #001c69;
+}
+#tbl-lbl{
+    width: 30%;
+    float: left;
+
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    font-size: 18px;
+}
+#tbl-content-wrapper{
+    padding: 2%;
+    background-color: white;
+
+}
+#row{
+    width: 100%;
+    padding: 1%;
+}
+
+#form{
+    width: 30%;
+    float: left;
+    font-family: 'Courier New', Courier, monospace;
+    
+
+}
+
+.sched{
+    width: 100%;
+    border:solid #001c69;
+    
+}
+
+.btn{
+    width: 30%;
+    padding: 1%;
+    background-color: #deaf39;
+    color: white;
+    font-family: "Bebas Neue";
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+}
+
+@media screen and (min-width:750px){
+    #card{
+        width: 60%;
+        background-color: white;
+        padding: 2%;
+        border-radius: 10px;
+        margin: auto;
+    
+    }
+    
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #table{
+        width: 100%;
+        background-color: #001c69;
+        padding: 1%;
+    }
+    #tbl-lbl-wrapper{
+        width: 100%;
+        padding: 1%;
+        background-color: #001c69;
+    }
+    #tbl-lbl{
+        width: 30%;
+        float: left;
+    
+        font-family: "Bebas Neue";
+        color: #deaf39;
+        font-size: 18px;
+    }
+    #tbl-content-wrapper{
+        padding: 2%;
+        background-color: white;
+    
+    }
+    #row{
+        width: 100%;
+        padding: 1%;
+    }
+    
+    #form{
+        width: 30%;
+        float: left;
+        font-family: 'Courier New', Courier, monospace;
+        
+    
+    }
+    
+    .sched{
+        width: 100%;
+        border:solid #001c69;
+        
+    }
+    
+    .btn{
+        width: 10%;
+        padding: 1%;
+        background-color: #deaf39;
+        color: white;
+        font-family: "Bebas Neue";
+    }
+    
+    h1{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 30px;
+    }
+
+}

@@ -1,0 +1,120 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Vehicle Profile{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_vehicles_indiv.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Vehicle ID <p>{{vehicle.vehicle_id}}</p>
+    </div>
+    <div id="row" style="background-color: transparent;" class="clearfix">
+        <div id="subleft">
+            <div id="header">
+                Vehicle
+            </div>
+            <div id="content">
+            {% if vehicle.vehicle.image %}
+                <img id="profile-img" src="{{vehicle.vehicle.image.url}}">
+            {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+            {%endif%}
+            </div>
+        </div>
+        <div id="subright">
+            <div id="header">
+                Vehicle Information
+            </div>
+            <div id="content">
+                <div id="subrow" class="clearfix">
+                    <div id="minilef">
+                        <label>Franchise:</label>
+                    </div>
+                    <div id="minirayt" >
+                        <p style="color: black;">{{vehicle.vehicle.franchise.franchise_name}}</p>
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="minilef">
+                        <label>Model:</label>
+                    </div>
+                    <div id="minirayt" >
+                        <p style="color: black;">{{vehicle.vehicle.model}}</p>
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="minilef">
+                        <label>Plate No:</label>
+                    </div>
+                    <div id="minirayt" >
+                        <p style="color: black;">{{vehicle.vehicle.plate_no}}</p>
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="minilef">
+                        <label>Capacity:</label>
+                    </div>
+                    <div id="minirayt" >
+                        <p style="color: black;">{{vehicle.vehicle.capacity}}</p>
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="minilef">
+                        <label>Driver:</label>
+                    </div>
+                    <div id="minirayt" >
+                        <p style="color: black;">{{vehicle.driverprofile.user.first_name}} {{vehicle.driverprofile.user.last_name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="row">
+        Documents
+    </div>
+    <div id="row" style="background-color: transparent;" class="clearfix">
+        <div id="left">
+            <div id="header">
+                OR
+            </div>
+            <div id="content" style="min-height: 500px;">
+            {% if vehicle.vehicle.OR %}
+                <img id="profile-img" src="{{vehicle.vehicle.OR.url}}">
+            {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+            {%endif%}
+            </div>
+        </div>
+        <div id="right">
+            <div id="header">
+                CR
+            </div>
+            <div id="content" style="min-height: 500px;">
+            {% if vehicle.vehicle.CR %}
+                <img id="profile-img" src="{{vehicle.vehicle.CR.url}}">
+            {%else%}
+                <img id="profile-img" src="{% static 'images/nopic.jpg'%}">
+            {%endif%}
+            </div>
+        </div>
+    </div>
+
+    <div id="row">
+        <a href="{% url 'vhcl-edit' vehicle.vehicle.vehicle_id%}"><div class="btn">
+            Edit
+        </div></a>
+    </div>
+</div>
+{%endblock%}

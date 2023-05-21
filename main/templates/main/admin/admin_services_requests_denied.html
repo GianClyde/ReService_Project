@@ -1,0 +1,46 @@
+{%extends 'main.html'%}
+{%block title%}RService: Service Request Deny{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Confirm Decline</h2>
+    <form method="POST" action="">
+            {%csrf_token%}
+        <p>Decline Service {{service.service_id}}?</p>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Service ID:
+                </div>
+                <div id="content">
+                    {{service.service_id}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Pick up:
+                </div>
+                <div id="content">
+                    {{service.pick_up}}
+                </div>
+            </div>
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Price:
+                </div>
+                <div id="content">
+                    {{service.price}}
+                </div>
+            </div>
+            <input type="submit" value="Confirm" class="btn" style="width:15%;">
+            <button class="btn" onclick="history.back()" style="width:15%;">Go back</button>
+            
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,48 @@
+#card{
+    width: 60%;
+    margin: auto;
+    background-color: white;
+}
+
+#label{
+    background-color: #001c69;
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    font-size: 30px;
+    padding: 2%;
+}
+
+#content{
+    padding: 2%;
+    width: 100%;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 25px;
+
+}
+p{
+    display: inline;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+#eval{
+    width: 100%;
+    padding: 1%;
+}
+#container{
+    padding: 1%;
+    border: solid #001c69;
+    border-radius: 10px;
+    min-height: 200px;
+    }
+
+#submit{
+    width: 20%;
+    padding: 1%;
+    color: white;
+    background-color: red;
+    font-family: "Bebas Neue";
+    text-align: center;
+}

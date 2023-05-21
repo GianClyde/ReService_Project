@@ -1,0 +1,47 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<style>
+    #main-registration-wrapper{
+        background-image: url("{%static 'images/road.png'%}");
+        background-repeat: no-repeat;
+    }
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_registration_page.css' %}">
+<div id="main-registration-wrapper">
+    <div id="registration-form-wrapper">
+        <h2 id="regform-header">Franchise Registration Form</h2>
+        <hr>
+        <div id="form-content-wrapper">
+            <form method="POST" action=""  enctype="multipart/form-data">
+                {%csrf_token%}
+                <div id="content1-regform">
+                    <label id="form-label">Email:</label><br>
+                    {{form.email}}<br>
+                    <label id="form-label">Franchise Name:</label><br>
+                    {{form.franchise_name}}<br>
+                    <label id="form-label">Franchise No:</label><br>
+                    {{form.franchise_no}}<br>
+                    <label id="form-label">Operator Last Name:</label><br>
+                    {{form.operator_lastN}}<br>
+                    <label id="form-label">Operator First Name:</label><br>
+                    {{form.operator_firstN}}<br>
+                    <label id="form-label">Operator Middle Name:</label><br>
+                    {{form.operator_middleN}}<br>
+                    <label id="form-label">Operator Contact no:</label><br>
+                    {{form.contact_no}}<br>
+                    <hr>
+                    <h3>Documents</h3>
+                    <label id="form-label">Document:</label><br>
+                    {{form.franchise_doc}}<br>
+                    <label id="form-label">Valid ID:</label><br>
+                    {{form.valid_id}}<br>
+                </div>
+                    <input id="registration-page-btn"  type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+{%endblock%}

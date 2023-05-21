@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-vehicles_indiv_update.css' %}">
+
+<div id="main">
+    <div id="row" class="clearfix">
+        <div id="left">
+            <h1>Old:</h1>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Model:
+                </div>
+                <div id="content">
+                    {{model}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Plate No:
+                </div>
+                <div id="content">
+                    {{plate}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Capacity:
+                </div>
+                <div id="content">
+                    {{capacity}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    OR:
+                </div>
+                <div id="content">
+                    <img src="{{recit.url}}">
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    OR:
+                </div>
+                <div id="content">
+                    <img src="{{cert.url}}">
+                </div>
+            </div>
+        </div>
+
+        <div id="right">
+            <h1>New</h1>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Model:
+                </div>
+                <div id="content">
+                    {{vehicleupdates.model}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Plate No:
+                </div>
+                <div id="content">
+                    {{vehicleupdates.plate_no}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    Capacity:
+                </div>
+                <div id="content">
+                    {{vehicleupdates.capacity}}
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    OR:
+                </div>
+                <div id="content">
+                    <img src="{{vehicleupdates.OR.url}}">
+                </div>
+            </div>
+            <div id="sub-row" class="clearfix">
+                <div id="label">
+                    OR:
+                </div>
+                <div id="content">
+                    <img src="{{vehicleupdates.CR.url}}">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div id="btn-wrapper">
+            <form method="POST" action="">
+                {%csrf_token%}
+                    <input type="submit" value="Approve" class="btn">
+            </form>
+    </div>
+</div>
+{% endblock%}

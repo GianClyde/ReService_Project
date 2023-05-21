@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/pay-sum.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/a.png'%}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 800px;
+    }
+</style>
+<div id="main" class="clearfix">
+    <div id="left">
+        <h1>ReService:Payment</h1>
+        <h2>How to pay?</h2>
+        <h2>Method 1:</h2>
+        <p>
+            1. Go to Integrated Montessori Center Tellering.<br><br>
+            2. Get a payment slip and fillup.<br><br>
+            3. Pay the total amount.<br><br>
+            4. Send your proof of payment in ReService.<br><br>
+            5. Wait for Verification.<br><br>
+        </p>
+        <h2>Method 2:</h2>
+        <p>
+            1. Download the PDF file .<br><br>
+            2. Present to the tellering.<br><br>
+            3. Pay the total amount.<br><br>
+            4. Send your proof of payment in ReService.<br><br>
+            5. Wait for Verification.<br><br>
+        </p>
+        <label style="margin-left: 20%; color: white;">Download Here:</label><a href="{% url 'membership_pay_pdf' payment.ref_no %}" style="text-decoration: none; color: white;"><div id="dl">PDF</div></a>
+    </div>
+
+    <div id="right">
+        <div id="card">
+            <h1 style="color: black; font-size: 30px; text-align: center; margin-bottom: 5%; margin-right: 20%;">Payment Information</h1>
+            <label>Purpose: </label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0;">Driver Membership</p><br><br>
+            <label>Ref #: </label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0;">{{payment.ref_no}}</p><br><br>
+            <label>Driver Name:</label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0;">{{payment.driver.driver_first_name}} {{payment.driver.driver_last_name}}</p><br><br>
+            <label>Franchise:</label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0;">{{payment.driver.franchise.franchise_name}}</p><br><br>
+            <label>Created:</label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0;">{{payment.created}}</p><br><br>
+            <label>Total:</label>
+            <p style="color:black; font-size: 15px; display: inline; margin-left: 0; background-color: #deaf39;">{{payment.total}} pesos</p><br><br>
+
+        </div>
+        
+    </div>
+
+</div>
+{% endblock%}

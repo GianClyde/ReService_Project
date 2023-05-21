@@ -1,0 +1,212 @@
+#form{
+    width: 90%;
+    padding: 3%;
+    background-color: white;
+    box-shadow: 8px 12px #001c69;
+    margin: auto;
+    
+}
+h1{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+}
+
+.form{
+    box-shadow: 1px 1px 5px #555 inset;
+    width: 100%;
+   
+}
+#id_franchise_name{
+    font-size: 18px;
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+#id_email{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+#id_franchise_doc{
+    font-family: 'Courier New', Courier, monospace;
+}
+#id_valid_id{
+    font-family: 'Courier New', Courier, monospace;
+}
+#id_franchise_no{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+
+#id_operator_lastN{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+#id_operator_middleN{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+#id_operator_firstN{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+    
+}
+
+#id_contact_no{
+    width: 100%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    margin-bottom: 2%;
+    border-radius: 9px;
+}
+
+#registration-page-btn{
+    padding: 2%;
+    font-family: "Bebas Neue";
+    background-color: #001c69;
+    width: 15%;
+    color: white;
+    margin-left: 85%;
+}
+
+h3{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+}
+@media screen and (min-width:750px){
+    #form{
+        width: 60%;
+        padding: 3%;
+        background-color: white;
+        box-shadow: 8px 12px #888888;
+        margin: auto;
+        
+    }
+    h1{
+        font-family: "Bebas Neue";
+        font-size: 30px;
+    }
+    
+    .form{
+        box-shadow: 1px 1px 5px #555 inset;
+        width: 100%;
+        font-size: 100px;
+    }
+    #id_franchise_name{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    #id_email{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    #id_franchise_doc{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    #id_valid_id{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    #id_franchise_no{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    
+    #id_operator_lastN{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    #id_operator_middleN{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    #id_operator_firstN{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+        
+    }
+    
+    #id_contact_no{
+        width: 100%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        margin-bottom: 2%;
+        border-radius: 9px;
+    }
+    
+    #registration-page-btn{
+        padding: 2%;
+        font-family: "Bebas Neue";
+        background-color: #001c69;
+        width: 15%;
+        color: white;
+        margin-left: 85%;
+    }
+    
+    h3{
+        font-family: "Bebas Neue";
+        font-size: 30px;
+    }
+
+}

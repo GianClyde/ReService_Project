@@ -1,0 +1,267 @@
+{%extends 'main.html'%}
+{%block title%}ReService: Edit Driver{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Driver ID:<p style="color: white; display: inline;">{{userS.id}}</p>
+    </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Student
+                </div>
+                <div id="content">
+                    {% if user.driverprofile.image %}
+                        <img src="{{user.driverprofile.image.url}}" alt="profile">
+                        {{pform.image}}
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                        {{pform.image}}
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper" style="margin-bottom:3%;">
+                <div id="header">
+                    Driver information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Last Name:</label><p>{{form.last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>First Name:</label><p>{{form.first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Middle Name:</label><p>{{form.middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{user.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No.:</label><p>{{form.contact_no}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Birth Date:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.birth_date}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Age:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.age}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Franchise:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{user.driverprofile.franchise.franchise_name}}</p>
+                            </div>
+                           
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+       
+
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Student Address
+                </div>
+                <div id="content" >
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col" >
+                                <div id="subleft" >
+                                    <label>Lot:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.lot}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Street:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{form_p.street}}</p>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Village:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.village}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>City:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{form_p.city}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft"  >
+                                <label>Zipcode</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.zipcode}}</p>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Driver's Vehicle
+                </div>
+                <div id="content">
+                    {% if user.driverprofile.vehicle.vehicle.image %}
+                        <img src="{{user.driverprofile.vehicle.vehicle.image.url}}" alt="profile">
+                        
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper" style="margin-bottom:3%;">
+                <div id="header">
+                    Vehicle information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Model:</label><p>{{user.driverprofile.vehicle.vehicle.model}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Plate No:</label><p>{{user.driverprofile.vehicle.vehicle.plate_no}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Capacity:</label><p>{{user.driverprofile.vehicle.vehicle.capacity}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                                <label>Enrolled Students</label><br>
+                                {% if reservation%}
+                                    {%for r in reservation%}
+                                        <div id="smol"><p>{{r.user.first_name}} {{r.user.middle_name}} {{r.user.last_name}}</p></div>
+                                       
+                                    {%endfor%}
+
+                                {%else%}
+                                    <p style="color: brown; width: 100%;"> No student enrolled</p>
+                                {%endif%}
+
+                           
+                           
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+        <div id="header" style="margin-bottom: 2%;">
+            Documents
+        </div>
+        <div id="row"  style="background-color: transparent; margin-bottom: 0; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Liscense
+                </div>
+                <div id="content">
+                    {% if user.franchisedrivers.liscense %}
+                        <img src="{{user.franchisedrivers.liscense.url}}" alt="Car">
+                        {{docForm.liscense}}
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                        {{docForm.liscense}}
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    NBI Clearance
+                </div>
+                <div id="content">
+                    {% if user.franchisedrivers.nbi_clearance %}
+                        <img src="{{user.franchisedrivers.nbi_clearance.url}}" alt="Car">
+                        {{docForm.nbi_clearance}}
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                        {{docForm.nbi_clearance}}
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    
+        
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <input type="submit" value="Save" class="btn">
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

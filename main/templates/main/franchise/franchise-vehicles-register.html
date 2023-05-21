@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise-reg-vehicles.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+
+    <div id="form">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {%csrf_token%}
+            <h1>Vehicle Registration</h1>
+            <hr>
+            <div id="form-cont">
+                <h2>Information</h2><br>
+                <label>Model:</label><br>
+                {{form.model}}<br>
+                <label>Plate No:</label><br>
+                {{form.plate_no}}<br>
+                <label>Capacity:</label><br>
+                {{form.capacity}}<br>
+            
+                <hr>
+                <h2>Documents</h2>
+                <br>
+                <label>Official Receipt:</label>
+                {{form.OR}}<br>
+                <label>Certificate of registration</label>
+                {{form.CR}}<br>
+                <label>Vehicle Image:</label>
+                {{form.image}}<br>
+            </div>
+            
+
+            <input type="submit" value="Submit" class="btn"/>
+        </form>
+    </div>
+</div>
+{% endblock %}

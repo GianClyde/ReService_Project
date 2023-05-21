@@ -1,0 +1,47 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<style>
+    #main-registration-wrapper{
+        background-image: url("{%static 'images/road.png'%}");
+        background-repeat: no-repeat;
+    }
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_registration_page.css' %}">
+<div id="main-registration-wrapper">
+    <div id="registration-form-wrapper">
+        <h2 id="regform-header">Franchise Registration Form</h2>
+        <hr>
+        <div id="form-content-wrapper">
+            <form method="POST" action=""  enctype="multipart/form-data">
+                {%csrf_token%}
+                <div id="content1-regform">
+                    <label id="form-label">Email:</label><br>
+                    {{form.email}}<br>
+                    <label id="form-label">Contact No:</label><br>
+                    {{form.contact_no}}<br>
+                    <label id="form-label"> Last Name:</label><br>
+                    {{form.driver_last_name}}<br>
+                    <label id="form-label"> First Name:</label><br>
+                    {{form.driver_first_name}}<br>
+                    <label id="form-label"> Middle Name:</label><br>
+                    {{form.driver_middle_name}}<br>
+                    <label id="form-label">Assigned Vehicle:</label><br>
+                    {{form.vehicle}}<br>
+                    <hr>
+                    <h3>Documents</h3>
+                    <label id="form-label">Picture:</label><br>
+                    {{form.id_pic}}<br>
+                    <label id="form-label">NBI Clearance:</label><br>
+                    {{form.nbi_clearance}}<br>
+                    <label id="form-label">Liscense:</label><br>
+                    {{form.liscense}}<br>
+                </div>
+                    <input id="registration-page-btn"  type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+{%endblock%}

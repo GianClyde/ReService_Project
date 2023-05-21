@@ -1,0 +1,240 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Student Profile{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Student ID:<p style="color: white; display: inline;">{{userS.id}}</p>
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Student
+                </div>
+                <div id="content">
+                    {% if userS.profile.image %}
+                        <img src="{{userS.profile.image.url}}" alt="profile">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper" style="margin-bottom:3%;">
+                <div id="header">
+                    Student information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Last Name:</label><p>{{userS.last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>First Name:</label><p>{{userS.first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Middle Name:</label><p>{{userS.middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{userS.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No.:</label><p>{{userS.contact_no}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Birth Date:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.pofile.birth_date}}</p>
+                            </div>
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Age:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.profile.age}}</p>
+                            </div>
+                           
+                        </div>
+                        
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+        
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+    
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Student Schedule
+                </div>
+                <div id="content" style="min-height: 500px;">
+                        <div id="sub-row">
+                            <label>Year level:</label><p>{{userS.profile.year_level}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Section:</label><p>{{userS.profile.section}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Schedule:</label>
+                            <table>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Pick Up</th>
+                                    <th>Dismissal</th>
+                                </tr>
+                                <tr>
+                                    <th style="color: #001c69; background-color: transparent;">Monday</th>
+                                    <td>{{userS.profile.schedule.monday_start}}</td>
+                                    <td>{{userS.profile.schedule.mondy_dismiss}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="color: #001c69; background-color: transparent;">Tuesday</th>
+                                    <td>{{userS.profile.schedule.tuesday_start}}</td>
+                                    <td>{{userS.profile.schedule.tuesday_dismiss}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="color: #001c69; background-color: transparent;">Wednesday</th>
+                                    <td>{{userS.profile.schedule.wednesday_start}}</td>
+                                    <td>{{userS.profile.schedule.wednesday_dismiss}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="color: #001c69; background-color: transparent;">Thursday</th>
+                                    <td>{{userS.profile.schedule.thursday_start}}</td>
+                                    <td>{{userS.profile.schedule.thursday_dismiss}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="color: #001c69; background-color: transparent;">Friday</th>
+                                    <td>{{userS.profile.schedule.friday_start}}</td>
+                                    <td>{{userS.profile.schedule.friday_dismiss}}</td>
+                                </tr>
+                            </table>
+                        </div>
+    
+                   
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+
+        <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+            <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                <div id="header">
+                    Student Address
+                </div>
+                <div id="content" >
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col" >
+                                <div id="subleft" >
+                                    <label>Lot:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{userS.profile.lot}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Street:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{userS.profile.street}}</p>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>Village:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{userS.profile.village}}</p>
+                                </div>
+                            </div>
+                            <div id="addr-col">
+                                <div id="subleft" >
+                                    <label>City:</label>
+                                </div>
+                                <div id="subright" >
+                                    <p>{{userS.profile.city}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft"  >
+                                <label>Zipcode</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{userS.profile.zipcode}}</p>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <div id="row" style="background-color: transparent;"  class="clearfix"> 
+            <div id="info-wrapper" style="margin-bottom:3%; width: 100%;">
+                <div id="header">
+                    Guardian information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="sub-row">
+                        <label>Parent or Guardian:</label><p>{{userS.profile.parent}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>Contact No:</label><p>{{userS.profile.parent_contactNo}}</p>
+                    </div>
+                    <div id="sub-row">
+                        <label>Address:</label><p>{{userS.profile.parent_address}}</p>
+                    </div>
+        
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+    
+        <div id="row" style="margin-top:2%;" class="clearfix">
+            <a href="{% url 'admin-stdnt-edit' userS.id %}"><div class="btn">Edit</div></a>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

@@ -1,6 +1,7 @@
 
 {%extends 'main.html'%}
 <!DOCTYPE html>
+{%block title%}ReService: Driver{%endblock%}
 {%block content%}
 {%load static%}
 <html>
@@ -90,62 +91,62 @@
 </head>
 
 <body>
-    <div id="main-wrapper" class="clearfix">
+    <div id="main-wrapper" class="clearfix" style="display: flex;">
         <div id="left-wrapper">
             <div id="img-wrapper">
-                {% if driver.driverprofile.image %}
-                    <img id="img" src="{{driver.driverprofile.image.url}}">
+                {% if service.driver.image %}
+                    <img id="img" src="{{service.driver.image.url}}">
                 {%else%}
                     <img id="img" src="{% static 'images/nopic.jpg'%}">
                 {%endif%}
         
             </div>
-            <h2 id="drvr-name">{{driver.first_name}} {{driver.last_name}}</h2>
+            <h2 id="drvr-name">{{service.driver.user.first_name}} {{service.driver.user.last_name}}</h2>
             <h3 id="sub-header">Personal Infromation</h3>
             <label id="label">Last Name:</label>
                 <div id="proile-content-wrapper">
-                    {{driver.last_name}}
+                    {{service.driver.user.last_name}}
                 </div>
                 <label id="label">First Name:</label>
                 <div id="proile-content-wrapper">
-                    {{driver.first_name}}
+                    {{service.driver.uer.first_name}}
                 </div>
                 <label id="label">Middle Name:</label>
                 <div id="proile-content-wrapper">
-                    {{driver.middle_name}}
+                    {{service.driver.user.middle_name}}
                 </div>
                 <label id="label">Birth Date:</label>
                 <div id="proile-content-wrapper">
-                    {{driver.driverprofile.birth_date}}<br>
+                    {{service.driver.birth_date}}<br>
                 </div>
                 <label id="label">Age:</label>
                 <div id="proile-content-wrapper">
-                    {{driver.driverprofile.age}}
+                    {{service.driver.age}}
                 </div>
            
     
         </div>
     
-        <div id="right-wrapper">
+        <div id="right-wrapper" style="height:100%">
     
             <h3 id="sub-header1">Address </h3>
             <label id="label1">Address:</label>
             <div id="proile-content-wrapper-r">
-               Lot {{driver.driverprofile.lot}} {{driver.driverprofile.street}}, {{driver.driverprofile.village}}, {{driver.driverprofile.city}}
+               Lot {{service.driver.lot}} {{service.driver.street}}, {{service.driver.village}}, {{service.driver.city}}
             </div>
             <label id="label1">Email:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.email}}
+                {{service.driver.user.email}}
             </div>
             <label id="label1">Contact No.:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.contact_no}}
+                {{service.driver.user.contact_no}}
             </div>
             <hr>
             <h3 id="sub-header1">School Infromation</h3>       
             <label id="label1">School Branch:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.driverprofile.school_branch}}
+                {{service.driver.school_branch}}
             </div>
             <label id="label1">Assigned Route:</label>
             <div id="proile-content-wrapper-r">
@@ -156,15 +157,15 @@
             <h3 id="sub-header1">Franchise Infromation </h3>
             <label id="label1">Franchise:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.driverprofile.franchise}}
+                {{service.driver.franchise}}
             </div>
             <label id="label1">Franchise No.:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.driverprofile.franchise_no}}
+                {{service.driver.franchise.franchise_no}}
             </div>
             <label id="label1">Operator:</label>
             <div id="proile-content-wrapper-r">
-                {{driver.driverprofile.operator}}
+                {{service.driver.franchise.operator_firstN}} {{service.driver.franchise.operator_lastN}}
             </div>
     
             <button class="reserve-btn" id="myBtn">Reserve</button>
@@ -179,7 +180,8 @@
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-
+<form method="POST" action="">
+        {%csrf_token%}
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
@@ -191,19 +193,19 @@
         <h2 id="forgot-pass-header">School Service Information:</h2>
         <label id="forgot-pass-subheader">Diver Name:</label>
         <div id="proile-content-wrapper">
-            {{driver.last_name}},{{driver.first_name}},{{driver.middle_name}}
+            {{service.driver.user.last_name}},{{service.driver.user.first_name}},{{service.driver.user.middle_name}}
         </div>
         <label id="forgot-pass-subheader">Operator:</label>
         <div id="proile-content-wrapper">
-            {{profile_driver.operator}}
+            {{service.driver.franchise.operator_firstN}} {{service.driver.franchise.operator_lastN}}
         </div>
         <label id="forgot-pass-subheader">Vehicle:</label>
         <div id="proile-content-wrapper">
-            {{profile_driver.vehicle.model}}
+            {{service.driver.vehicle.vehicle.model}}
         </div>
         <label id="forgot-pass-subheader">Plate No:</label>
         <div id="proile-content-wrapper">
-            {{profile_driver.vehicle.plate_no}}
+            {{service.driver.vehicle.vehicle.plate_no}}
         </div>
         
         <hr>
@@ -239,13 +241,33 @@
         <div id="proile-content-wrapper">
             {{request.user.profile.parent_contactNo}}
         </div>
+        <hr>
+        <label id="forgot-pass-subheader">Rules and Regulations</label>
+        <div id="proile-content-wrapper">
+            <p>1. The school transportation service is for one(1) whole year. The payment of fee is on a monthly basis, regardless of the number of school days in a month. No daily or fraction computation is allowed. Transportation service covers regular school days only.</p>
+            <p>2. The service route coverage tis limited on from residence to school and vice versa. However if the location of the residence is inaccessible, a pick-up point will be designated. Please advise your child to be at the pick-up point at the appointed time.</p>
+            <p>3. Rehearsals, practices, educational tours, family days, graduation/recognition rites, and other activities that will be held outside the school premises shall not be covered by this agreement. Parent/guardians shall have to take charge in bringing their children to the areas of specific activity.</p>
+            <p>4. Travel time allowance is just sufficient for safe and relaxed trip from school, so punctuality is earnestly requested. When the school bus service arrives at your respective pick-up point, your child must be ready as the delay of one will affect other students.</p>
+            <p>5. Failure to ride due to absence or suspension of classes won't be deducted from the monthly fee.</p>
+            <p>6. Caregivers, guardians, or parents who will accompany their children on a permanent basis shall be pain in full.</p>
+            <p>7. The Board and Directors of the School Service Association determine and approve the rates and increases of the fee.</p>
+            <p>8. In case that parents/guardians are not satisfied with the performance of the service, they have the option to terminate this agreement. Likewise, the operator has the option to terminate the agreement if there will be irreconcilable difference with the parent/guardian.</p>
+            <p>9. As soon as the child disembarks from the bus appointed time and place, the operator's responsibility is confined only when the child is inside the bus.</p>
+            <p>10. Transfer of riders is based on operator to operator transaction.</p>
+            <p>11. The service vehicle is equipped with medical kit, umbrellas, and cellular phones. For safety reason, the driver may not be able to answer your text messages but may answer the calls.</p>
+            <p>12. Accident insurance shall be in accordance with Passengers Management Insurance(PAMI) and LTO's existing policies on insurances.</p>
+            <br>
+            <p> by confirming this reservation, you agree and acknowledge the rules and regulations of this school service</p>
+        
+        </div>
+    
         <br>
         <br>
-        <a href="{% url 'reserve-service' driver.id%}">Confirm</a>
+        <input type="submit" value="Confirm">
     </div>
 
   </div>
-
+</form>
 </div>
 
 <script>

@@ -1,129 +1,59 @@
-#card{
-    width: 70%;
-    padding: 5%;
-    background-color: white;
-    border-radius: 10px;
-    margin: auto;
-}
-#img-wrapper{
-    width: 80%;
-    margin: auto;
-    margin-left: 20%;
+h1{
+  font-family: "Bebas Neue";
+  color: #deaf39;
 }
 
-#text{
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+#form{
+  margin: auto;
+  padding: 2%;
+  width: 80%;
+}
+
+#table{
+  background-color: #001c69;
+  padding: 2%;
+}
+
+#table-hdr-wrapper{
+  width: 100%;
+  padding: 1%;
+  border-bottom: solid #deaf39;
+}
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#table-hdr{
+  float: left;
+  font-family: "Bebas Neue";
+  color: #deaf39;
+  font-size: 20px;
+  width: 10%;
+}
+
+#content-row{
+  width: 100%;
+  background-color: white;
+  padding: 1%;
+}
+
+#content{
+  float: left;
+  font-family: 'Courier New', Courier, monospace;
+  color: #001c69;
 }
 
 .btn{
-    background-color: #001c69;
-    color: white;
-    padding: 2%;
-    display: inline;
-    font-size: 12px;
-    font-family: 'Bebas Neue', cursive;
+  width: 40%;
+  background-color: #001c69;
+  color: white;
+  padding: 1%;
 }
-.btn1{
-    background-color: #deaf39;
-    color: white;
-    padding: 2%;
-    display: inline;
-    font-size: 12px;
-    font-family: 'Bebas Neue', cursive;
+
+#table-cntnt{
+  width: 100%;
+  overflow: auto;
 }
-    /*Trigger Button*/
-  .login-trigger {
-    background-color: #001c69;
-    color: white;
-    padding: 2%;
-    display: inline;
-    font-size: 12px;
-    font-family: 'Bebas Neue', cursive;
-  }
-  
-  /*Modal*/
-  h4 {
-    font-weight: bold;
-    color: #fff;
-  }
-  .close {
-    color: #fff;
-    transform: scale(1.2)
-  }
-  .modal-content {
-    font-weight: bold;
-    background-color: #deaf39;
-  }
-  .form-control {
-    margin: 1em 0;
-  }
-  .form-control:hover, .form-control:focus {
-    box-shadow: none;  
-    border-color: #fff;
-  }
-  .username, .password {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 2px solid #eee;
-    padding-left: 0;
-    font-weight: normal;
-    background: transparent;  
-  }
-  .form-control::-webkit-input-placeholder {
-    color: #eee;  
-  }
-  .form-control:focus::-webkit-input-placeholder {
-    font-weight: bold;
-    color: #fff;
-  }
-  .login {
-    padding: 6px 20px;
-    border-radius: 20px;
-    background: none;
-    border: 2px solid #FAB87F;
-    color: #FAB87F;
-    font-weight: bold;
-    transition: all .5s;
-    margin-top: 1em;
-  }
-  .login:hover {
-    background: #FAB87F;
-    color: #fff;
-  }
-
-  #prompt{
-    font-size: 12px;
-
-    text-align: justify;
-    color: white;
-  }
-  .conf-btn{
-    width: 15%;
-    background-color: #FAB87F;
-    padding: 2%;
-    color: white;
-    font-family: 'Bebas Neue', cursive;
-    text-align: center;
-    border-radius: 10px;
-    border: solid #FAB87F;
-    transition: 0.5s;
-    cursor: pointer;
-  }
-
-  .conf-btn:hover{
-    background-color: #001c69;
-    border: solid #deaf39;
-  }
-  .form-input{
-    min-height: 10px;
-    background-color: #deaf39;
-  }
-  .rsn-input{
-    background-color: white;
-    border-radius: 7px;
-    min-height: 200px;
-    width: 100%;
-  }

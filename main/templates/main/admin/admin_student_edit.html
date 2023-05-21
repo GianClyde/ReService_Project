@@ -1,0 +1,308 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Edit Student{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-driver-reqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <form method = "POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="row">
+            Student ID:<p style="color: white; display: inline;">{{userS.id}}</p>
+        </div>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <div id="row" style="background-color: transparent;"  class="clearfix">
+                <div id="image-wrapper">
+                    <div id="header" style="padding:4%;">
+                        Student
+                    </div>
+                    <div id="content" style="min-height:300px;">
+                        {% if userS.profile.image %}
+                            <img src="{{userS.profile.image.url}}" alt="profile">
+                            {{pform.image}}
+                        {%else%}
+                            <img src="{% static 'images/noimage.png'%}">
+                            {{pform.image}}
+                        {%endif%}
+                    </div>
+                </div>
+        
+                <div id="info-wrapper" style="margin-bottom:3%;">
+                    <div id="header">
+                        Student information
+                    </div>
+                    <div id="content" class="clearfix" style="min-height:300px;">
+                        <div id="left">
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Last Name:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form.last_name}}</p>
+                                </div>
+                                
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>First Name:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form.first_name}}</p>
+                                </div>
+                              
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Middle Name:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form.middle_name}}</p>
+                                </div>
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Email:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{user.email}}</p>
+                                </div>
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Contact No.:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form.contact_no}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="right">
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Birth Date:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.birth_date}}</p>
+                                </div>
+                               
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft">
+                                    <label>Age:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.age}}</p>
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                        
+                       
+                       
+                    </div>
+                    
+                </div>
+    
+                
+            </div>
+            
+            <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+                <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                    <div id="header">
+                        Student Schedule
+                    </div>
+                    <div id="content" style="min-height: 500px;">
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft" style="width:10%;">
+                                    <label>Year level:</label>
+                                 
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.year_level}}</p>
+                                </div>
+                                
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft" style="width:10%;">
+                                    <label>Section:</label>
+                                </div>
+                                <div id="subright">
+                                    <p>{{form_p.section}}</p>
+                               
+                                </div>
+                                
+                            </div>
+
+                            <div id="sub-row">
+                                <label>Schedule:</label>
+                                <table>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Pick Up</th>
+                                        <th>Dismissal</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: #001c69; background-color: transparent;">Monday</th>
+                                        <td>{{form_s.monday_start}}</td>
+                                        <td>{{form_s.mondy_dismiss}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: #001c69; background-color: transparent;">Tuesday</th>
+                                        <td>{{form_s.tuesday_start}}</td>
+                                        <td>{{form_s.tuesday_dismiss}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: #001c69; background-color: transparent;">Wednesday</th>
+                                        <td>{{form_s.wednesday_start}}</td>
+                                        <td>{{form_s.wednesday_dismiss}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: #001c69; background-color: transparent;">Thursday</th>
+                                        <td>{{form_s.thursday_start}}</td>
+                                        <td>{{form_s.thursday_dismiss}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="color: #001c69; background-color: transparent;">Friday</th>
+                                        <td>{{form_s.friday_start}}</td>
+                                        <td>{{form_s.friday_dismiss}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+        
+                       
+                    </div>
+                    
+                </div>
+    
+                
+            </div>
+            
+            <div id="row" style="background-color: transparent;"  class="clearfix" >
+        
+                <div id="info-wrapper" style="margin-bottom:1%; width: 100%;">
+                    <div id="header">
+                        Student Address
+                    </div>
+                    <div id="content" >
+                            <div id="sub-row" class="clearfix">
+                                <div id="addr-col" style="width:20%;">
+                                    <div id="subleft" style="width:10%;">
+                                        <label>Lot:</label>
+                                    </div>
+                                    <div id="subright">
+                                        <p>{{form_p.lot}}</p>
+                                    </div>
+                                </div>
+                                <div id="addr-col">
+                                    <div id="subleft" style="width:10%;">
+                                        <label>Street:</label>
+                                    </div>
+                                    <div id="subright" >
+                                        <p>{{form_p.street}}</p>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="addr-col" style="width:20%;">
+                                    <div id="subleft" style="width:30%;">
+                                        <label>Village:</label>
+                                    </div>
+                                    <div id="subright">
+                                        <p>{{form_p.village}}</p>
+                                    </div>
+                                </div>
+                                <div id="addr-col">
+                                    <div id="subleft" style="width:10%;">
+                                        <label>City:</label>
+                                    </div>
+                                    <div id="subright" >
+                                        <p>{{form_p.city}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="sub-row" class="clearfix">
+                                <div id="subleft"  style="width:10%;">
+                                    <label>Zipcode</label>
+                                </div>
+                                <div id="subright" style="width:45%;">
+                                    {{form_p.zipcode}}
+                                </div>
+                            </div>
+                    </div>
+                    
+                </div>
+    
+                
+            </div>
+
+            <div id="row" style="background-color: transparent;"  class="clearfix"> 
+                <div id="info-wrapper" style="margin-bottom:3%; width: 100%;">
+                    <div id="header">
+                        Guardian information
+                    </div>
+                    <div id="content" class="clearfix">
+                        <div id="sub-row" class="clearfix">
+
+                            <div id="subleft">
+                                <label>Parent or Guardian:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.parent}}</p>
+                            </div>  
+                           
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Contact No:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.parent_contactNo}}</p>
+                            </div>
+                            
+                        </div>
+                        <div id="sub-row" class="clearfix">
+                            <div id="subleft">
+                                <label>Address:</label>
+                            </div>
+                            <div id="subright">
+                                <p>{{form_p.parent_address}}</p>
+                            </div>
+                            
+                        </div>
+            
+                    </div>
+                    
+                </div>
+    
+                
+            </div>
+    
+            
+            <div id="row" style="margin-top:2%;" class="clearfix">
+                <input type="submit" value="Submit" class="btn">
+            </div>
+
+    </form>
+   
+    
+</div>
+
+
+{%endblock%}

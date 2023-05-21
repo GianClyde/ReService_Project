@@ -1,0 +1,57 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Service application{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-indiv-servicesreqs.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    </style>
+
+<div id="main">
+   <div id="row">
+        Service ID: {{service.service_id}}
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+            <div id="header">
+                Service Information
+            </div>
+            <div id="content">
+                <div id="sub-row">
+                    <label>Franchise:</label>
+                    <p>{{service.franchise.franchise_name}} </p>
+                </div>
+                <div id="sub-row">
+                    <label>From:</label>
+                    <p>{{service.pick_up}}</p>
+                </div>
+                <div id="sub-row">
+                    <label>Price:</label>
+                    <p>{{service.price}} pesos</p>
+                </div>
+                <div id="sub-row">
+                    <label>Created:</label>
+                    <p>{{service.created}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="row" class="clearfix" style="background-color: transparent;">
+            <input type="submit" value="Approve" class="btn"> <a href="{%url 'admin-services-decline' service.service_id%}"><div class="btn" style="background-color:red;">Decline</div></a>
+        </div>
+    </form>
+      
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@700&family=Merriweather+Sans:wght@500&family=Raleway:wght@500&display=swap" rel="stylesheet">
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body style="padding: 0; margin: 0; ">
+    <div id="main" style="padding: 0; margin: 0; width: 100vh; ">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Membership Payment
+        <hr>
+         </h1>
+         <p>Date Created:{{payment.created}}</p>
+
+         <h3>Reference#: {{payment.ref_no}}</h3>
+         <table>
+            <tr>
+                <th>Ref#</th>
+                <td>{{payment.ref_no}}</td>
+            </tr>
+            <tr>
+                <th>Driver</th>
+                <td>{{payment.driver.driver_first_name}} {{payment.driver.driver_middle_name}} {{payment.driver.driver_last_name}}</td>
+            </tr>
+            <tr>
+                <th>Purpose</th>
+                <td>Driver Membership</td>
+            </tr>
+            <tr>
+                <th>Request date:</th>
+                <td>{{payment.created}}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{payment.total}} pesos</td>
+            </tr>
+          </table>
+
+    
+          
+          
+    </div>
+</body>
+</html>

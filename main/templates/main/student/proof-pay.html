@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/proofpay.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/bgg.png'%}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height:100vh;
+        padding: 10%;
+    }
+</style>
+<div id="main">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div id="form">
+            <h1>Proof of Payment</h1>
+            <hr>
+            <div id="content">
+                <div id="row" class="clearfix">
+                    <div id="left">
+                        Ref #:
+                    </div>
+                    <div id="right">
+                        <select name="ref" id="ref">
+                            {% for r in refs%}
+                            <option value="{{r}}">{{r}}</option>
+                            {%endfor%}
+                          </select>
+                    </div>
+                </div>
+    
+                <div id="row" class="clearfix">
+                    <div id="left">
+                        Proof:
+                    </div>
+                    <div id="right">
+                        {{form.proof}}
+                    </div>
+                </div>
+    
+                <div id="row" class="clearfix">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+               
+            </div>
+        </div>
+
+    </form>
+    
+
+
+
+</div>
+
+{% endblock %}

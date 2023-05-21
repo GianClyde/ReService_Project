@@ -7,6 +7,74 @@
         background-image: url("{%static 'images/mainNavpage_bg.png'%}");
         background-repeat: no-repeat;
     }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+      
+      /* Modal Content */
+      .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+      }
+      
+      /* Add Animation */
+      @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0} 
+        to {top:0; opacity:1}
+      }
+      
+      @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+      }
+      
+      /* The Close Button */
+      .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+      .modal-header {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+      }
+      
+      .modal-body {padding: 2px 16px;}
+      
+      .modal-footer {
+        padding: 2px 16px;
+        background-color: #5cb85c;
+        color: white;
+      }
 </style>
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_registration_page.css' %}">
 <div id="main-registration-wrapper">
@@ -30,9 +98,84 @@
                     <label id="form-label">Middle Name:</label><br>
                     {{form.middle_name}}<br>
                     <label id="form-label">Contact No:</label><br>
-                    {{form.contact_no}}<br>
+                    {{form.contact_no}}<br><br>
+                    <input type="checkbox" id="tna" name="tna" value="agree">
+                    <a id="myBtn" href="#myModal"><label for="tna">Terms and Conditions for reservice system</label></a>
                 </div>
                     <input id="registration-page-btn"  type="submit" value="Submit"/>
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            
+                            <h2>Terms and Conditions</h2>
+                            <span class="close">&times;</span>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Terms and Conditions for ReService Website</h3>
+                            <label>1. Acceptance of Terms and Conditions</label>
+                            <p>By using our reservation website, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, please refrain from using our website.</p>
+                            <label>2. Reservation Services</label>
+                            <p>Our website provides a platform for users to make reservations for various accommodations, such as hotels, vacation rentals, and guest houses. We act as an intermediary, connecting users with accommodation providers. We do not own or operate any of the accommodations listed on our website.</p>
+                            <label>3. User Responsibilities</label>
+                            <p>a. Accuracy of Information: Users are responsible for providing accurate and up-to-date information during the reservation process. Any discrepancies or inaccuracies in the provided information may result in the cancellation of the reservation or additional charges.</p>
+                            <p>b.  Prohibited Activities: Users are prohibited from using our website for any illegal or unauthorized purposes, including but not limited to fraud, spamming, or any activity that violates the rights of others.</p>
+                            <p>c. Account Security: Users are responsible for maintaining the confidentiality of their account credentials and agree to notify us immediately of any unauthorized access or use of their account.</p>
+                            <label>4. Reservation Process</label>
+                            <p>a. Availability and Pricing: The availability and prices of accommodations listed on our website are provided by the accommodation providers. While we strive to ensure the accuracy of this information, we do not guarantee its completeness or timeliness. Prices may change without prior notice.</p>
+                            <p>b. Reservation Confirmation: Once a reservation is made through our website, you will receive a confirmation email with the details of your reservation. This email serves as proof of your reservation.</p>
+                            <p>c. Payment: The payment for reservations is typically processed through our secure payment gateway. We may collect a booking fee or service charge, which will be clearly communicated during the reservation process.</p>
+                            <p>d. Cancellation and Modification: The cancellation and modification policies vary for each accommodation provider. Users should review the specific terms and conditions of the accommodation provider before making a reservation. Any cancellation or modification requests should be made directly through our website or by contacting our customer support.</p>
+                            <label>5. Liability</label>
+                            <p>a. Limitation of Liability: We shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of or related to the use of our website or the accommodations booked through our platform. Users agree to use our services at their own risk.</p>
+                            <p>b. Third-Party Providers: We are not responsible for the acts, errors, omissions, warranties, or representations of any third-party accommodation providers. Users should communicate directly with the accommodation providers regarding any issues, complaints, or disputes.</p>
+                            <label>6. Intellectual Property</label>
+                            <p>All content and materials on our website, including but not limited to text, graphics, logos, and software, are the intellectual property of our company or its licensors. Users are prohibited from reproducing, distributing, or modifying any of the website's content without prior written consent.</p>
+                            <label>7. Privacy Policy</label>
+                            <p>We value your privacy and handle personal information in accordance with our Privacy Policy. By using our website, you agree to the collection, use, and disclosure of your personal information as described in our Privacy Policy.</p>
+                            <label>8. Governing Law and Jurisdiction</label>
+                            <p>These terms and conditions shall be governed by and construed in accordance with the laws of [Jurisdiction]. Any disputes arising out of or relating to these terms and conditions or the use of our website shall be subject to the exclusive jurisdiction of the courts in [Jurisdiction].</p>
+                            <label>9. Modifications to Terms and Conditions</label>
+                            <p>We reserve the right to modify or update these terms and conditions at any time without prior notice. The updated version will be effective upon posting on our website. Users are encouraged to review the terms and conditions periodically for any changes.</p>
+                            <br>
+                            <p>By using our reservation website, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
+                        
+                        </div>
+                          <div class="modal-footer">
+                            
+                          </div>
+                        </div>
+                      
+                      </div>
+                      
+                      <script>
+                      // Get the modal
+                      var modal = document.getElementById("myModal");
+                      
+                      // Get the button that opens the modal
+                      var btn = document.getElementById("myBtn");
+                      
+                      // Get the <span> element that closes the modal
+                      var span = document.getElementsByClassName("close")[0];
+                      
+                      // When the user clicks the button, open the modal 
+                      btn.onclick = function() {
+                        modal.style.display = "block";
+                      }
+                      
+                      // When the user clicks on <span> (x), close the modal
+                      span.onclick = function() {
+                        modal.style.display = "none";
+                      }
+                      
+                      // When the user clicks anywhere outside of the modal, close it
+                      window.onclick = function(event) {
+                        if (event.target == modal) {
+                          modal.style.display = "none";
+                        }
+                      }
+                      </script>
             </form>
         </div>
     </div>

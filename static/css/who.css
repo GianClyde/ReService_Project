@@ -1,6 +1,6 @@
-#who-main-wrappper{
+#main{
     width: 100%;
-    padding: 10%;
+    padding: 5%;
     min-height: 570px;
 
 }
@@ -9,50 +9,74 @@
     display: block;
     clear: both;
 }
-
-.card1{
-    width: 46%;
-    float: left;
-    background-color: white;
-    border-radius: 10px;
-    padding: 3%;
-    transition: 0.5s;
-}
-
-.card2{
+img{
     width: 50%;
-    float: right;
-    background-color: white;
-    border-radius: 10px;
-    padding: 3%;
-    transition: 0.5s;
+    margin: auto;
 }
-#img1{
-    width: 100%;
-}
-#header{
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
     font-size: 20px;
-    margin-bottom: 5%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: white;
-
 }
 
-#label{
+#row{
+    width: 100%;
+    margin: auto;
+}
+
+.card{
+    background-color: #deaf39;
+    float: left;
+    width: 45%;
+    padding: 5%;
+    border-radius: 10px;
+}
+
+.card h1{
+    color: #001c69;
     text-align: center;
+    font-size: 15px;
 }
+@media screen and (min-width:750px){
+    #main{
+        width: 100%;
+        padding: 5%;
+        min-height: 570px;
+    
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    h1{
+        font-family: "Bebas Neue";
+        color: #deaf39;
+        font-size: 39px;
+    }
+    
+    #row{
+        width: 70%;
+    
+        margin: auto;
+    }
+    img{
+        width: 100%;
+        margin: auto;
+    }
+    .card{
+        background-color: #deaf39;
+        float: left;
+        width: 45%;
+        padding: 5%;
+        border-radius: 10px;
+    }
+    
+    .card h1{
+        color: #001c69;
+        text-align: center;
+        font-size: 20px;
+    }
 
-.card1:hover{
-    background-color: #001c69;
-    border: solid #deaf39;
-    border-width: 4px;
-    color: white;
 }
-
-.card2:hover{
-    background-color: #001c69;
-    border: solid #deaf39;
-    border-width: 4px;
-    color: white;
-}
-

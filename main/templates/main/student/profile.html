@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Profile Page</title>
-%
+
     <link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
     <script src="script.js"></script>
     <script
@@ -22,10 +22,13 @@
         background-repeat: no-repeat;
         background-size: cover;
         overflow-x: hidden;
-        min-height: 800px;
+       
+       
 }
     </style>
+    {%block title%}My Profile{%endblock%}
   </head>
+
   <body>
     <div class="container">
       <div class="leftbox">
@@ -166,7 +169,7 @@
       $(".this").addClass("active").siblings().removeClass("active");
     })
   </script>
-
+  <br><br><br><br><br><br>
   </body>
 </html>
 

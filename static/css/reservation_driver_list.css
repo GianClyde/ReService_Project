@@ -1,3 +1,6 @@
+h1{
+    font-family: "Bebas Neue";
+}
 #main-driver-list-wrapper{
     width: 100%;
     min-height: 565px;
@@ -7,7 +10,7 @@
     width: 100%;
 }
 #show-driver-header-txt{
-    font-family: "poppins", sans-serif;
+    font-family: "Bebas Neue";
     color: yellow;
     text-align: center;
 }

@@ -1,0 +1,58 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/pay_balance.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/vr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    table, th, td {
+  border:1px solid black;
+}
+    </style>
+<div id="main">
+    <div id="row">
+        Pay Balance<br>
+        <label>Account No:</label>
+        <p>{{request.user.accounts.acct_no}}</p>
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;">
+            <div id="content">
+                <table style="width:100%">
+                    <tr>
+                      <th id="stat">Status</th>
+                      <th>Period</th>
+                      <th>Amount Due</th>
+                    </tr>
+                    {%for m in period%}
+                    <tr>
+                      <td><input type="checkbox" id="pay" name="pay" value="{{service.price}}"></td>
+                      <td>{{m}}</td>
+                      <td>{{service.price}}</td>
+                    </tr>
+                    {%endfor%}
+                    
+                  </table>
+            </div>
+    
+            
+        </div>
+       
+        <div id="row">
+            <input type="submit" value="Pay balance" class="btn">
+        </div>
+    </form>
+ 
+</div>
+
+{%endblock%}

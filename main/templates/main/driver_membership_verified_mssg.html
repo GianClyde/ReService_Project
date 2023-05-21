@@ -1,0 +1,14 @@
+{% autoescape off %}
+Hello {{requests.driver_first_name}},Your payment for driver membership with ref#, {{payment.ref_no}}, has been approved. 
+An email has been sent to your driver's registered email, {{requests.email}}.
+Your  can now activate your ReService Account by clicking the activation link
+
+your account password is {{pwrd}}
+
+For questions and clarifications you can call or message 0921533444 and ReserVice@email.com
+
+
+Sincerely,
+ReService
+
+{% endautoescape %}

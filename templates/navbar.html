@@ -107,6 +107,8 @@ ul a{
               <li id="navbar-btns"><a href="{%url 'navPage'%}">Home</a></li>
             {%elif request.user.is_superuser%}
             <li id="navbar-btns"><a href="{%url 'admin-nav'%}">Home</a></li>
+            {%elif request.user.is_franchise%}
+            <li id="navbar-btns"><a href="{%url 'franchise-nav'%}">Home</a></li>
             {%else%}
             <li id="navbar-btns"><a href="{%url 'DrivernavPage'%}">Home</a></li>
             {%endif%}
@@ -124,7 +126,7 @@ ul a{
 
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="{% url 'profile' request.user.id%}"><img id="side-navbtn-icon" src="{% static 'images/personalinf-icon.png' %}" />Profile</a>
+            <a href=""><img id="side-navbtn-icon" src="{% static 'images/personalinf-icon.png' %}" />Profile</a>
             <a href="#"><img id="side-navbtn-icon" src="{% static 'images/security-icon.png' %}" />Security</a>
             <a href="#"><img id="side-navbtn-icon" src="{% static 'images/bus-icon.png' %}"/>My Service</a>
             <a href="#"><img id="side-navbtn-icon" src="{% static 'images/payment-icon.png' %}"/>Payments</a>

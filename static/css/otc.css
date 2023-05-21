@@ -1,0 +1,85 @@
+#main{
+    width: 100%;
+    background-color: white;
+    padding: 2%;
+    height: 100vh;
+
+}
+
+#partner-logos{
+    padding: 1%;
+    padding-left: 5%;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#img{
+    width: 10%;
+    float: left;
+    margin-right: 3%;
+}
+
+h3{
+    font-family: 'Merriweather Sans', sans-serif;
+}
+#partners{
+    width: 100%;
+}
+
+#dgpay{
+    width: 100%;
+}
+
+#table{
+    width: 50%;
+
+    padding: 2%;
+}
+
+#row-label{
+    width: 50%;
+    padding: 1%;
+    border-bottom: solid black;
+}
+
+#chckbox{
+    width: 5%;
+    float: left;
+    padding: 1%;
+}
+
+#period{
+    width: 50%;
+    float: left;
+    background-color: azure;
+    padding: 1%;
+    border-left: solid black;
+}
+#amount{
+    width: 45%;
+    float: left;
+    background-color: bisque;
+    padding: 1%;
+    border-left: solid black;
+}
+
+#tbl-header{
+    font-size: 20px;
+    font-family: "Bebas Neue";
+}
+.pay-btn{
+    padding: 1%;
+    width: 10%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+}
+
+#payment{
+    font-size: 15px;
+    width: 20%;
+    
+}

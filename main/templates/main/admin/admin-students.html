@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%}ReService:Students{%endblock%}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student.css' %}">
@@ -16,33 +16,32 @@
         </div>
         <div id="filters-wrapper">
             <h3>Filter by</h3>
-            <ul class="filters__list">
-                <li class="list">
-                    <a href="{% url 'admin-students'%}" class="list">All</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-students' %}?q=PENDING" class="list">Pending</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-students' %}?q=SUCCESSFULL" class="list">Successful</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-students' %}?q=DECLINED" class="list">Declined</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'admin-students' %}?q=FORCANCELATION" class="list">for cancelation</a>
-                </li>
-        
-            </ul>
+            <div id="filter-row">
+                <ul class="filters__list">
+                    <li class="list">
+                        <a href="{% url 'admin-students'%}" class="list">All</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-students' %}?q=PENDING" class="list">Pending</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-students' %}?q=SUCCESSFULL" class="list">Successful</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-students' %}?q=DECLINED" class="list">Declined</a>
+                    </li>
+                    <li class="list">
+                        <a href="{% url 'admin-students' %}?q=FORCANCELATION" class="list">for cancelation</a>
+                    </li>
+            
+                </ul>
+            </div>
+            
         </div>
     </div>
 
     <div id="content">
-        <div class="clearfix">
-
-            <div id="checkbox-col-lbl">
-                <input type="checkbox"  name="checkbox">
-            </div>
+        <div class="clearfix" id="tbl-hdr" style="background-color:#001c69;">
            <div id="id-col-lbl">
             <h3 id="col-label">ID</h3>
            </div> 
@@ -50,16 +49,15 @@
             <h3 id="col-label">Name</h3>
            </div>
            <div id="oprt-col-lbl">
-            <h3 id="col-label">Operations</h3>
+            <a href="{% url 'add-driver'%}"><div id="create-btn">
+                Create User
+            </div></a>
            </div>
 
         </div>
         {% for user in users%}
-            <a><div id="user-card" class="clearfix">
+            <a href="{% url 'admin-stdnt-info' user.id%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
-                    <div id="check-box">
-                        <input type="checkbox" value="{{user.id}}" name="checkbox">
-                    </div>
                     <div id="user-id">
                         {{user.id}}
                     </div>
@@ -69,7 +67,6 @@
                          
                 </div>
                 <div id="operations">
-                    <a href="{% url 'admin-stdnt-info' user.id%}"><div class="btn">Show</div></a>
                     <a class="btn" href="{% url 'stdnt-dlt' user.id%}">Delete</a>
                 </div>
             

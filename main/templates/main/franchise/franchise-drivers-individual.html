@@ -1,0 +1,145 @@
+{%extends 'main.html'%}
+
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-fr-drivers-indiv.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        Driver ID:<p style="color: white; display: inline;">{{fdriver.driver_code}}</p>
+    </div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="row" style="background-color: transparent;"  class="clearfix">
+            <div id="image-wrapper">
+                <div id="header" style="padding:4%;">
+                    Driver
+                </div>
+                <div id="content">
+                    {% if fdriver.id_pic %}
+                        <img src="{{fdriver.id_pic.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+    
+            <div id="info-wrapper">
+                <div id="header">
+                    Driver information
+                </div>
+                <div id="content" class="clearfix">
+                    <div id="left">
+                        <div id="sub-row">
+                            <label>Last Name:</label><p>{{fdriver.driver_last_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>First Name:</label><p>{{fdriver.driver_first_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Middle Name:</label><p>{{fdriver.driver_middle_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>application Date:</label><p>{{fdriver.created}}</p>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="sub-row">
+                            <label>Franchise:</label><p>{{fdriver.franchise.franchise_name}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Email:</label><p>{{fdriver.email}}</p>
+                        </div>
+                        <div id="sub-row">
+                            <label>Contact No:</label><p>{{fdriver.contact_no}}</p>
+                        </div>
+                    </div>
+                    
+                   
+                   
+                </div>
+                
+            </div>
+        </div>
+    
+        <div id="row">
+            Documents
+        </div>
+    
+        <div id="row"  style="background-color: transparent; margin-bottom: 2%; padding: 0; "  class="clearfix">
+            <div id="docs" style="margin-left: 3%;">
+                <div id="header" style="padding:4%;">
+                    Liscense
+                </div>
+                <div id="content">
+                    {% if fdriver.liscense %}
+                        <img src="{{fdriver.liscense.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                
+            </div>
+            <div id="docs">
+                <div id="header" style="padding:4%;">
+                    NBI Clearance
+                </div>
+                <div id="content">
+                    {% if fdriver.nbi_clearance %}
+                        <img src="{{fdriver.nbi_clearance.url}}" alt="Car">
+                    {%else%}
+                        <img src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        
+        {% if fdriver.status == "PENDING" %}
+            <div id="row" style="background-color: red; display: block; ">
+                Driver is still pending for approval
+            </div>
+        {% elif fdriver.payment_status == "PENDING" and fdriver.status == "APPROVED"%}
+            
+            <div id="row" style="background-color: red; display: block;" class="clearfix">
+                
+                <div id="sub-row" class="clearfix">
+                    <div id="left">
+                        Pay the membership fee to generate driver's account
+                    </div>
+                    <div id="left" style="width:20%;">
+                        <a href="{% url 'membership-proof'%}"><div class="btn" style="width: 100%; font-size: 20px;">Submit Proof of Payment</div></a> 
+                    </div>
+                    <div id="left" style="width:15%;">
+                        <a href=""><div class="btn" style="width: 100%; font-size: 20px;">Pay Now</div></a> 
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        {%else%}
+            <div id="row" style="display: none;">
+                
+            </div>
+        {%endif%}
+        <div id="row" style="margin-top:2%;" class="clearfix">
+         
+        </div>
+        </div>
+    </form>
+    
+</div>
+
+
+{%endblock%}

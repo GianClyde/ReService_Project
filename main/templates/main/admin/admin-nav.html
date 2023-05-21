@@ -9,7 +9,7 @@
     <div id="user-card" class="clearfix">
         <h2 id="sub-header">Users</h2>
         <hr>
-        <a href="{% url 'admin-students'%}"><div id="accts-card" style="margin-left:30%;">
+        <a href="{% url 'admin-students'%}"><div id="accts-card" style="margin-left:17%;">
             <img id="card-icon" src="{%static 'images/profile.png'%}" alt="Avatar" >
             <h3 id="card-label">Students</h3>
         </div></a>
@@ -17,12 +17,16 @@
             <img id="card-icon" src="{%static 'images/driver.png'%}" alt="Avatar" >
             <h3 id="card-label">Drivers</h3>
         </div></a>
+        <a href="{% url 'add-franchise-users' %}"><div id="accts-card">
+            <img id="card-icon" src="{%static 'images/fran.png'%}" alt="Avatar" >
+            <h3 id="card-label">Franchise</h3>
+        </div></a>
     </div>
 
     <div id="user-card" class="clearfix">
         <h2 id="sub-header">Reservations</h2>
         <hr>
-        <a href="{% url 'admin-reservations'%}"><div id="accts-card" style="margin-left:30%;">
+        <a href="{% url 'admin-reservations'%}"><div id="accts-card" style="margin-left:0;">
             <img id="card-icon" src="{%static 'images/calendar.png'%}" alt="Avatar" >
             <h3 id="card-label">Reservations</h3>
         </div></a>
@@ -30,12 +34,32 @@
             <img id="card-icon" src="{%static 'images/cancel.png'%}" alt="Avatar" >
             <h3 id="card-label">Cancelations</h3>
         </div></a>
+        <a href="{% url 'driver-requests-admin'%}"><div id="accts-card" style="margin-left:0;">
+            <img id="card-icon" src="{%static 'images/apply.png'%}" alt="Avatar" >
+            <h3 id="card-label">Driver Requests</h3>
+        </div></a>
+        <a href="{% url 'admin-vehicle-req'%}"><div id="accts-card" style="margin-left:0;">
+            <img id="card-icon" src="{%static 'images/vreq.png'%}" alt="Avatar" >
+            <h3 id="card-label">Vehicle Requests</h3>
+        </div></a>
+        <a href="{% url 'admin-requests-services'%}"><div id="accts-card" style="margin-left:0;">
+            <img id="card-icon" src="{%static 'images/serv.png'%}" alt="Avatar" >
+            <h3 id="card-label">Services Requests</h3>
+        </div></a>
+        <a href="{% url 'admin-payments'%}"><div id="accts-card" style="margin-left:0;">
+            <img id="card-icon" src="{%static 'images/pay.png'%}" alt="Avatar" >
+            <h3 id="card-label">Payments </h3>
+        </div></a>
     </div>
 
     <div id="user-card" class="clearfix">
-        <h2 id="sub-header">Vehicles</h2>
+        <h2 id="sub-header">Franchise</h2>
         <hr>
-        <a href="{% url 'vehicles'%}"><div id="accts-card" style="margin-left:40%;">
+        <a href="{% url 'admin-franchise'%}"><div id="accts-card" style="margin-left:30%;">
+            <img id="card-icon" src="{%static 'images/ol.png'%}" alt="Avatar" >
+            <h3 id="card-label">Franchise Applications</h3>
+        </div></a>
+        <a href="{% url 'vehicles'%}"><div id="accts-card">
             <img id="card-icon" src="{%static 'images/schoolbus-icon.png'%}" alt="Avatar" >
             <h3 id="card-label">Vehicles</h3>
         </div></a>

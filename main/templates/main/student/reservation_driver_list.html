@@ -1,5 +1,5 @@
 {%extends 'main.html'%}
-
+{%block title%}ReService: Available Services{%endblock%}
 {%block content%}
 {%load static%}
 <style>
@@ -12,29 +12,47 @@
 
 </style>
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/reservation_driver_list.css' %}">
-<div id="main-driver-list-wrapper">
-    <div id="show-driver-list-header">
-        <h2 id="show-driver-header-txt">Available Drivers</h2>
-    </div>
 
-    <div id="show-driver-list-content" class="clearfix">
-        {% for driver in drivers %}
-        <div class="show-driver-list-card">
-            <i class="fa-sharp fa-solid fa-user"> {{driver.driverprofile.franchise}} </i>
-            <h2>{{driver.last_name}},{{driver.first_name}}</h2>
-            <p>Vehicle: {{driver.driverprofile.vehicle.model}}</p>
-            <p>Contact No.: {{driver.contact_no}}</p>
-            {% if driver.driverprofile.vehicle.capacity == driver.driverprofile.vehicle.included %}
-            <p style="color: red;"> Service full {{driver.driverprofile.vehicle.included}} out of {{driver.driverprofile.vehicle.capacity}} </p>
-            {%else%}
-            <a href="#" class="show-driver-btn" onclick="location.href='{% url 'driver-info-reservation' driver.id %}'">Select Operator</a>
-            {%endif%}
+{% if guard == False%}
+    <div id="main-driver-list-wrapper">
+        <h2 id="show-driver-header-txt">No Drivers Available</h2>
+    </div>
+{%else%}
+
+    <div id="main-driver-list-wrapper">
+        <div id="show-driver-list-header">
+            <h2 id="show-driver-header-txt">Available Drivers</h2>
         </div>
-        {%endfor%}
+            
+        <div id="show-driver-list-content" class="clearfix">
+
+        
+                {% for service in available %}
+                    
+                        <div class="show-driver-list-card">
+                            <i class="fa-sharp fa-solid fa-user"> {{service.driver.franchise.franchise_name}} </i>
+                            <h2>{{service.driver.user.last_name}},{{service.driver.user.first_name}}</h2>
+                            <p>Vehicle: {{service.driver.vehicle.vehicle.model}}</p>
+                            <p>Contact No.: {{service.driver.user.contact_no}}</p>
+                            <p>Price: {{service.price}}</p>
+                            {% if service.driver.vehicle.vehicle.capacity == service.driver.vehicle.vehicle.included %}
+                            <p style="color: red;"> Service full {{service.driver.vehicle.vehicle.included}} out of {{service.driver.vehicle.vehicle.capacity}} </p>
+                            {%else%}
+                            <a href="#" class="show-driver-btn" onclick="location.href='{% url 'driver-info-reservation' service.service_id %}'">Select Operator</a>
+                            {%endif%}
+                        </div>
+                    
+                        
+                    
+                {%endfor%}
+        
+        </div>
+
+
     </div>
 
+{%endif%}
 
-</div>
 
 
 

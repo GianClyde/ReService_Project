@@ -1,0 +1,52 @@
+#row{
+    width: 100%;
+    font-family: "Bebas Neue";
+    padding: 2%;
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+    color: white;
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 20px;
+  
+    margin-left: 1%;
+}
+#content{
+    width: 60%;
+    padding: 1%;
+    background-color: white;
+    margin: auto;
+}
+th{
+    background-color: #001c69;
+    padding: 1%;
+}
+td{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    padding: 1%;
+}
+#stat{
+    width: 10%;
+}
+
+.btn{
+    width: 10%;
+    padding: 1%;
+    background-color: #deaf39;
+    color: white;
+    margin-right: 2%;
+
+}
+

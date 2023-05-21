@@ -87,12 +87,14 @@
 }
 
 .form-input{
-    border-radius: 5px;
-    width: 85%;
-    font-family: 'Merriweather Sans', sans-serif;
-    font-size: 12px;
-    border: solid #001c69;
-    margin-left: 7%;
+    border: 0;
+    border-bottom: 1px solid blue;
+    width: 80%;
+    font-family: "Monsterrat", sans-serif;
+    font-size: .7em;
+    padding: 7px 0;
+    color: black;
+    outline: none;
 }
 .form-input-add{
     border-radius: 5px;

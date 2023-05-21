@@ -61,7 +61,7 @@
 }
 
 #reserv-sts{
-    width: 10%;
+    width: 12%;
     float: left;
     padding: 1%;
 }
@@ -106,15 +106,22 @@
     padding-bottom: 0;
 }
 #sts-col-lbl{
-    width: 8%;
+    width: 10%;
     background-color: #001c69;
     float: left;
     padding: 1%;
     padding-bottom: 0;
 }
 #crtd-col-lbl{
-    width: 8%;
+    width: 25%;
     background-color: #001c69;
+    float: left;
+    padding: 1%;
+    padding-bottom: 0;
+}
+#oprtn-col-lbl{
+    width: 15%;
+ 
     float: left;
     padding: 1%;
     padding-bottom: 0;
@@ -158,4 +165,22 @@ h3{
     color: black;
     font-size: 15px;
     margin-bottom: 2%;
+}
+
+#create-btn{
+    padding: 1%;
+    width: 90%;
+    font-family: "Bebas Neue";
+    font-size: 16px;
+    color: white;
+    background-color: #deaf39;
+    border-radius: 7px;
+    margin-top: 15%;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 20px;
 }

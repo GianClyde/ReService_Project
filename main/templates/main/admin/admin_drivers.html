@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%}ReService:Drivers{%endblock%}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_student.css' %}">
@@ -16,14 +16,16 @@
         </div>
         <div id="filters-wrapper">
             <h3>Filter by</h3>
-            <h3>Assigned Route</h3>
+            <hr>
+            
+            <h3>Franchise</h3>
             <ul class="filters__list">
                 <li class="list">
                     <a href="{% url 'admin-drivers'%}" class="list">All</a>
                 </li>
-                {% for route in routes%}
+                {% for franchise in franchise_list%}
                 <li class="list">
-                    <a href="{% url 'admin-drivers' %}?q={{route}}" class="list">{{route}}</a>
+                    <a href="{% url 'admin-drivers' %}?q={{franchise}}" class="list">{{franchise}}</a>
                 </li>
                 {%endfor%}
             
@@ -33,11 +35,8 @@
     </div>
 
     <div id="content">
-        <div class="clearfix">
+        <div class="clearfix" id="tbl-hdr">
 
-            <div id="checkbox-col-lbl">
-                <input type="checkbox"  name="checkbox">
-            </div>
            <div id="id-col-lbl">
             <h3 id="col-label">ID</h3>
            </div> 
@@ -45,16 +44,16 @@
             <h3 id="col-label">Name</h3>
            </div>
            <div id="oprt-col-lbl">
-            <h3 id="col-label">Operations</h3>
+            <a href="{% url 'add-driver'%}"><div id="create-btn">
+               Add Driver
+            </div></a>
            </div>
 
         </div>
         {% for user in users%}
-            <a><div id="user-card" class="clearfix">
+          
+            <a href="{% url 'admin-drvr-info' user.id%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
-                    <div id="check-box">
-                        <input type="checkbox" value="{{user.id}}" name="checkbox">
-                    </div>
                     <div id="user-id">
                         {{user.id}}
                     </div>
@@ -64,12 +63,13 @@
                          
                 </div>
                 <div id="operations">
-                    <a href="{% url 'admin-drvr-info' user.id%}"><div class="btn">Show</div></a>
                     <a class="btn" href="{% url 'stdnt-dlt' user.id%}">Delete</a>
                 </div>
         
             </div></a>
-
+           
+              
+         
         {% endfor%}
     </div>
 </div>

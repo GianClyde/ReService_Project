@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver-feedback.css' %}">
+<style>
+#main{
+    background-image: url("{%static 'images/brrr.jpg'%}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+    min-height: 800px;
+    background-attachment: fixed;
+    width: 100%;
+    padding: 2%;
+}
+</style>
+<div id="main">
+    <div id="form">
+        <div id="hdr">
+            Driver Feedback Form
+        </div>
+        <form method="POST" action="">
+            {%csrf_token%}
+            <div id="cnt">
+                <label>Rate your driver, 1 being the lowest and 5 being the</label>
+                <div id="rdo-btn-wrapper" >
+                    {{rdio}}
+                </div>
+                <label>How's your service?</label>
+                <div id="form-hldr">
+                    {{form.evaluation}}
+                </div>
+                <br>
+                <label>Do you have any concerns?</label>
+                <div id="form-hldr">
+                    {{form.concern}}
+                </div>
+                <input class="btn" type="submit" value="Submit">
+                
+            </div>
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

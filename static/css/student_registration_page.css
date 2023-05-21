@@ -15,7 +15,7 @@
     
 }
 #regform-header{
-    font-family: 'Signika';
+    font-family: 'Bebas Neue';
     font-size: 24px;
     text-align: center;
     font-weight: bold;
@@ -38,12 +38,21 @@
     margin-bottom: 2%;
     
 }
+.form{
+    border-radius: 5px;
+    margin-left: 2%;
+    width: 85%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 15px;
+    border: solid #001c69;
+    margin-bottom: 2%;
+}
 
 #registration-page-btn{
     margin-top: 3%;
     padding: 1%;
     width: 30%;
-    font-family: 'Signika';
+    font-family: 'Bebas Neue';
     font-size: 15px;
     text-align: center;
     margin-left: 30%;

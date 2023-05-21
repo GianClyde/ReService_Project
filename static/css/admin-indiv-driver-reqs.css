@@ -1,0 +1,296 @@
+#row{
+    width: 100%;
+    font-family: "Bebas Neue";
+    padding: 2%;
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+    margin-bottom: 3%;
+}
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#image-wrapper{
+    float: none;
+    width: 100%;
+     margin-right:2%;
+    overflow: auto;
+}
+#info-wrapper{
+    float: none;
+    width: 100%;
+    overflow: auto;
+}
+#content{
+    width: 100%;
+    padding: 1%;
+    background-color: white;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+img{
+    width: 100%;
+}
+#header{
+    width: 100%;
+    font-family: "Bebas Neue";
+    padding: 1%;
+    color: #deaf39;
+    background-color: #001c69;
+    font-size: 30px;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 20px;
+    color: black;
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-size: 15px;
+    display: inline;
+    margin-left: 1%;
+}
+
+#docs{
+    width: 45%;
+    float: left;
+    background-color: white;
+    min-height: 700px;
+    max-height: 700px;
+    margin-right: 3%;
+    overflow: auto;
+}
+.btn{
+    width: 10%;
+    float: left;
+    padding: 1%;
+    background-color: #deaf39;
+    color: white;
+    margin-right: 2%;
+
+}
+
+#left{
+    float: left;
+    width: 50%;
+}
+#right{
+    float: right;
+    width: 50%;
+}
+#subleft{
+    float: left;
+    width: 20%;
+}
+
+#subright{
+    float: left;
+    width: 70%;
+}
+
+#sub-row{
+    width: 100%;
+    margin-bottom: 1%;
+}
+table{
+    border: solid #001c69;
+    width: 80%;
+    margin: auto;
+}
+th {
+    border: 1px solid #001c69;
+    text-align: left;
+    padding: 8px;
+    background-color: #001c69;
+    color: #deaf39;
+    font-size: 20px;
+  }
+
+td{
+    color: #001c69;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1%;
+    border: solid #001c69;
+
+}
+
+.form-input{
+    width: 70%;
+    border: none;
+    border-bottom: solid #001c69;
+}
+
+#addr-col{
+    float: left;
+    width: 50%;
+}
+
+.form-input-add{
+    width: 100%;
+    border: none;
+    border-bottom: solid #001c69;
+}
+
+.form-input-add2{
+    width: 100%;
+    border: none;
+    border-bottom: solid #001c69;
+}
+
+@media screen and (min-width:700px){
+    #row{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 2%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+        margin-bottom: 3%;
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #image-wrapper{
+        float: left;
+        width: 20%;
+         margin-right:2%;
+        overflow: auto;
+    }
+    #info-wrapper{
+        float: left;
+        width: 75%;
+        overflow: auto;
+    }
+    #content{
+        width: 100%;
+        padding: 1%;
+        background-color: white;
+        min-height: 300px;
+        max-height: 300px;
+    }
+    
+    img{
+        width: 100%;
+    }
+    #header{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 1%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 25px;
+        color: black;
+    }
+    
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+        font-size: 20px;
+        display: inline;
+        margin-left: 1%;
+    }
+    
+    #docs{
+        width: 45%;
+        float: left;
+        background-color: white;
+        min-height: 700px;
+        max-height: 700px;
+        margin-right: 3%;
+        overflow: auto;
+    }
+    .btn{
+        width: 10%;
+        float: left;
+        padding: 1%;
+        background-color: #deaf39;
+        color: white;
+        margin-right: 2%;
+    
+    }
+    
+    #left{
+        float: left;
+        width: 50%;
+    }
+    #right{
+        float: right;
+        width: 50%;
+    }
+    #subleft{
+        float: left;
+        width: 20%;
+    }
+    
+    #subright{
+        float: left;
+        width: 70%;
+    }
+    
+    #sub-row{
+        width: 100%;
+        margin-bottom: 1%;
+    }
+    table{
+        border: solid #001c69;
+        width: 80%;
+        margin: auto;
+    }
+    th {
+        border: 1px solid #001c69;
+        text-align: left;
+        padding: 8px;
+        background-color: #001c69;
+        color: #deaf39;
+        font-size: 20px;
+      }
+    
+    td{
+        color: #001c69;
+        font-size: 18px;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 1%;
+        border: solid #001c69;
+    
+    }
+    
+    .form-input{
+        width: 70%;
+        border: none;
+        border-bottom: solid #001c69;
+    }
+    
+    #addr-col{
+        float: left;
+        width: 50%;
+    }
+    
+    .form-input-add{
+        width: 100%;
+        border: none;
+        border-bottom: solid #001c69;
+    }
+    
+    .form-input-add2{
+        width: 100%;
+        border: none;
+        border-bottom: solid #001c69;
+    }
+    
+}

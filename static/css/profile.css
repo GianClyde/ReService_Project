@@ -1,6 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&family=Nunito+Sans:ital,wght@0,300;0,400;1,200&family=Poppins:wght@300&family=Roboto&display=swap');
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#sched{
+    margin-top: 5%;
+    width: 10%;
+    background-color: #001c69;
+    color: white;
+    font-family: "Bebas Neue";
+    display: inline;
+    padding: 1%;
+}
+#left{
+    float: left;
+    width: 50%;
+}
 
+#right{
+    float: right;
 
+    width: 50%;
+}
 
 .container {
     background: white;
@@ -57,6 +79,7 @@ nav a.active {
     transition: all .5s ease-in;
     width: 80%;
     position: absolute;
+    overflow: auto;
 }
 
 h1 {

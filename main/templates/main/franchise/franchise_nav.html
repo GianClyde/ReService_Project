@@ -1,0 +1,53 @@
+{%extends 'main.html'%}
+
+{%block title%}ReService:My Franchise{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/student_navigation_page.css' %}">
+<style>
+    #stdnt-navpage-main-wrapper{
+        background-image: url("{%static 'images/bgg.png'%}");
+    }
+</style>
+    <div id="stdnt-navpage-main-wrapper">
+        <div id="stdnt-navpage-header-wrapper">
+            <h2 id="stdnt-navpage-header">Welcome,{{franchise.franchise_name}}</h2>
+        </div>
+
+        <div id="buttons-main-wrapper" class="clearfix">
+            <a href="{% url 'franchise-profile' request.user.id%}"><div id="card1" class="card">
+                <div id="card-img-wrapper1">
+                    <img id="card-icon-img1" src="{%static 'images/fran.png'%}" alt="Avatar" >
+                </div>
+                <div id="nav-btn-label-wrapper1">
+                    <label id="nav-btn-label">My Franchise</label>
+                </div>
+            </div></a>
+            <a href="{% url 'franchise-drivers'%}"><div id="card2" class="card">
+                <div id="card-img-wrapper2">
+                    <img id="card-icon-img2" src="{%static 'images/drivers.png'%}" alt="Avatar" style="margin-top:25%;">
+                </div>
+                <div id="nav-btn-label-wrapper">
+                    <label id="nav-btn-label" style="margin-bottom:10%;">My Drivers</label>
+                </div>
+            </div></a>   
+            <a href="{%url 'franchise-vehicles'%}"><div id="card3" class="card">
+                <div id="card-img-wrapper2">
+                    <img id="card-icon-img2" src="{%static 'images/map.png'%}" alt="Avatar" >
+                </div>
+                <div id="nav-btn-label-wrapper">
+                    <label id="nav-btn-label">My Vehicles</label>
+                </div>
+            </div></a>
+            <a href="{%url 'franchise-services'%}"><div id="card4" class="card">
+                <div id="card-img-wrapper2">
+                    <img id="card-icon-img2" src="{%static 'images/services.png'%}" alt="Avatar" >
+                </div>
+                <div id="nav-btn-label-wrapper">
+                    <label id="nav-btn-label">My Services</label>
+                </div>
+            </div></a>
+        </div>
+    </div>
+
+{%endblock%}

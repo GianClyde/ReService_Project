@@ -1,0 +1,40 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Decline Vehicle{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Decline Vehicle Application</h2>
+    <form method="POST" action="">
+            {%csrf_token%}
+        <p>Vehicle {{vehicle.vehicle_id}} will be declined:</p>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Model:
+                </div>
+                <div id="content">
+                    {{vehicle.model}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Plate No:
+                </div>
+                <div id="content">
+                    {{vehicle.plate_no}}
+                </div>
+            </div>
+
+            </div>
+            <input type="submit" value="Confirm" class="btn" style="width:15%;">
+            <button class="btn" onclick="history.back()" style="width:15%;">Go back</button>
+            
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+{%endblock%}

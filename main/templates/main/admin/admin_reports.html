@@ -1,0 +1,365 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Reports{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reports.css' %}">
+
+<style>
+
+#main{
+    background-image: url("{%static 'images/ays.jpg'%}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+    min-height: 800px;
+    background-attachment: fixed;
+    width: 100%;
+    padding: 2%;
+  
+}
+</style>
+
+    
+<div id="main" > 
+   <div id="row">
+        <div id="header" class="clearfix">
+              <div id="hdr">
+                    Reservations
+              </div>
+              <div id="oprt-wrapper">
+                <!--
+                <form method="GET" action="{% url 'admin-reports'%}">
+                    <input class="search" name="q" type="text" placeholder="Search..">
+                </form>
+                -->
+                
+              </div>
+              <form method="POST" action="">
+                {%csrf_token%}
+                <div id="printer">
+                    <select name="print" id="print">
+                        <option value="resall">All</option>
+                        <option value="resmonth">This Month</option>
+                        <option value="resyear">This Year</option>        
+                    </select>       
+                  </div>
+                  <input class="btn" type="submit" value="Print">
+    
+            </form>
+        </div>
+        <div id="content">
+            <div id="sub-hdr" class="clearfix">
+                <div id="lbl" style="width:18%;">
+                    Reservation ID
+                </div>
+                <div id="lbl">
+                    User
+                </div>
+                <div id="lbl">
+                    Driver
+                </div>
+                <div id="lbl">
+                    Reservation status
+                </div>
+                <div id="lbl">
+                    Created
+                </div>
+                <div id="lbl">
+                    Valid Until
+                </div>
+            </div>
+            {% for r in reservations%}
+                <div id="sub-row" class="clearfix">
+                    <div id="cnt" style="width:18%;">
+                        {{r.reservation_id}}
+                    </div>
+                    <div id="cnt">
+                        {{r.user.first_name}} {{r.user.last_name}}
+                    </div>
+                    <div id="cnt">
+                        {{r.driver.user.first_name}} {{r.user.last_name}}
+                    </div>
+                    <div id="cnt">
+                        {{r.reservation_status}}
+                    </div>
+                    <div id="cnt">
+                        {{r.created}}
+                    </div>
+                    <div id="cnt">
+                        {{r.valid_until}}
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+   </div>
+   <div id="row">
+    <div id="header" class="clearfix">
+          <div id="hdr">
+                Payments
+          </div>
+          <div id="oprt-wrapper">
+          <!--
+                <form method="GET" action="{% url 'admin-reports'%}">
+                    <input class="search" name="q" type="text" placeholder="Search..">
+                </form>
+                -->
+            
+          </div>
+          <form method="POST" action="">
+            {%csrf_token%}
+            <div id="printer">
+                <select name="print" id="print" >
+                    <option value="payall">All</option>
+                    <option value="paymonth">This Month</option>
+                    <option value="payyear">This Year</option>        
+                </select>       
+              </div>
+              <input class="btn" type="submit" value="Print" >
+
+        </form>
+ 
+
+    </div>
+    <div id="content">
+        <div id="sub-hdr" class="clearfix">
+            <div id="lbl" style="width:18%;">
+                Reference No
+            </div>
+            <div id="lbl">
+                From
+            </div>
+            <div id="lbl">
+                Account No
+            </div>
+            <div id="lbl">
+                Reservation No
+            </div>
+            <div id="lbl">
+                Status
+            </div>
+            <div id="lbl">
+                Created
+            </div>
+        </div>
+        {% for p in payments%}
+            <div id="sub-row" class="clearfix">
+                <div id="cnt" style="width:18%;">
+                    {{p.ref_no}}
+                </div>
+                <div id="cnt">
+                    {{p.user.first_name}} {{p.user.last_name}}
+                </div>
+                <div id="cnt">
+                    {{p.account.acct_no}}
+                </div>
+                <div id="cnt">
+                    {{p.reservation.reservation_id}}
+                </div>
+                <div id="cnt">
+                    {{p.status}}
+                </div>
+                <div id="cnt">
+                    {{p.created}}
+                </div>
+            </div>
+        {%endfor%}
+        
+    </div>
+    
+    </div>
+
+    <div id="row">
+        <div id="header" class="clearfix">
+              <div id="hdr">
+                    Users
+              </div>
+              <div id="oprt-wrapper">
+                <!--
+                <form method="GET" action="{% url 'admin-reports'%}">
+                    <input class="search" name="q" type="text" placeholder="Search..">
+                </form>
+                -->
+              </div>
+              <form method="POST" action="">
+                {%csrf_token%}
+                <div id="printer">
+                    <select name="print" id="print">
+                        <option value="userall">All</option>
+                               
+                    </select>       
+                  </div>
+                  <input class="btn" type="submit" value="Print">
+    
+            </form>
+        </div>
+        <div id="content">
+            <div id="sub-hdr" class="clearfix">
+                <div id="lbl" style="width:18%;">
+                    User ID
+                </div>
+                <div id="lbl">
+                    Name
+                </div>
+                <div id="lbl">
+                    Account No
+                </div>
+                <div id="lbl">
+                    Address
+                </div>
+                <div id="lbl">
+                    email
+                </div>
+                <div id="lbl">
+                    contact no
+                </div>
+            </div>
+            {% for p in users%}
+                <div id="sub-row" class="clearfix">
+                    {% if p.id%}
+                    <div id="cnt" style="width:18%;">
+                        {{p.id}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="width:18%;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {%if p.first_name or p.last_name%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.first_name}} {{p.last_name}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {% if p.accounts.acct_no%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.accounts.acct_no}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {% if p.profile.lot or p.profile.street or p.profile.street or p.profile.city %}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.profile.lot}} {{p.profile.street}} {{p.profile.street}} {{p.profile.city}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.email}}
+                    </div>
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.contact_no}}
+                    </div>
+                </div>
+            {%endfor%}
+        </div>
+        
+    </div>
+
+    <div id="row">
+        <div id="header" class="clearfix">
+              <div id="hdr">
+                    Summary
+              </div>
+              <div id="oprt-wrapper">
+                
+                
+              </div>
+              <form method="POST" action="">
+                {%csrf_token%}
+                <div id="printer">
+                    <select name="print" id="print">
+                        <option value="all">All</option>
+                             
+                    </select>       
+                  </div>
+                  <input class="btn" type="submit" value="Print">
+    
+            </form>
+              
+        </div>
+        <div id="content">
+            <div id="sub-hdr" class="clearfix">
+                <div id="lbl" style="width:18%;">
+                    User ID
+                </div>
+                <div id="lbl">
+                    Name
+                </div>
+                <div id="lbl">
+                    Account No
+                </div>
+                <div id="lbl">
+                    Address
+                </div>
+                <div id="lbl">
+                    email
+                </div>
+                <div id="lbl">
+                    contact no
+                </div>
+            </div>
+            {% for p in users%}
+                <div id="sub-row" class="clearfix">
+                    {% if p.id%}
+                    <div id="cnt" style="width:18%;">
+                        {{p.id}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="width:18%;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {%if p.first_name or p.last_name%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.first_name}} {{p.last_name}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {% if p.accounts.acct_no%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.accounts.acct_no}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {% if p.profile.lot or p.profile.street or p.profile.street or p.profile.city %}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.profile.lot}} {{p.profile.street}} {{p.profile.street}} {{p.profile.city}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.email}}
+                    </div>
+                    <div id="cnt" style="font-size: 13px;">
+                        {{p.contact_no}}
+                    </div>
+                </div>
+            {%endfor%}
+            
+        </div>
+        
+    </div>
+    
+    
+</div>
+
+{% endblock content %}
+
+

@@ -1,0 +1,180 @@
+{% extends 'main.html' %}
+{%block title%}ReService:MyFranchise{%endblock%}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise-profile.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/bgg.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+</style>
+<div id="main" class="clearfix">
+    <div id="header">
+        <h1>ReSerVice:{{franchise.franchise_name}}</h1>
+    </div>
+
+    <div id="main-row">
+        <div id="left">
+            <div id="left-header">
+                <h2 style="color: white; font-size: 25px;">Quick Links</h2>
+            </div>
+            <div id="left-content">
+                <a href="{% url 'franchise-drivers'%}" style="font-size: 20px; margin-bottom:5%;">My Drivers</a><br>
+                <a href="{% url 'franchise-services'%}" style="font-size: 20px; margin-bottom:5%;">My Services</a><br>
+                <a href="{% url 'franchise-vehicles'%}" style="font-size: 20px; margin-bottom:5%;">My Vehicles</a><br>
+                
+            </div>
+        </div>
+    
+        <div id="right">
+            
+        
+            <div id="row">
+                <h2>Account Information</h2>
+                <hr>
+                <div id="content" class="clearfix">
+                    <div id="left1">
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Last Name:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{user.last_name}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>First Name:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{user.first_name}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Middle Name:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{user.middle_name}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Email:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Contact No:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{user.contact_no}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="right1">
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Franchise ID:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{franchise.franchise_id}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Franchise:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{franchise.franchise_name}}</p>
+                            </div>
+                        </div>
+                        <div id="content-row" class="clearfix">
+                            <div id="label">
+                                <label>Franchise No:</label>
+                            </div>
+                            <div id="info">
+                                <p>{{franchise.franchise_no}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="row" class="clearfix" style="padding: 0; background-color: transparent;">
+                <div id="card">
+                    <div id="card-header">
+                        <h2 style="font-size: 25px; color: white;">My Drivers</h2>
+                    </div>
+                    <div id="card-content">
+                        {% for d in mydrivers%}
+                           <a href><div id="cont">{{d.user.last_name}} {{d.user.last_name}}</div></a>
+                            
+                        {%endfor%}
+                    </div>
+                </div>
+                <div id="card">
+                    <div id="card-header">
+                        <h2 style="font-size: 25px; color: white;">My Vehicles</h2>
+                    </div>
+                    <div id="card-content">
+                        {% for v in vehicles%}
+                        <a href><div id="cont">{{v.vehicle.model}}</div></a>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div id="card">
+                    <div id="card-header">
+                        <h2 style="font-size: 25px; color: white;">My Services</h2>
+                    </div>
+                    <div id="card-content">
+                        {% for s in service%}
+                        <a href><div id="cont">{{s}}</div></a>
+                        {%endfor%}
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="row" class="clearfix" style="padding: 2%; ">
+                <div id="card" style="width: 47%;">
+                    <div id="card-header" style="background-color:white; border-bottom: solid #001c69;">
+                        <h2 style="font-size: 25px; color: #001c69;">My Payments</h2>
+                    </div>
+                    <div id="card-content" style="min-height: 156px;">
+                        {% for y in payment_list%}
+                            <div id="cont">{{y}}</div>
+                        {%endfor%}
+                    </div>
+                    <div id="card-total">
+                        <label>Total:</label>{{total}}
+                    </div>
+                </div>
+                <div id="card" style="width: 47%;">
+                    <div id="card-header" style="background-color:white; border-bottom: solid #001c69;">
+                        <h2 style="font-size: 25px; color: #001c69;">My Students</h2>
+                        
+                    </div>
+                    <div id="card-content">
+                        {% for x in final_list%}
+                            <div id="cont">{{x}}</div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock  %}

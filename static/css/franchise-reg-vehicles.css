@@ -1,0 +1,46 @@
+#main{
+    width: 100%;
+    padding: 5%;
+}
+
+#form{
+    width: 50%;
+    background-color: white;
+    padding: 2%;
+    margin: auto;
+    box-shadow: 5px 10px #001c69;
+}
+
+h1{
+    font-family: "Bebas Neue";
+}
+.form{
+    border-radius: 5px;
+    width: 80%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 18px;
+    border: none;
+    margin-left: 7%;
+    box-shadow: 1px 1px 5px #555 inset;
+}
+label{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+#form-cont{
+    width: 80%;
+    margin-left: 10%;
+
+}
+
+h2{
+    font-family: "Bebas Neue";
+    font-size: 27px;
+}
+.btn{
+    background-color: #001c69;
+    padding: 1%;
+    font-family: "Bebas Neue";
+    color: white;
+    width: 15%;
+}

@@ -2,6 +2,9 @@
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,14 +25,21 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    "django.contrib.admin",
+    "django.contrib.admin",                                                      
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main.apps.MainConfig"
+    "main.apps.MainConfig",
+    'axes',
+    "phonenumber_field",
+  
 ]
+AXES_FAILURE_LIMIT = 2
+AXES_ONLY_USER_FAILURES = True
+AXES_USERNAME_FORM_FIELD = 'email'
+AXES_COOLOFF_TIME = 0.1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -39,7 +49,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'axes.middleware.AxesMiddleware',
+    
 ]
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'PH'
 
 ROOT_URLCONF = "ReService_Project.urls"
 
@@ -62,6 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ReService_Project.wsgi.application"
+
 
 
 # Database
@@ -137,7 +154,11 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+STATICFILES_STORAGE = 'whitenoise.stroage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+django_heroku.settings(locals())
