@@ -1,1 +1,2 @@
-web: gunicorn main.wsgi
+web: gunicorn ReService_Project.wsgi
+
