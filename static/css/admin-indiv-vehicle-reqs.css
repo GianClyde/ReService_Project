@@ -4,7 +4,7 @@
     padding: 2%;
     color: #deaf39;
     background-color: #001c69;
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 3%;
 }
 .clearfix::after{
@@ -14,22 +14,22 @@
 }
 
 #image-wrapper{
-    float: left;
-    width: 20%;
+    float: none;
+    width: 100% ;
    margin-right:2%;
     overflow: auto;
 }
 #info-wrapper{
-    float: left;
-    width: 75%;
+    float: none;
+    width: 100%;
     overflow: auto;
 }
 #content{
     width: 100%;
     padding: 1%;
     background-color: white;
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 img{
@@ -41,38 +41,120 @@ img{
     padding: 1%;
     color: #deaf39;
     background-color: #001c69;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 label{
     font-family: "Bebas Neue";
-    font-size: 25px;
+    font-size: 20px;
     color: black;
 }
 
 p{
     font-family: 'Courier New', Courier, monospace;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     display: inline;
     margin-left: 1%;
 }
 
 #docs{
-    width: 45%;
-    float: left;
+    width: 100%;
+    float: none;
     background-color: white;
-    min-height: 700px;
-    max-height: 700px;
+    min-height: 600px;
+    max-height: 600px;
     margin-right: 3%;
     overflow: auto;
 }
 .btn{
-    width: 10%;
+    width: 20%;
     float: left;
     padding: 1%;
     background-color: #deaf39;
     color: white;
     margin-right: 2%;
+
+}
+
+@media screen and (min-width:750px){
+    #row{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 2%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+        margin-bottom: 3%;
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #image-wrapper{
+        float: left;
+        width: 20%;
+       margin-right:2%;
+        overflow: auto;
+    }
+    #info-wrapper{
+        float: left;
+        width: 75%;
+        overflow: auto;
+    }
+    #content{
+        width: 100%;
+        padding: 1%;
+        background-color: white;
+        min-height: 250px;
+        max-height: 250px;
+    }
+    
+    img{
+        width: 100%;
+    }
+    #header{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 1%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 25px;
+        color: black;
+    }
+    
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+        font-size: 20px;
+        display: inline;
+        margin-left: 1%;
+    }
+    
+    #docs{
+        width: 45%;
+        float: left;
+        background-color: white;
+        min-height: 700px;
+        max-height: 700px;
+        margin-right: 3%;
+        overflow: auto;
+    }
+    .btn{
+        width: 10%;
+        float: left;
+        padding: 1%;
+        background-color: #deaf39;
+        color: white;
+        margin-right: 2%;
+    
+    }
 
 }

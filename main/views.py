@@ -5,7 +5,7 @@ from .models import User,DriverPayment,DriverFeedback,DriverStudents,Schedule,Fr
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import VehicleUpdateForm,AdminFranchiseDriversDocs,AdmineditStudent,FranchiseDocs,DriverPaymentProof,CHOICES,DriverFeedbackForm,PickUpTimeForm,ScheduleForm,adminFranchiseRegistrationForm,ServicesForm,AdminVehicleForm,VehicleForm,FranchiseDriversForm,FranchiseRegistrationForm,ReservationForm,Proof_of_payment,NotAdminDriverProfileForm, NotAdminDriverUserForm,FranchiseForm,AnnouncementForm,VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
+from .forms import VehicleUpdateForm,ServiceRegister,AdminFranchiseDriversDocs,AdmineditStudent,FranchiseDocs,DriverPaymentProof,CHOICES,DriverFeedbackForm,PickUpTimeForm,ScheduleForm,adminFranchiseRegistrationForm,ServicesForm,AdminVehicleForm,VehicleForm,FranchiseDriversForm,FranchiseRegistrationForm,ReservationForm,Proof_of_payment,NotAdminDriverProfileForm, NotAdminDriverUserForm,FranchiseForm,AnnouncementForm,VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -156,7 +156,7 @@ def password_reset_request(request):
     
     form = PasswordResetForm()
     context={"form": form}
-    return render(request,'main/forgot_password_page.html', context)
+    return render(request,'main/forgot-pas.html', context)
 
 def password_change(request):
     user = request.user
@@ -403,7 +403,7 @@ def reservation(request):
     return render(request,'main/student/reservation_driver_list.html',context)
 
 def existing_reservation(request):
-    reservations = Reservation.objects.filter(user = request.user)
+    reservations = Reservation.objects.filter(user = request.user,reservation_status="SUCCESSFULL")
     
     today = datetime.date.today()
     year = today.year
@@ -422,7 +422,9 @@ def reservation_driver_info(request,pk):
     
     if request.method == "POST":
         reservation = Reservation.objects.create(user = request.user , driver = service.driver, service = service )
-        mssg = f'hi{reservation.user.last_name}, your reservation has been recorded plesase wait for your driver to confirm your reservation', 
+        reservation.valid_until =  reservation.created.date() + datetime.timedelta(days=1)
+        reservation.save()
+        mssg = f'hi{reservation.user.last_name}, your reservation has been recorded plesase wait for the confirmation of your reservation', 
         reservation.send_sms(mssg)
         messages.success(request,"We received your reservation, please wait for the confimation email")
         return redirect('navPage')
@@ -1544,6 +1546,11 @@ def admin_driver_membership_payments_indiv(request,pk):
         return redirect('driver-requests-admin')
     context = {'payment':payment}
     return render(request,'main/admin/admin-membership-payments-indiv.html',context)
+
+def admin_membership_payments_decline(request,pk):
+    context={}
+    return render(request,'main/admin/admin-membership-decline.html',context)
+
 def franchise_driver_membership_pay(request):
     driver = FranchiseDrivers.objects.filter(franchise = request.user.franchise)
     driver_payments = DriverPayment.objects.filter( franchise = request.user.franchise)
@@ -1604,8 +1611,17 @@ def franchise_membership_proof(request):
 #admin services
 def admin_services_requests(request):
     #admin-requests-services
-    
-    services = Services.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    services = Services.objects.filter(
+        Q(service_id__icontains = q)|
+        Q(price__icontains = q)|
+        Q(pick_up__icontains = q)|
+        Q(franchise__franchise_name__icontains = q)|
+        Q(status__icontains = q)|
+        Q(driver__user__last_name__icontains = q)|
+        Q(driver__user__first_name__icontains = q)|
+        Q(driver__user__middle_name__icontains = q)
+    )
     context = {'services':services}
     
     return render(request,'main/admin/admin_services_requests.html', context)
@@ -2545,12 +2561,12 @@ def franchise_services_indiv(request,pk):
     return render(request,'main/franchise/franchise-services-individual.html',context)
 
 def franchise_services_register(request):
-    form = ServicesForm()
+    form = ServiceRegister()
     
     franchise = Franchise.objects.get(user = request.user)
     drivers = Driverprofile.objects.filter( franchise = franchise)
     if request.method == "POST":
-        form = ServicesForm(request.POST)
+        form = ServiceRegister(request.POST)
         if form.is_valid():
             driver = request.POST.get('drivers')
             if driver is None:
@@ -2605,3 +2621,6 @@ def franchise_profile(request,pk):
 
 def faq(request):
     return render(request,'main/faq.html')
+
+def privacypolicy(request):
+    return render(request,'main/privacynpolicies.html')

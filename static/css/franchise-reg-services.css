@@ -1,5 +1,5 @@
 #card{
-    width: 60%;
+    width: 90%;
     margin: auto;
     padding: 2%;
     background-color: white;
@@ -7,8 +7,9 @@
 }
 h1{
     font-family: "Bebas Neue";
-    font-size: 50px;
+    font-size: 30px;
     margin-left: 5%;
+    margin-top: 50%;
 }
 #instruct{
     font-family: 'Courier New', Courier, monospace;
@@ -32,12 +33,12 @@ h1{
     width: 10%;
     float: left;
     font-family: "Bebas Neue";
-    font-size: 20px;
+    font-size: 15px;
     
 }
 #right{
     float: right;
-    width: 90%;
+    width: 88%;
 }
 #id_pick_up{
     width: 100%;
@@ -74,4 +75,86 @@ h1{
     background-color: #deaf39;
     color: white;
     font-family: "Bebas Neue";
+}
+
+@media screen and (min-width:750px){
+    #card{
+        width: 60%;
+        margin: auto;
+        padding: 2%;
+        background-color: white;
+        border-radius: 7px;
+    }
+    h1{
+        font-family: "Bebas Neue";
+        font-size: 50px;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    #instruct{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+    }
+    #row{
+        width: 100%;
+    }
+    
+    #subrow{
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    #left{
+        width: 10%;
+        float: left;
+        font-family: "Bebas Neue";
+        font-size: 20px;
+        
+    }
+    #right{
+        float: right;
+        width: 90%;
+    }
+    #id_pick_up{
+        width: 100%;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    #id_price{
+        width: 100%;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    #drivers{
+        width: 100%;
+        border-radius: 7px;
+        
+       
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    .btn{
+        width: 20%;
+        padding: 1%;
+        background-color: #deaf39;
+        color: white;
+        font-family: "Bebas Neue";
+    }
+
 }

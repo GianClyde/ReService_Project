@@ -1,0 +1,40 @@
+{%extends 'main.html'%}
+{%block title%}ReService:Decline Payment{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin_reservations_indiv.css' %}">
+<div id="main">
+    <div id="content-wrapper">
+        <h2 id="header">Decline Vehicle Application</h2>
+    <form method="POST" action="">
+            {%csrf_token%}
+        <p>Payment {{payment.ref_no}} will be declined:</p>
+        <div id="acct-info" >
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Received From:
+                </div>
+                <div id="content">
+                    {{payment.user.first_name}} {{payment.user.last_name}}
+                </div>
+            </div>
+
+            <div id="row" class="clearfix">
+                <div id="label">
+                    Account No:
+                </div>
+                <div id="content">
+                    {{payment.account.acct_no}}
+                </div>
+            </div>
+
+            </div>
+            <input type="submit" value="Confirm" class="btn" style="width:15%;">
+            <button class="btn" onclick="history.back()" style="width:15%;">Go back</button>
+            
+        </div>
+    </form>
+    </div>
+    </div>
+</div>
+{%endblock%}

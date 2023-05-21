@@ -1194,6 +1194,27 @@ class AdminVehicleForm(ModelForm):
                     'type':'text',
                     'placeholder':'CR'})
 
+class ServiceRegister(ModelForm):
+    class Meta:
+        model = Services
+        fields = ('price','pick_up',)
+        def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                self.fields['price'].widget.attrs.update({
+                    'class': 'serv',
+                    'required':'',
+                    'name':'price',
+                    'id':'price',
+                    'type':'text',
+                    'placeholder':'price'})
+                self.fields['pick_up'].widget.attrs.update({
+                    'class': 'serv',
+                    'required':'',
+                    'name':'pick_up',
+                    'id':'pick_up',
+                    'type':'text',
+                    'placeholder':'pick_up'})
+
 class ServicesForm(ModelForm):
     class Meta:
         model = Services

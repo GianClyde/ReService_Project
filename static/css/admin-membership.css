@@ -8,17 +8,18 @@
     padding: 3%;
 }
 #navbar-left{
-    width: 22%;
+    width: 100%;
     background-color: white;
     margin-right: 3%;
-    float: left;
+    float: none;
     padding: 2%;
-    height: 100vh;
+    height: 20vh;
+    margin-bottom: 2%;
 }
 #content{
-    width: 75%;
+    width: 100%;
     background-color: white;
-    float: right;
+    float: none;
     padding: 2%;
     height: 100vh;
 }
@@ -37,6 +38,7 @@
 #col-label{
     font-family: 'Bebas Neue';
     color: #deaf39;
+    font-size: 18px;
 
 }
 #card-info{
@@ -59,12 +61,12 @@
     width: 22%;
     float: left;
     padding: 1%;
-
+    display: none;
     
 }
 
 #reserv-sts{
-    width: 13%;
+    width: 19%;
     float: left;
     padding: 1%;
 
@@ -77,7 +79,7 @@
 
 }
 #operations{
-    width: 15%;
+    width: 23%;
     float: left;
     padding: 1%;
     
@@ -108,13 +110,13 @@
 #name-col-lbl{
     width: 20%;
     background-color: #001c69;
-    
+    display: none;
     float: left;
     padding: 1%;
     padding-bottom: 0;
 }
 #sts-col-lbl{
-    width: 12%;
+    width: 17%;
     background-color: #001c69;
     float: left;
     padding: 1%;
@@ -128,8 +130,8 @@
     padding-bottom: 0;
 }
 #oprtn-col-lbl{
-    width: 15%;
- 
+    width: 23%;
+    
     float: left;
     padding: 1%;
     padding-bottom: 0;
@@ -177,7 +179,7 @@ h3{
 
 #create-btn{
     padding: 1%;
-    width: 90%;
+    width: 100%;
     font-family: "Bebas Neue";
     font-size: 16px;
     color: white;
@@ -185,4 +187,206 @@ h3{
     border-radius: 7px;
     margin-top: 15%;
     text-align: center;
+}
+li{
+    display: inline;
+    margin-left: 2%;
+}
+@media screen and (min-width:750px){
+    li{
+        display: block;
+        margin-left: 2%;
+    }
+    .clearfix::after{
+        display: block;
+        content: "";
+        clear: both;
+    }
+    #main{
+        width: 100%;
+        padding: 3%;
+    }
+    #navbar-left{
+        width: 22%;
+        background-color: white;
+        margin-right: 3%;
+        float: left;
+        padding: 2%;
+        height: 100vh;
+        margin-bottom: 0;
+    }
+    #content{
+        width: 75%;
+        background-color: white;
+        float: right;
+        padding: 2%;
+        height: 100vh;
+    }
+    
+    #header{
+        font-family: 'Bebas Neue';
+        color: #deaf39;
+    }
+    #user-card{
+        width: 100%;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        padding: 2%;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+    }
+    #col-label{
+        font-family: 'Bebas Neue';
+        color: #deaf39;
+        font-size: 30px;
+    
+    }
+    #card-info{
+        width: 100%;
+        float: left;
+       
+    }
+    #check-box{
+        width: 3%;
+        float: left;
+    
+    }
+    #user-id{
+        width: 30%;
+        float: left;
+        padding: 1%;
+    
+    }
+    #user-name{
+        width: 22%;
+        float: left;
+        padding: 1%;
+        display: block;
+    
+        
+    }
+    
+    #reserv-sts{
+        width: 13%;
+        float: left;
+        padding: 1%;
+    
+    }
+    
+    #created{
+        width: 15%;
+        float: left;
+        padding: 1%;
+    
+    }
+    #operations{
+        width: 15%;
+        float: left;
+        padding: 1%;
+        
+    
+    
+    }
+    
+    #lbl-wrapper{
+        width: 100%;
+        background-color: #001c69;
+    }
+    #checkbox-col-lbl{
+        width: 4%;
+        float: left;
+        padding-bottom: 0;
+        text-align: center;
+        background-color: #001c69;
+        line-height: 12px;
+    }
+    #id-col-lbl{
+        width: 29%;
+        background-color: #001c69;
+        float: left;
+        padding: 1%;
+        padding-bottom: 0;
+        margin-left: 2%;
+    }
+    #name-col-lbl{
+        width: 20%;
+        background-color: #001c69;
+        display: block;
+        float: left;
+        padding: 1%;
+        padding-bottom: 0;
+    }
+    #sts-col-lbl{
+        width: 12%;
+        background-color: #001c69;
+        float: left;
+        padding: 1%;
+        padding-bottom: 0;
+    }
+    #crtd-col-lbl{
+        width: 12%;
+        background-color: #001c69;
+        float: left;
+        padding: 1%;
+        padding-bottom: 0;
+    }
+    #oprtn-col-lbl{
+        width: 15%;
+     
+        float: left;
+        padding: 1%;
+        padding-bottom: 0;
+    }
+    .btn{
+        padding: 1%;
+        font-family: 'Bebas Neue';
+        background-color: #deaf39;
+        width: 50%;
+        display: inline;
+    }
+    #search-br-wrapper{
+        width: 100%;
+        background-color: #deaf39;
+        margin-bottom: 2%;
+    }
+    
+    .search{
+        width: 100%;
+        border: solid #deaf39;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    #filters-wrapper{
+        width: 100%;
+    }
+    .filters__list{
+        width: 100%;
+        text-decoration: none;
+        color: black;
+    }
+    
+    
+    h3{
+        font-family: "Bebas Neue"
+    }
+    
+    .list{
+        width: 100%;
+        text-decoration: none;
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+        font-size: 15px;
+        margin-bottom: 2%;
+    }
+    
+    #create-btn{
+        padding: 1%;
+        width: 90%;
+        font-family: "Bebas Neue";
+        font-size: 16px;
+        color: white;
+        background-color: #deaf39;
+        border-radius: 7px;
+        margin-top: 15%;
+        text-align: center;
+    }
+
 }

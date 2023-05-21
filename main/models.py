@@ -148,7 +148,7 @@ class Profile(models.Model):
     
     def send_sms(self, body):
         account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = 'a55e4205146e7add58258c97505f56cd'
+        auth_token = '8408beb3f130176b3a4d4704c0964831'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -217,8 +217,13 @@ class Reservation(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     service = models.ForeignKey('Services', on_delete=models.CASCADE, null=True)
     
+    
+
     class Meta:
         ordering = ('created',)
+    
+ 
+        
     def check_validity(self):
         if self.created > self.valid_until:
             self.active = False
@@ -236,7 +241,7 @@ class Reservation(models.Model):
     
     def send_sms(self, body):
         account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = 'a55e4205146e7add58258c97505f56cd'
+        auth_token = '8408beb3f130176b3a4d4704c0964831'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -280,7 +285,7 @@ class ReservationCancelation(models.Model):
 
     def send_sms(self, body):
         account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = 'a55e4205146e7add58258c97505f56cd'
+        auth_token = '8408beb3f130176b3a4d4704c0964831'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -312,7 +317,7 @@ class Franchise(models.Model):
    
     def send_sms(self, body):
         account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = 'a55e4205146e7add58258c97505f56cd'
+        auth_token = '8408beb3f130176b3a4d4704c0964831'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(

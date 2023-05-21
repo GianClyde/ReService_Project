@@ -8,40 +8,40 @@
     clear: both;
 }
 #left{
-    float: left;
-    width: 50%;
-    padding: 2%;
+    float: none;
+    width: 100%;
+    padding: 0;
     
 }
 
 #right{
-    float: right;
-    width: 50%;
-    padding: 2%;
+    float: none;
+    width: 100%;
+    padding: 0%;
     
 }
 h1{
     font-family: "Bebas Neue";
     color: white;
-    margin-left: 20%;
-    font-size: 50px;
-    margin-top: 10%;
+    margin-left: 10%;
+    font-size: 25px;
+    margin-top: 8%;
 }
 
 h2{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 28px;
+    font-size: 20px;
     color: white;
     font-weight: bolder;
-    margin-left: 20%;
+    margin-left: 8%;
     margin-top: 5%;
 }
 
 p{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
-    margin-left: 20%;
+    margin-left: 8%;
    
 }
 
@@ -50,22 +50,98 @@ p{
     background-color: white;
     border-radius: 20px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    width: 70%;
+    width: 90%;
     margin-top: 10%;
+    margin-bottom: 3%;
+    margin-left: 3%;
 
 }
 
 label{
     font-family: "Bebas Neue";
-    font-size: 20px;
+    font-size: 15px;
 }
 #dl{
     padding: 2%;
     color: white;
     background-color: #deaf39;
     font-family: "Bebas Neue";
-    width: 20%;
+    width: 17%;
     text-align: center;
-    margin-left: 20%;
+    margin-left: 8%;
 }
 
+
+@media screen and (min-width:750px){
+    #main{
+        width: 100%;
+     
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    #left{
+        float: left;
+        width: 50%;
+        padding: 2%;
+        
+    }
+    
+    #right{
+        float: right;
+        width: 50%;
+        padding: 2%;
+        
+    }
+    h1{
+        font-family: "Bebas Neue";
+        color: white;
+        margin-left: 20%;
+        font-size: 50px;
+        margin-top: 10%;
+    }
+    
+    h2{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 28px;
+        color: white;
+        font-weight: bolder;
+        margin-left: 20%;
+        margin-top: 5%;
+    }
+    
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        color: white;
+        margin-left: 20%;
+       
+    }
+    
+    #card{
+        padding: 5%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        width: 70%;
+        margin-top: 10%;
+    
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 20px;
+    }
+    #dl{
+        padding: 2%;
+        color: white;
+        background-color: #deaf39;
+        font-family: "Bebas Neue";
+        width: 20%;
+        text-align: center;
+        margin-left: 20%;
+    }
+
+}

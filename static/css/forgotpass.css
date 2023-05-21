@@ -1,0 +1,130 @@
+#form{
+    width: 80%;
+    background-color: white;
+    padding: 2%;
+    margin: auto;
+    min-height: 300px;
+    margin-top:5%;
+
+}
+
+#row{
+    width: 100%;
+}
+
+h2{
+    font-family: "Bebas Neue";
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+}
+
+label{
+    font-family: "Bebas Neue";
+    font-size: 15px;
+}
+
+.btn{
+    width: 20%;
+    padding: 1%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+    color: white;
+    margin-left: 2%;
+}
+
+.form-input{
+    width: 60%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    border-radius: 10px;
+}
+
+#id_new_password1{
+    width: 70%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+}
+#id_new_password2{
+    width: 70%;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+}
+
+@media screen and (min-width:750px){
+    #form{
+        width: 60%;
+        background-color: white;
+        padding: 2%;
+        margin: auto;
+        min-height: 300px;
+        margin-top:5%;
+    
+    }
+    
+    #row{
+        width: 100%;
+    }
+    
+    h2{
+        font-family: "Bebas Neue";
+    }
+    
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 18px;
+    }
+    
+    .btn{
+        width: 10%;
+        padding: 1%;
+        font-family: "Bebas Neue";
+        background-color: #deaf39;
+        color: white;
+        margin-left: 2%;
+    }
+    
+    .form-input{
+        width: 60%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        border-radius: 10px;
+    }
+    
+    #subrow{
+        width: 100%;
+    }
+
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    #left{
+        width: 15%;
+        float: left;
+    }
+    #right{
+        width: 65%;
+        float: right;
+    }
+
+    #id_new_password1{
+        width: 70%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+    }
+    #id_new_password2{
+        width: 70%;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+    }
+}

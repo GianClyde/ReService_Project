@@ -114,10 +114,6 @@
 
     <div id="content">
         <div class="clearfix" id="lbl-wrapper">
-
-            <div id="checkbox-col-lbl">
-                <input type="checkbox"  name="checkbox">
-            </div>
            <div id="id-col-lbl">
             <h3 id="col-label">ID</h3>
            </div> 
@@ -140,9 +136,7 @@
         {% for payment in payments%}
             <a href="{% url 'admin-payment-indiv' payment.ref_no%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
-                    <div id="check-box">
-                        <input type="checkbox" value="" name="checkbox">
-                    </div>
+                
                     <div id="user-id">
                         {{payment.ref_no}}
                     </div>

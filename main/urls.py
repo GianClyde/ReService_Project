@@ -113,6 +113,7 @@ urlpatterns = [
     path('pdf-users-all/',views.render_pdf_user_all, name="pdf-users-all"),
     path('pdf-sum/',views.all_report, name="all"),
     path('admin-reservation-cancelations', views.admin_reservation_deactivate,name="cancel-service-reservation"),
+    path('admin-membership-decline/<str:pk>/',views.admin_membership_payments_decline, name='admin-membership-decline'),
     #path('admin-franchise-delete/<str:pk>/',views.admin_franchise_delete, name="delete_franchise"),
     
     path('otc-payments/<str:pk>/', views.otc_payments,name="otc_payments"),
@@ -145,6 +146,7 @@ urlpatterns = [
     #path('admin_franchise_drivers/<str:pk>/',views.franchise_driver_proof_of_payment, name="driver-pop"),
     path('generate-pdf/<str:pk>/',views.pdf_generator,name='pdf_gen' ),
     path('faq/',views.faq,name='faq'),
+    path('privacypolicies/',views.privacypolicy, name="privacy"),
 
     
 ]

@@ -1,0 +1,24 @@
+#row{
+    width: 100%;
+}
+
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    font-size: 47px;
+}
+
+#subrow{
+    width: 100%;
+
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}

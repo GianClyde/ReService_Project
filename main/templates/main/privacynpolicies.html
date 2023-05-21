@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Reports{%endblock%}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/pnp.css' %}">
+
+<style>
+
+#main{
+    background-image: url("{%static 'images/bgg.png'%}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+    min-height: 800px;
+    background-attachment: fixed;
+    width: 100%;
+    padding: 2%;
+  
+}
+</style>
+
+    
+<div id="main" > 
+   <div id="row">
+        <h1>Privacy Policy</h1>
+   </div>
+   <div id="row">
+       
+        <div id="subrow">
+            <p style="font-size: 15px;">This Privacy Policy describes how we collect, use, and protect personal information obtained through our reservation system. We are committed to ensuring the privacy and security of the information you provide to us.</p>
+        </div><br>
+        <label>Information We Collect:</label>
+        <div id="subrow">
+            <p><b>1. Personal Information:</b> We may collect personal information, such as your name, email address, phone number, and payment details when you make a reservation through our system.</p>
+        </div>
+        <div id="subrow">
+            <p><b>2. Reservation Details:</b> We collect information related to your reservation, including the dates, location, and any specific requests or preferences you provide.</p>
+        </div>
+        <div id="subrow">
+            <p><b>3. Usage Information: </b>  We may collect information about how you interact with our reservation system, such as your IP address, device information, browser type, and pages visited. This data helps us improve our system's functionality and optimize user experience.</p>
+        </div>
+       
+        <br>
+        <label>Use of Information:</label>
+        <div id="subrow">
+            <p><b>1. Reservation Processing:</b> Reservation Processing:</p>
+        </div>
+        <div id="subrow">
+            <p><b>2. Improving Services:</b> We may analyze usage data to identify trends, preferences, and areas for improvement in our reservation system. This information is used in an aggregated and anonymous manner.</p>
+        </div>
+        <div id="subrow">
+            <p><b>3. Communication:  </b>  We may use your contact information to send important updates, promotions, or relevant information about your reservation or our services. You can opt-out of receiving promotional emails.</p>
+        </div>
+        <div id="subrow">
+            <p><b>4.Legal Compliance:  </b>  We may disclose personal information if required by law, regulation, or legal process, or to protect our rights, property, or safety, as well as that of our users or others.</p>
+        </div>
+        <br>
+
+        <div id="subrow">
+            <label>Data Security:</label>
+            <p>We take reasonable measures to protect personal information from unauthorized access, loss, misuse, alteration, or destruction. We use industry-standard security techniques and follow best practices to ensure the confidentiality and integrity of your data.</p>
+        </div>
+        <div id="subrow">
+            <labelThird-Party Disclosure:</label>
+            <p>We do not sell, trade, or transfer your personal information to third parties for marketing purposes. However, we may share your information with trusted third-party service providers who assist us in delivering our services, subject to their compliance with applicable privacy laws.</p>
+        </div>
+
+
+   </div>
+</div>
+
+{% endblock content %}
+
+

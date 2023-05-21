@@ -1,0 +1,40 @@
+{%extends 'main.html'%}
+{%block title%}Forgot Password{%endblock%}
+{%block content%}
+{%load static%}
+<style>
+        #main{
+            background-image: url("{%static 'images/landing.png'%}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow-x: hidden;
+            height: 100vh;
+            background-attachment: fixed;
+            width: 100%;
+            padding: 2%;
+        }
+        </style>
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/forgotpass.css' %}">
+<div id="main">
+    
+    <div id="form">
+        <div id="row">
+            <h2 id="forgot-pass-header">Forgot your password?</h2>
+            <p id="forgot-pass-message">Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one.</p>
+        </div>
+        <hr>
+
+        <div id="row">
+            <form method="POST">
+                {% csrf_token %}
+                <label id="forgot-pass-subheader">Email:</label>
+                {{form.email}}
+                <button class="btn" type="submit">Send email</button>
+            </form>
+        </div>
+        
+    </div>
+    
+</div>
+
+{%endblock%}

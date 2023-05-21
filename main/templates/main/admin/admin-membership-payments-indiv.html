@@ -67,7 +67,7 @@
         </div>
 
         <div id="row" style="margin-top:2%;" class="clearfix">
-            <input type="submit" value="Approve" class="btn"> <a href=""><div class="btn" style="background-color: red;">Decline</div></a>
+            <input type="submit" value="Approve" class="btn"> <a href="{% url 'admin-membership-decline' payment.ref_no%}"><div class="btn" style="background-color: red;">Decline</div></a>
         </div>
     </form>
 </div>

@@ -60,7 +60,9 @@
     color: white;
     border-radius: 10px;
 }
-
+h3{
+    font-family: "Bebas Neue";
+}
 @media screen and (min-width:750px){
     #main-registration-wrapper{
         background-size: cover;

@@ -46,29 +46,29 @@ img{
 
 label{
     font-family: "Bebas Neue";
-    font-size: 20px;
+    font-size: 15px;
     color: black;
 }
 
 p{
     font-family: 'Courier New', Courier, monospace;
     color: black;
-    font-size: 15px;
+    font-size: 12px;
     display: inline;
     margin-left: 1%;
 }
 
 #docs{
-    width: 45%;
-    float: left;
+    width: 100%;
+    float: none;
     background-color: white;
-    min-height: 700px;
-    max-height: 700px;
-    margin-right: 3%;
+    min-height: 500px;
+    max-height: 500px;
+    margin-right: 6%;
     overflow: auto;
 }
 .btn{
-    width: 10%;
+    width: 30%;
     float: left;
     padding: 1%;
     background-color: #deaf39;

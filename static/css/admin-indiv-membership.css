@@ -4,13 +4,13 @@
     padding: 2%;
     color: #deaf39;
     background-color: #001c69;
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 3%;
 }
 
 label{
     font-family: "Bebas Neue";
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     text-align: right;
 }
@@ -20,7 +20,7 @@ img{
 p{
     font-family: 'Courier New', Courier, monospace;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     display: inline;
     margin-left: 1%;
 }
@@ -29,8 +29,8 @@ p{
     width: 100%;
     padding: 3%;
     background-color: white;
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 400px;
+    max-height: 400px;
     overflow: auto;
 }
 #subrow{
@@ -44,15 +44,15 @@ p{
 }
 
 #left{
-    width: 48%;
+    width: 100%;
     padding: 2%;
-    float: left;
+    float: none;
 }
 
 #right{
-    width: 48%;
+    width: 100%;
     padding: 2%;
-    float: right;
+    float: none;
 }
 
 #header{
@@ -65,11 +65,91 @@ p{
 }
 
 .btn{
-    width: 10%;
+    width: 20%;
     float: left;
     padding: 1%;
     background-color: #deaf39;
     color: white;
     margin-right: 2%;
+
+}
+
+@media screen and (min-width:750px){
+    #row{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 2%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+        margin-bottom: 3%;
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 25px;
+        color: black;
+        text-align: right;
+    }
+    img{
+        width: 100%;
+    }
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+        font-size: 20px;
+        display: inline;
+        margin-left: 1%;
+    }
+    
+    #content{
+        width: 100%;
+        padding: 3%;
+        background-color: white;
+        min-height: 500px;
+        max-height: 500px;
+        overflow: auto;
+    }
+    #subrow{
+        width: 100%;
+    }
+    
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #left{
+        width: 48%;
+        padding: 2%;
+        float: left;
+    }
+    
+    #right{
+        width: 48%;
+        padding: 2%;
+        float: right;
+    }
+    
+    #header{
+        width: 100%;
+        font-family: "Bebas Neue";
+        padding: 1%;
+        color: #deaf39;
+        background-color: #001c69;
+        font-size: 30px;
+    }
+    
+    .btn{
+        width: 10%;
+        float: left;
+        padding: 1%;
+        background-color: #deaf39;
+        color: white;
+        margin-right: 2%;
+    
+    }
+    
 
 }

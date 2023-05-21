@@ -84,7 +84,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/admin-reservations.css' %}">
 
 <div id="main" class="clearfix">
-    <h1 id="header">ReService:Reservations</h1>
+    <h1 id="header">ReService:Services</h1>
     <div id="navbar-left">
         <div id="search-br-wrapper">
             <form method="GET" action="{% url 'admin-reservations'%}">
@@ -95,20 +95,18 @@
             <h3>Filter by</h3>
             <ul class="filters__list">
                 <li class="list">
-                    <a href="{% url 'admin-reservations'%}" class="list">All</a>
+                    <a href="{% url 'admin-requests-services'%}" class="list">All</a>
                 </li>
                 <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
+                    <a href="{% url 'admin-requests-services' %}?q=PENDING" class="list">Pending</a>
                 </li>
                 <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
+                    <a href="{% url 'admin-requests-services' %}?q=SUCCESSFULL" class="list">Successful</a>
                 </li>
                 <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
+                    <a href="{% url 'admin-requests-services' %}?q=DECLINED" class="list">Declined</a>
                 </li>
-                <li class="list">
-                    <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
-                </li>
+             
         
             </ul>
         </div>
@@ -117,9 +115,6 @@
     <div id="content">
         <div class="clearfix" id="lbl-wrapper">
 
-            <div id="checkbox-col-lbl">
-                <input type="checkbox"  name="checkbox">
-            </div>
            <div id="id-col-lbl">
             <h3 id="col-label">ID</h3>
            </div> 
@@ -142,9 +137,7 @@
         {% for s in services%}
             <a href="{% url 'admin-indiv-services' s.service_id%}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
-                    <div id="check-box">
-                        <input type="checkbox" value="{{reservation.id}}" name="checkbox">
-                    </div>
+               
                     <div id="user-id">
                         {{s.service_id}}
                     </div>

@@ -93,22 +93,23 @@
         </div>
         <div id="filters-wrapper">
             <h3>Filter by</h3>
-            <ul class="filters__list">
-                <li class="list">
-                    <a href="{% url 'franchise-vehicles'%}" class="list">All</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'franchise-vehicles' %}?q=PENDING" class="list">Pending</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'franchise-vehicles' %}?q=APPROVED" class="list">Approved</a>
-                </li>
-                <li class="list">
-                    <a href="{% url 'franchise-vehicles' %}?q=DECLINED" class="list">Declined</a>
-                </li>
-                
-        
-            </ul>
+            <div id="listwrap">
+                <ul class="filters__list">
+                    <li>
+                        <a href="{% url 'franchise-vehicles'%}" class="list">All</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'franchise-vehicles' %}?q=PENDING" class="list">Pending</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'franchise-vehicles' %}?q=APPROVED" class="list">Approved</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'franchise-vehicles' %}?q=DECLINED" class="list">Declined</a>
+                    </li>
+                </ul>
+            </div>
+            
         </div>
     </div>
 

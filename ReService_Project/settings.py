@@ -87,10 +87,10 @@ WSGI_APPLICATION = "ReService_Project.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbmk2k4clnjl80',
-        'USER': 'xkhvdxokaylvjg',
-        'PASSWORD': '79afd6dcb1e7b5fca61f12e10e505744e19d5aa16ccef2a41c4e2e5f921bc48e',
-        'HOST': 'ec2-3-93-160-246.compute-1.amazonaws.com',
+        'NAME': 'reservice',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

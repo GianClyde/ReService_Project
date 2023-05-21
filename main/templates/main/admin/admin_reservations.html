@@ -93,9 +93,8 @@
         </div>
         <div id="filters-wrapper">
             <h3>Filter by</h3>
-            <hr>
             <div id="filter-row">
-                <h2>Reservation Status</h2>
+
                 <ul class="filters__list">
                
 
@@ -111,9 +110,7 @@
                     <li class="list">
                         <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
                     </li>
-                    <li class="list">
-                        <a href="{% url 'admin-reservations' %}?q=FORCANCELATION" class="list">for cancelation</a>
-                    </li>
+                  
             
                 </ul>      
             </div>
@@ -124,9 +121,7 @@
     <div id="content">
         <div class="clearfix" id="lbl-wrapper">
 
-            <div id="checkbox-col-lbl">
-                <input type="checkbox"  name="checkbox">
-            </div>
+        
            <div id="id-col-lbl">
             <h3 id="col-label">ID</h3>
            </div> 
@@ -149,9 +144,7 @@
         {% for reservation in reservations%}
             <a href="{% url 'admin-rsrv-info' reservation.reservation_id %}"><div id="user-card" class="clearfix">
                 <div id="card-info" class="clearfix">
-                    <div id="check-box">
-                        <input type="checkbox" value="{{reservation.id}}" name="checkbox">
-                    </div>
+                     
                     <div id="user-id">
                         {{reservation.reservation_id}}
                     </div>
