@@ -398,7 +398,7 @@ def reservation(request):
     address.append(profile.lot)
     address.append(profile.street)
     address.append(profile.village)
-    address.append(str(profile.zipcode))
+    address.append(profile.zipcode)
     
     
     reservations = Reservation.objects.filter(user = request.user,reservation_status="SUCCESSFULL",active = True)
@@ -411,7 +411,7 @@ def reservation(request):
     
     available = []
     for s in services:
-        if str(s.pick_up) in address:
+        if str(s.pick_up) in str(address):
             available.append(s)
 
     if not available:
@@ -1675,7 +1675,7 @@ def admin_driver_membership_payments_indiv(request,pk):
             
         send_mail(subject, message, email_from,[requests.email], fail_silently=False)
         messages.success(request,'Requests Approved')
-        return redirect('driver-requests-admin')
+        return redirect('admin-membership')
     context = {'payment':payment}
     return render(request,'main/admin/admin-membership-payments-indiv.html',context)
 

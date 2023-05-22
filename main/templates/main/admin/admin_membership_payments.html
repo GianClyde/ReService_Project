@@ -149,7 +149,7 @@
                         <div id="reserv-sts" style="color: #deaf39;">
                             {{payment.status}}
                         </div>
-                    {%elif reservation.reservation_status == "SUCCESSFULL" %}
+                    {%elif payment.status  == "SUCCESSFULL" %}
                         <div id="reserv-sts" style="color: green;">
                             {{payment.status}}
                         </div>
