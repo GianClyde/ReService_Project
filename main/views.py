@@ -1570,7 +1570,7 @@ def admin_franchise_decline(request,pk):
         email_from = settings.EMAIL_HOST_USER
         
         send_mail(subject, message, email_from,[franchise.email], fail_silently=False)
-        messages.success(request,'Franchise approved')
+        messages.success(request,'Franchise declined')
         franchise.send_sms(f"Hello {franchise.user}, we regret to inform you that your franchise request has been declined, for more information or inquiries contact ReService ")
         return redirect('admin-franchise')
     context={'franchise':franchise}
