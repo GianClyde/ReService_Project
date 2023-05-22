@@ -124,7 +124,7 @@ urlpatterns = [
     path('submit-proof-of-payment/<str:pk>/',views.submit_proof_of_payment, name="proof-payment"),
     
     
-    
+    path('no-driver/',views.no_drivers,name="no-driver"),
     path('franchise_nav/',views.franchise_nav,name='franchise-nav'),
     path('franchise-drivers/',views.frannchise_drivers,name="franchise-drivers"),
     path('franchise-drivers-indiv/<str:pk>/',views.franchise_drivers_indiv,name="indiv-franchise-drivers"),
@@ -147,6 +147,7 @@ urlpatterns = [
     path('generate-pdf/<str:pk>/',views.pdf_generator,name='pdf_gen' ),
     path('faq/',views.faq,name='faq'),
     path('privacypolicies/',views.privacypolicy, name="privacy"),
+    path('terms/',views.termsncond,name="terms")
 
     
 ]

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{%block title%}No Driver{%endblock%}
+
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/nodrvr.css' %}"/>
+{%block content%}
+<div id="main">
+    <meta http-equiv = "refresh" content = "2; url = {% url 'identify'%}" />
+    <div id="content">
+        <div id="hdr">  
+            <h1>Oh No!</h1>
+            <span>It seems like you don't have any vehicles yet, register them before adding a driver</span>
+        </div>
+
+        <div id="img">
+            
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

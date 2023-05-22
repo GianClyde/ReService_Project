@@ -497,7 +497,7 @@ class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, null=True)
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, choices=payment_status_pymnt, default="null")
+    status = models.CharField(max_length=20, choices=payment_status_pymnt, default="PENDING")
     total = models.FloatField(null=True)
     proof = models.ImageField(null=True, blank=True, upload_to="images/")
     created = models.DateField(auto_now_add=True)

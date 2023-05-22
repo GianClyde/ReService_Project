@@ -1,0 +1,13 @@
+#main{
+    width: 100%;
+}
+
+#content{
+    width: 70%;
+    margin: auto;
+}
+
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+}

@@ -26,9 +26,9 @@
 
 .container {
     background: white;
-    width: 540px;
+    width: 80%;
     height: 450px;
-    margin: 0 auto;
+    margin:  auto;
     position: relative;
     margin-top: 3%;
     box-shadow: 2px 5px 20px rgba(0,0,0,0.5);
@@ -40,7 +40,7 @@
     top: -5%;
     left: 5%;
     position: absolute;
-    width: 15%;
+    width: 20%;
     height: 110%;
     background: darkblue;
     box-shadow: 2px 5px 20px rgba(0,0,0,0.5);
@@ -179,3 +179,186 @@ span {
 }
 
 /*-----button-----*/
+
+@media screen and (min-width:750px){
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    #sched{
+        margin-top: 5%;
+        width: 10%;
+        background-color: #001c69;
+        color: white;
+        font-family: "Bebas Neue";
+        display: inline;
+        padding: 1%;
+    }
+    #left{
+        float: left;
+        width: 50%;
+    }
+    
+    #right{
+        float: right;
+    
+        width: 50%;
+    }
+    
+    .container {
+        background: white;
+        width: 540px;
+        height: 450px;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 3%;
+        box-shadow: 2px 5px 20px rgba(0,0,0,0.5);
+    }
+    
+    /*-----leftbox-----*/
+    .leftbox {
+        float: left;
+        top: -5%;
+        left: 5%;
+        position: absolute;
+        width: 15%;
+        height: 110%;
+        background: darkblue;
+        box-shadow: 2px 5px 20px rgba(0,0,0,0.5);
+        border: .1em solid white;
+    }
+    
+    nav a {
+        list-style: none;
+        padding: 35px;
+        color: white;
+        font-size: 1.1em;
+        display: block;
+        transition: all .3s ease-in-out;
+    }
+    
+    nav a:hover {
+        color: yellow;
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    
+    nav a.active {
+        color: yellow;
+    }
+    /*-----leftbox-----*/
+    
+    
+    /*-----rightbox-----*/
+    .rightbox {
+        width: 60%;
+        margin-left: 27%;
+        padding-top: 5px;
+    }
+    
+    .tabShow {
+        transition: all .5s ease-in;
+        width: 80%;
+        position: absolute;
+        overflow: auto;
+    }
+    
+    h1 {
+        font-family: "Montserrat", sans-serif;
+        color: skyblue;
+        font-size: 1.2rem;
+        margin-top: 40px;
+        margin-bottom: 35px;
+    }
+    
+    h2 {
+        color:black;
+        font-family: "Times New Roman" sans-serif;
+        text-transform: uppercase;
+        font-size: 8px;
+        letter-spacing: 1px;
+        margin-left: 2px;
+        margin-top: 10px;
+    }
+    
+    .input, p {
+        border: 0;
+        border-bottom: 1px solid blue;
+        width: 80%;
+        font-family: "Monsterrat", sans-serif;
+        font-size: .7em;
+        padding: 7px 0;
+        color: black;
+        outline: none;
+    }
+    .form-input{
+        border: 0;
+        border-bottom: 1px solid blue;
+        width: 80%;
+        font-family: "Monsterrat", sans-serif;
+        font-size: .7em;
+        padding: 7px 0;
+        color: black;
+        outline: none;
+    }
+    .form-input-add{
+        border: 0;
+        border-bottom: 1px solid blue;
+        width: 80%;
+        font-family: "Monsterrat", sans-serif;
+        font-size: .7em;
+        padding: 7px 0;
+        color: black;
+        outline: none;
+    
+    }
+    .form-input-add2{
+        border: 0;
+        border-bottom: 1px solid blue;
+        width: 80%;
+        font-family: "Monsterrat", sans-serif;
+        font-size: .7em;
+        padding: 7px 0;
+        color: black;
+        outline: none;
+    
+    }
+    span {
+        font-size: .7em;
+        color: black;
+    }
+    
+    #profille-img-wrapper{
+        float:right;
+        margin-right: 17%;
+        margin-top: 3%;      
+        width: 20%;
+        border-radius: 8px;
+        border: solid #001c69;
+        border-width: 2px;
+     
+        
+    }
+    #profile-img{
+        width: 100%;
+    }
+    
+    /*-----rightbox-----*/
+    
+    /*-----button-----*/
+    .btn {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        font-size: 15px;
+        border: 0;
+        color: yellow;
+        background: blue;
+        padding: 7px 15px;
+        box-shadow: 0px 2px 4px 0px black;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    
+
+}

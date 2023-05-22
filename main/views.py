@@ -176,7 +176,7 @@ def password_change(request):
 
 def identify(request):
     context={}
-    return render(request, 'main/new_index.html',context)
+    return render(request, 'main/index.html',context)
 
 #Student Views.....
 #delete mo to
@@ -1195,6 +1195,8 @@ def admin_payments_indiv(request,pk):
         payment.status = "SUCCESSFULL"
         account.balance = float(account.balance) - float(payment.total)
         account.save()
+        reservation.payment_status = "PAID"
+        reservation.save()
         payment.save()
         if str(payment.user.profile) not in str(drv):
             DriverStudents.objects.create(student = payment.user.profile, assigned_driver = reservation.driver.user)
@@ -2395,8 +2397,10 @@ def franchise_nav(request):
 
 
 def frannchise_drivers(request):
+    
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     franchise = Franchise.objects.get(user = request.user)
+    
     franchiseDrivers = FranchiseDrivers.objects.filter(
         Q(driver_last_name__icontains = q)|
         Q(driver_first_name__icontains = q)|
@@ -2419,6 +2423,11 @@ def franchise_drivers_indiv(request,pk):
 def franchise_regiter_driver(request):
     form = FranchiseDriversForm()
     franchise = Franchise.objects.get(user = request.user)
+    vehicles = Vehicle.objects.filter(franchise=franchise)
+    
+    #if not vehicles:
+    #    return redirect('no-driver')
+  
     if request.method == "POST":
         form = FranchiseDriversForm(request.POST,request.FILES)
         if form.is_valid():
@@ -2436,11 +2445,14 @@ def franchise_regiter_driver(request):
             email_from = settings.EMAIL_HOST_USER
             send_mail(subject, message, email_from,[request.user.email], fail_silently=False)
             messages.success(request,'request successfully submitted')
-            
+                
             return redirect('franchise-drivers')
     
     context = {'form':form}
     return render(request,'main/franchise/franchise_add_driver.html',context)
+
+def no_drivers(request):
+    return render(request,'main/franchise/no_driver.html')
 
 def franchise_vehicles(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -2624,3 +2636,6 @@ def faq(request):
 
 def privacypolicy(request):
     return render(request,'main/privacynpolicies.html')
+
+def termsncond(request):
+    return render(request,'main/terms.html')
