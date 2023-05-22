@@ -31,40 +31,48 @@
          </h1>
          <p>Reservations recorded as of {{today}}</p>
 
-         <h2>Reservation for the month of {{month}}</h2>
-         {%for r in reservation%}
-         <h3>Reservation ID: {{r.reservation_id}}</h3>
+         <h2>Payment for the date of {{today}}</h2>
+         {%for p in payments%}
+         <h3>Reference No#: {{p.ref_no}}({{p.user.first_name}} {{p.user.last_name}})</h3>
          <table>
             <tr>
-              <th>User</th>
-              <th>Driver</th>
-              <th>Reservation Status</th>
-              <th>Payment Status</th>
-              <th>Created</th>
-              <th>Valid Until</th>
+             
+              <th>Account</th>
+              <td style="overflow: hidden;">{{p.account.acct_no}}</td>
+              
+         
 
             </tr>
             <tr>
-                <td>{{r.user.first_name}} {{r.user.last_name}}</td>
-                <td>{{r.driver.user.first_name}} {{r.driver.user.last_name}}</>
-                <td>{{r.reservation_status}}</td>
-                <td>{{r.payment_status}}</td>
-                <td>{{r.created}}</td>
-                <td>{{r.valid_until}}</td>
+              <th>Reservation</th>
+              <td>{{p.reservation.reservation_id}}</td>
+                
+               
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{{p.status}}</td>
+              
+            </tr>
+            <tr>
+              <th>Created</th>
+             
+                <td>{{p.created}}</td>
             </tr>
             
           </table>
 
-
-          
-          {%endfor%}
           <div style="border: solid; padding: 10px;">
             <h2>Summary</h2>
-            <label>No. of Reservations: {{count}}</label><br>
-            <label>No. of Pending Reservations: {{pending_reservations_count}}</label><br>
-            <label>No. of Unpaid Reservations: {{unpaid_reservation_count}}</label><br>
+            <label>No. of Payments: {{payments_count}}</label><br>
+            <label>No. of Successfull Payments: {{successful_payment_count}}</label><br>
+            <label>No. of Pending Payments: {{pending_payment_count}}</label><br>
+            <label>No. of Failed Payments: {{unsuccessfull_payment_count}}</label><br>
+            <label>Total Earnings: {{total}} pesos</label><br>
             <p></p>
           </div>
+          
+          {%endfor%}
     </div>
 </body>
 </html>

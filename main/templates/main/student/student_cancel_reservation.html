@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{%block title%}ReService:Reservation Cancelation{%endblock%}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise-reg-services.css' %}">
+<style>
+    #main{
+        background-image: url("{%static 'images/vr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    </style>
+<div id="main">
+    <h1> ReServation Cancelation </h1>
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div id="card">
+            <p id="instruct"> Please provide the following details below.</p>
+            <hr>
+            <div id="row">
+                <div id="subrow" class="clearfix">
+                    <div id="left" style="float:none; width:100%;">
+                        Reason of Cancelation:
+                    </div>  
+                    <div id="right" style="float:none; width:100%;">
+                        {{form.reason}}
+                    </div>
+                </div>
+                
+                <div id="subrow" class="clearfix">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+               
+            </div>
+        </div>
+        
+    </form>
+    
+</div>
+{% endblock %}

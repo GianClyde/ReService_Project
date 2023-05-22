@@ -146,11 +146,11 @@
                     <div id="user-name">
                         {{franchise.operator_lastN}} {{franchise.operator_firstN}}
                     </div>
-                    {% if reservation.reservation_status == "PENDING"%}
+                    {% if franchise.franchise_status == "PENDING"%}
                         <div id="reserv-sts" style="color: #deaf39;">
                             {{franchise.franchise_status}}
                         </div>
-                    {%elif reservation.reservation_status == "APPROVED" %}
+                    {%elif franchise.franchise_status == "APPROVED" %}
                         <div id="reserv-sts" style="color: green;">
                             {{franchise.franchise_status}}
                         </div>

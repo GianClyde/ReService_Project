@@ -5,7 +5,7 @@ from .models import User,DriverPayment,DriverFeedback,DriverStudents,Schedule,Fr
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
-from .forms import VehicleUpdateForm,ServiceRegister,AdminFranchiseDriversDocs,AdmineditStudent,FranchiseDocs,DriverPaymentProof,CHOICES,DriverFeedbackForm,PickUpTimeForm,ScheduleForm,adminFranchiseRegistrationForm,ServicesForm,AdminVehicleForm,VehicleForm,FranchiseDriversForm,FranchiseRegistrationForm,ReservationForm,Proof_of_payment,NotAdminDriverProfileForm, NotAdminDriverUserForm,FranchiseForm,AnnouncementForm,VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
+from .forms import VehicleUpdateForm,adminAddServices,ServiceRegister,AdminFranchiseDriversDocs,AdmineditStudent,FranchiseDocs,DriverPaymentProof,CHOICES,DriverFeedbackForm,PickUpTimeForm,ScheduleForm,adminFranchiseRegistrationForm,ServicesForm,AdminVehicleForm,VehicleForm,FranchiseDriversForm,FranchiseRegistrationForm,ReservationForm,Proof_of_payment,NotAdminDriverProfileForm, NotAdminDriverUserForm,FranchiseForm,AnnouncementForm,VehicleForm,ReservationEditForm,AdminEditDriverProfileForm, GroupAdminForm,CancelationForm,DriverProfilePicture,EditProfileForm,SetPasswordForm,PasswordResetForm,EditUserForm,ProfileForm,ProfilePicture,DriverProfileForm,StudentUserForm,DriverUserForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -189,8 +189,8 @@ def student_myservice(request):
     if reservations and payments:
         today = datetime.date.today()
         year = today.strftime("%Y")
-        account = Accounts.objects.get(user = request.user)
-        payments = Payment.objects.filter(account= account)
+       
+       
         entry = DriverStudents.objects.get(student = request.user.profile) 
         reservation = Reservation.objects.filter(user = request.user,reservation_status = "SUCCESSFULL")
         
@@ -201,6 +201,8 @@ def student_myservice(request):
             if str(r.get_year()) == str(year):
                 x = r.reservation_id
         reserve = Reservation.objects.get( reservation_id = x)
+        account = Accounts.objects.get(reservation = reserve)
+        payments = Payment.objects.filter(account= account)
         total = 0
         for p in payments:
             total = p.total + total
@@ -320,8 +322,7 @@ def registerUser(request):
             
             user.save()
             user.groups.add(group)
-            acct = Accounts.objects.create(user = user)
-            acct.save()
+        
             
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('navPage')
@@ -374,6 +375,21 @@ def editProfile(request,pk):
     context ={'form':form,'pform':pform, "profile_user":profile_user,'form_p':form_p,'page':page}
     return render(request,'main/student/edit-profile.html',context)
 
+def cancel_reservation(request,pk):
+    reservation= Reservation.objects.get(reservation_id = pk)
+    form = CancelationForm()
+    
+    if request.method == "POST":
+         form = CancelationForm(request.POST)
+         if form.is_valid():
+             cancel = form.save(commit=False)
+             cancel.reservation = reservation
+             cancel.save()
+             messages.success(request,"request submitted")
+             return redirect('reservation')
+    context={'form':form}
+    return render(request,'main/student/student_cancel_reservation.html',context)
+
 def reservation(request):
     guard = True
     profile = Profile.objects.get(user = request.user)
@@ -382,6 +398,7 @@ def reservation(request):
     address.append(profile.lot)
     address.append(profile.street)
     address.append(profile.village)
+    address.append(str(profile.zipcode))
     
     
     reservations = Reservation.objects.filter(user = request.user,reservation_status="SUCCESSFULL",active = True)
@@ -394,7 +411,7 @@ def reservation(request):
     
     available = []
     for s in services:
-        if s.pick_up in address:
+        if str(s.pick_up) in address:
             available.append(s)
 
     if not available:
@@ -716,12 +733,16 @@ def admin_reports(request):
         
         if print == "resmonth":
             return redirect('print-pdf-resmonth')
+        elif print == "resday":
+            return redirect('res-daily')
         elif print =="resyear":
             return redirect('pdf-yearly')
         elif print =="resall":
             return redirect('pdf-all-res')
         elif print =="payall":
             return redirect('pdf-payments-all-rprt')
+        elif print =="payday":
+            return redirect('daily-payments')
         elif print == "paymonth":
             return redirect('monthly-payments')
         elif print == "payyear":
@@ -733,6 +754,115 @@ def admin_reports(request):
     
     context={'reservations':reservations,'payments':payments,'users':users}
     return render(request,'main/admin/admin_reports.html',context)
+
+def pdf_reports_payment_daily(request):
+    template_path = 'main/pay_day_report.html'
+    today = datetime.date.today()
+
+    payments = Payment.objects.all()
+    unsuccessfull_payment = Payment.objects.filter(status = "FAILED")
+    pending_payment = Payment.objects.filter(status="PENDING")
+    successful_payment = Payment.objects.filter(status = "SUCCESSFULL")
+    
+    bank = []
+    pay = []
+    success = []
+    pending=[]
+  
+    for p in payments:
+        if str(p.get_date()) == str(today):
+            pay.append(p)
+        if p.status == "SUCCESSFULL":
+            success.append(p)
+        if p.status == "PENDING":
+            pending.append(p)
+    
+    for p in success:
+        bank.append(p.total)
+    
+    total = 0.0
+    for m in bank:
+        total = total + float(m)
+        
+    
+    pending_payment_count = len(pending)
+    payments_count = len(pay)
+    successful_payment_count = len(success )    
+    
+    context = {'payments':payments,
+               'pending_payment_count':pending_payment_count,
+               'payments_count':payments_count,
+               'today':today,
+               'successful_payment_count':successful_payment_count,
+               'total':total
+               
+                   
+                   }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def pdf_report_res_daily(request):
+    template_path = 'main/reservaiton_day_report.html'
+    today = datetime.date.today()
+    reservation = Reservation.objects.all()
+
+    
+    res = []
+    for r in reservation:
+        if str(r.get_date()) == str(today):
+             res.append(r)
+    
+    pending_reservations_list = []
+    unpaid_reservations_list = []
+    for r in res:
+        if r.reservation_status == "PENDING":
+            pending_reservations_list.append(r)
+        
+        if r.payment_status == "PENDING":
+            unpaid_reservations_list.append(r)
+
+            
+    count = len(reservation)
+    pending_reservations_count = len(pending_reservations_list)
+    unpaid_reservation_count = len(unpaid_reservations_list)
+    
+    context = {
+               'res':res,
+                'today':today,
+                'count':count,
+                'pending_reservations_count':pending_reservations_count,
+                'unpaid_reservation_count':unpaid_reservation_count,
+                   
+                   }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
 
 def all_report(request):
     users = User.objects.all()
@@ -1183,7 +1313,7 @@ def admin_payments_indiv(request,pk):
     payment = Payment.objects.get(ref_no = pk)
     pay_reservation = payment.reservation
     reservation = Reservation.objects.get(reservation_id = pay_reservation.reservation_id)
-    account = Accounts.objects.get(user = reservation.user)
+    account = Accounts.objects.get(reservation = reservation)
     drv = DriverStudents.objects.all()
         
         
@@ -1516,7 +1646,7 @@ def admin_driver_membership_payments_indiv(request,pk):
     pwrd = get_random_string(length=16)
     requests = FranchiseDrivers.objects.get(driver_code = payment.driver.driver_code)
     if request.method == "POST":
-        payment.status == "SUCCESSFULL"
+        payment.status ="SUCCESSFULL"
         payment.save()
         
         requests.payment_status = "SUCCESSFULL" 
@@ -1549,9 +1679,27 @@ def admin_driver_membership_payments_indiv(request,pk):
     context = {'payment':payment}
     return render(request,'main/admin/admin-membership-payments-indiv.html',context)
 
-def admin_membership_payments_decline(request,pk):
-    context={}
-    return render(request,'main/admin/admin-membership-decline.html',context)
+def admin_membership_payment_decline(request,pk):
+    payment = DriverPayment.objects.get(ref_no = pk)
+    if request.method == "POST":
+        payment.status = "DECLINED"
+        payment.save()
+        current_date = datetime.datetime.now()  
+        subject = 'ReService:School Service Reservation'
+        subject = 'ReService:School Service Reservation Cancelation'
+        message = render_to_string("main/declined_membership_mssg.html", {
+                            'payment':payment,
+                            'date':current_date,
+                        })
+        email_from = settings.EMAIL_HOST_USER
+        send_mail(subject, message, email_from,[payment.franchise.user.email], fail_silently=False)
+        send_mail(subject, message, email_from,[payment.franchise.user.email], fail_silently=False)
+        messages.success(request,'Vehicle declined')
+        return redirect('admin-membership')
+    context={'payment':payment}
+    return render(request,'main/admin/admin_membership_decline.html',context)
+
+
 
 def franchise_driver_membership_pay(request):
     driver = FranchiseDrivers.objects.filter(franchise = request.user.franchise)
@@ -1665,6 +1813,20 @@ def admin_services_decline(request,pk):
     context = {'service':service}
     
     return render(request,'main/admin/admin_services_requests_denied.html', context)
+
+
+def admin_add_services(request):
+    form = adminAddServices()
+    
+    if request.method == "POST":
+        form = adminAddServices(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"franchise successfully created")
+            return redirect('admin-requests-services')
+    
+    context={'form':form}
+    return render(request,'main/admin/admin_services_add.html', context)
 def admin_students(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     users = User.objects.filter(
@@ -1699,8 +1861,7 @@ def admin_create_student(request):
             user.save()
             user.groups.add(group)
             
-            acct = Accounts.objects.create(user = user)
-            acct.save()
+           
             
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('admin-nav')
@@ -1867,7 +2028,8 @@ def admin_reservation_indiv(request,pk):
     reservation = Reservation.objects.get(reservation_id=pk)
     
     if request.method == "POST":
-        account = Accounts.objects.get(user = reservation.user)
+        account = Accounts.objects.create(user = reservation.user)
+        account.reservation = reservation
         account.balance  = float(reservation.service.price)*10
         account.save()
         reservation.reservation_status = "SUCCESSFULL"
@@ -1944,8 +2106,10 @@ def admin_reservation_cancelations(request):
 def admin_cancelation_individual(request,pk):
     cancelation = ReservationCancelation.objects.get(cancelation_id=pk)
     reservation = Reservation.objects.get(reservation_id = cancelation.reservation.reservation_id)
+    account = Accounts.objects.get(reservation = reservation)
     if request. method == "POST":
-        reservation.reservation_status = "DECLINED" 
+        account.delete()
+        reservation.reservation_status = "CANCELED" 
         reservation.active = False
         reservation.save()
         cancelation.status = "APPROVED"
@@ -2203,8 +2367,9 @@ def admin_announcements_delete(request,pk):
 
 #proof_of_payment
 def submit_proof_of_payment(request,pk):
-    account = Accounts.objects.get(user = request.user)
+   
     reservation = Reservation.objects.get(reservation_id = pk)
+    account = Accounts.objects.get(reservation = reservation)
     service = Services.objects.get(service_id = reservation.service.service_id)
     payment = Payment.objects.filter(account = account)
     form = Proof_of_payment()
@@ -2240,21 +2405,22 @@ def submit_proof_of_payment(request,pk):
 
 def pay_reservation(request,pk):
     months = ["September","October","November","December","January","February","March","April","May","June"]
-    account = Accounts.objects.get(user = request.user)
-    #payment = Payment.objects.filter(account= account)
     reservation = Reservation.objects.get(reservation_id = pk)
+    account = Accounts.objects.get(reservation = reservation)
+    #payment = Payment.objects.filter(account= account)
+    
     service = Services.objects.get(service_id = reservation.service.service_id)
     context={'months':months,'account':account,'service':service,'reservation':reservation}
     return render(request,'main/student/payments.html',context)
 
 def payment(request,pk):
     period = ['1st Payment','2nd Payment','3rd Payment','4th Payment','5th Payment','6th Payment','7th Payment','8th Payment','9th Payment','10th Payment']
-    total_payment = Payment.objects.filter(user = request.user, status ="SUCCESSFULL")
+   
     total = 0.0
    
-       
-    account = Accounts.objects.get(user = request.user)
     reservation = Reservation.objects.get(reservation_id = pk)
+    account = Accounts.objects.get(reservation = reservation)
+    total_payment = Payment.objects.filter(user = request.user, status ="SUCCESSFULL",account = account)
     service = Services.objects.get(service_id = reservation.service.service_id)
     if total_payment:
         for money in total_payment:
@@ -2280,9 +2446,10 @@ def payment(request,pk):
     return render(request,'main/student/pay_balance.html',context)
 
 def payment_summary(request,pk):
-    account = Accounts.objects.get(user = request.user)
+    
     payments = Payment.objects.get(ref_no= pk)
     reservation = Reservation.objects.get(reservation_id = payments.reservation.reservation_id)
+    account = Accounts.objects.get(reservation = reservation)
     service = Services.objects.get(service_id = reservation.service.service_id)
     
     context={'account':account,'service':service, 'reservation':reservation,'payment':payments}
@@ -2574,6 +2741,7 @@ def franchise_services_indiv(request,pk):
 
 def franchise_services_register(request):
     form = ServiceRegister()
+
     
     franchise = Franchise.objects.get(user = request.user)
     drivers = Driverprofile.objects.filter( franchise = franchise)

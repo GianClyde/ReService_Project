@@ -15,17 +15,17 @@
 }
 
 #left{
-    float: left;
-    width: 20%;
-    margin-left: 5%;
+    float: none;
+    width: 100%;
+    margin-left: 0;
     background-color: white;
     overflow: auto;
 }
 #right{
-    float: right;
-    width: 65%;
+    float: none;
+    width: 100%;
     background-color: white;
-    margin-right: 5%;
+    margin-right: 0;
 
 }
 
@@ -59,8 +59,8 @@
 }
 
 #tb-lbl{
-    width: 30%;
-    float: left;
+    width: 100%;
+    float: none;
     font-family: "Bebas Neue";
     color: #deaf39;
     font-size: 32px;
@@ -115,7 +115,7 @@
     margin-bottom: 2%;
 }
 
-#col{
+#col1{
     width: 30%;
     float: left;
     overflow: auto;
@@ -138,4 +138,149 @@ p{
     font-size: 15px;
     display: inline;
     margin-left: 1%;
+}
+
+@media screen and (min-width:750px){
+    #row{
+        width: 100%;
+        margin-bottom: 2%;
+        
+    }
+    #subrow{
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #left{
+        float: left;
+        width: 20%;
+        margin-left: 5%;
+        background-color: white;
+        overflow: auto;
+    }
+    #right{
+        float: right;
+        width: 65%;
+        background-color: white;
+        margin-right: 5%;
+    
+    }
+    
+    #lbl{
+        font-family: "Bebas Neue";
+        background-color: #001c69;
+        color: #deaf39;
+        padding: 1%;
+        text-align: center;
+        font-size: 25px;
+    }
+    #img-wrap{
+        width: 100%;
+        overflow: auto;
+    }
+    
+    #profile-img{
+        width: 100%;
+    }
+    
+    #content{
+        width: 100%;
+        background-color: white;
+        padding: 2%;
+    }
+    
+    
+    
+    #tbl-hdr-wrap{
+        width: 100%;
+    }
+    
+    #tb-lbl{
+        width: 30%;
+        float: left;
+        font-family: "Bebas Neue";
+        color: #deaf39;
+        font-size: 32px;
+    }
+    
+    #tb-cont{
+         width: 100%;
+         background-color: white;
+         padding: 1%;
+    }
+    
+    #cont-row{
+        width: 100%;
+        margin-bottom: 2%;
+    }
+    
+    #cont{
+        width: 30%;
+        float: left;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .btn{
+        width: 20%;
+        color: white;
+        background-color: #deaf39;
+        border-radius: 7px;
+        padding: 1%;
+        font-family: "Bebas Neue";
+        margin-left: 1%;
+    }
+    
+    #col{
+        width: 30%;
+        float: left;
+        overflow: auto;
+        
+    }
+    
+    #sub-row{
+        width: 100%;
+       
+    }
+    
+    #row-hrd{
+        width: 100%;
+        background-color: #001c69;
+        padding: 1%;
+        font-family: "Bebas Neue";
+        font-size: 30px;
+        color: #deaf39;
+        margin-bottom: 2%;
+    }
+    
+    #col1{
+        width: 30%;
+        float: left;
+        overflow: auto;
+        margin-right: 3%;
+        background-color: white;
+    }
+    #card-cont{
+        width: 100%;
+        padding: 5%;
+        
+    }
+    
+    label{
+        font-family: "Bebas Neue";
+        font-size: 20px;
+    }
+    
+    p{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        display: inline;
+        margin-left: 1%;
+    }
+
 }

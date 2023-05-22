@@ -1,16 +1,23 @@
 #main{
+
     width: 100%;
     padding: 5%;
+    min-height: 60vh;
 }
 #content-wrapper{
-    width: 50%;
+ 
+    width: 90%;
     padding: 3%;
     background-color: white;
     margin: auto;
 }
-
+p{
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
 #header{
     font-family: "Bebas Neue";
+    font-size: 20px;
 }
 #acct-info{
     width: 100%;
@@ -25,7 +32,7 @@
     width: 40%;
     float: left;
     font-family: "Bebas Neue";
-    font-size: 18px;
+    font-size: 15px;
 }
 
 #content{
@@ -33,6 +40,7 @@
     float: right;
     border-bottom: solid #001c69;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
 }
 .clearfix::after{
     content: "";
@@ -78,4 +86,95 @@
     background-color: #deaf39;
     width: 50%;
     display: inline;
+}
+
+@media screen and (min-width:750px){
+    p{
+        font-size: 15px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    #main{
+        width: 100%;
+        padding: 5%;
+        min-height: 80vh;
+    }
+    #content-wrapper{
+        width: 50%;
+        padding: 3%;
+        background-color: white;
+        margin: auto;
+    }
+    
+    #header{
+        font-family: "Bebas Neue";
+    }
+    #acct-info{
+        width: 100%;
+        padding: 2%;
+    }
+    
+    #row{
+        width: 100%;
+        margin-bottom: 3%;
+    }
+    #label{
+        width: 40%;
+        float: left;
+        font-family: "Bebas Neue";
+        font-size: 18px;
+    }
+    
+    #content{
+        width: 60%;
+        float: right;
+        border-bottom: solid #001c69;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    #btn{
+        width: 15%;
+        padding: 2%;
+        font-family: "Bebas Neue";
+        background-color: #deaf39;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        margin-left: 85%;
+    }
+    
+    .form-input{
+        width: 60%;
+        float: right;
+        border-bottom: solid #001c69;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .save{
+        width: 15%;
+        padding: 2%;
+        font-family: "Bebas Neue";
+        background-color: #deaf39;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        margin-left: 85%;
+    }
+    
+    .btn{
+        padding: 1%;
+        font-family: 'Bebas Neue';
+        background-color: #deaf39;
+        width: 50%;
+        display: inline;
+    }
+    
+
 }

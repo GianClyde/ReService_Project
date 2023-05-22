@@ -44,11 +44,29 @@
                         Driver:
                     </div>  
                     <div id="right">
-                        <select name="drivers" id="drivers">
-                            {% for u in drivers%}
-                                <option value="{{u.user.id}}">{{u.user.first_name}} {{u.user.middle_name}} {{u.user.last_name}}</option>
-                            {%endfor%}
-                        </select>
+                       
+                            {{form.driver}}
+                  
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="left">
+                        Franchise:
+                    </div>  
+                    <div id="right">
+                        
+                            {{form.franchise}}
+                    
+                    </div>
+                </div>
+                <div id="subrow" class="clearfix">
+                    <div id="left">
+                        Status:
+                    </div>  
+                    <div id="right">
+                
+                            {{form.status}}
+                    
                     </div>
                 </div>
                 <div id="subrow" class="clearfix">

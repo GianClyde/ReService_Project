@@ -19,7 +19,7 @@ reservation_status = [
     ("PENDING","pending"),
     ("SUCCESSFULL", "successfull"),
     ("DECLINED", "declined"),
-    ("FORCANCELATION","for cancelation")
+    ("CANCELED","canceled")
 ]
 payment_status=[
     ("PENDING","pending"),
@@ -222,7 +222,8 @@ class Reservation(models.Model):
     class Meta:
         ordering = ('created',)
     
- 
+    def get_date(self):
+        return self.created.date()
         
     def check_validity(self):
         if self.created > self.valid_until:
@@ -264,10 +265,17 @@ class Services (models.Model):
     franchise = models.ForeignKey('Franchise', on_delete=models.CASCADE, null=True)
     status =  models.CharField(max_length=100,choices=cancelation_status, default='PENDING')
     created = models.DateTimeField(auto_now_add=True, null=True)
+
     def __str__(self):
         return f"{self.franchise.franchise_name} - from:{self.pick_up}"
+
+class ServiceRoute(models.Model):
+    service = models.ForeignKey(Services,on_delete=models.SET_NULL, null=True)
+    driver = models.ForeignKey(Driverprofile,on_delete=models.SET_NULL, null=True)
+    route = models.CharField(max)  
     
-    
+    def __str__(self):
+        return self.route
 class ReservationCancelation(models.Model):
     cancelation_id = models.UUIDField(
          primary_key = True,
@@ -464,7 +472,8 @@ class Accounts(models.Model):
          unique=True,
          default=uuid.uuid4,
          editable = False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reservation = models.ForeignKey(Reservation, on_delete=models.SET_NULL, null=True, blank=True)
     balance = models.FloatField( default=1)
     
     def __str__(self):
@@ -482,7 +491,7 @@ class DriverPayment(models.Model):
     status = models.CharField(max_length=20, choices=payment_status_pymnt, default="PENDING")
     total = models.FloatField(null=True)
     proof = models.ImageField(null=True, blank=True, upload_to="images/")
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     
         
     def __str__(self):
@@ -500,8 +509,11 @@ class Payment(models.Model):
     status = models.CharField(max_length=20, choices=payment_status_pymnt, default="PENDING")
     total = models.FloatField(null=True)
     proof = models.ImageField(null=True, blank=True, upload_to="images/")
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
+    def get_date(self):
+        return self.created.date()
+    
     def get_year(self):
         return self.created.year
     def get_month(self):

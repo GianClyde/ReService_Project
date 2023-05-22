@@ -13,7 +13,7 @@
         <div id="stdnt-navpage-header-wrapper">
             <h2 id="stdnt-navpage-header">Welcome, {{request.user.first_name}} {{request.user.last_name}}</h2>
         </div>
-        <div id="buttons-main-wrapper" class="clearfix">
+        <div id="buttons-main-wrapper" class="clearfix" style="margin-left:20%;">
             <a href="{% url 'driver-profile' request.user.id%}"><div id="card1" class="card">
                 <div id="card-img-wrapper1">
                     <img id="card-icon-img1" src="{%static 'images/driver.png'%}" alt="Avatar" >
@@ -31,22 +31,8 @@
                     <label id="nav-btn-label">My Service</label>
                 </div>
             </div></a>
-            <a href="{%url 'driver-reservations'%}"><div id="card3" class="card">
-                <div id="card-img-wrapper2">
-                    <img id="card-icon-img2" src="{%static 'images/calendar.png'%}" alt="Avatar" >
-                </div>
-                <div id="nav-btn-label-wrapper">
-                    <label id="nav-btn-label">Reservations</label>
-                </div>
-            </div></a>
-            <a href=""><div id="card4" class="card">
-                <div id="card-img-wrapper2">
-                    <img id="card-icon-img2" src="{%static 'images/report.png'%}" alt="Avatar" >
-                </div>
-                <div id="nav-btn-label-wrapper">
-                    <label id="nav-btn-label">Reports</label>
-                </div>
-            </div></a>
+           
+            
         </div>
     </div>
 

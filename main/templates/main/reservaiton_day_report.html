@@ -31,8 +31,8 @@
          </h1>
          <p>Reservations recorded as of {{today}}</p>
 
-         <h2>Reservation for the month of {{month}}</h2>
-         {%for r in reservation%}
+         <h2>Reservation for the day of {{today}}</h2>
+         {%for r in res%}
          <h3>Reservation ID: {{r.reservation_id}}</h3>
          <table>
             <tr>

@@ -34,6 +34,7 @@ h1{
     float: left;
     font-family: "Bebas Neue";
     font-size: 15px;
+    margin-right: 5%;
     
 }
 #right{
@@ -41,7 +42,7 @@ h1{
     width: 88%;
 }
 #id_pick_up{
-    width: 100%;
+    width: 80%;
     border-radius: 7px;
     box-shadow: 1px 1px 5px #555 inset;
     border: none;
@@ -51,7 +52,44 @@ h1{
 }
 
 #id_price{
-    width: 100%;
+    width: 80%;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 20px;
+}
+#id_price{
+    width: 80%;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+#id_driver{
+    width: 80%;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 20px;
+}
+#id_status{
+    width: 80%;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px #555 inset;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 20px;
+}
+#id_franchise{
+    width: 80%;
     border-radius: 7px;
     box-shadow: 1px 1px 5px #555 inset;
     border: none;
@@ -77,7 +115,38 @@ h1{
     font-family: "Bebas Neue";
 }
 
+#id_reason{
+    box-shadow: 1px 1px 5px #555 inset;
+    width: 100%;
+}
 @media screen and (min-width:750px){
+    #id_driver{
+        width: 100%;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    #id_status{
+        width: 100%;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
+    #id_franchise{
+        width: 100%;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #555 inset;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 15px;
+        line-height: 20px;
+    }
     #card{
         width: 60%;
         margin: auto;
@@ -114,6 +183,7 @@ h1{
         float: left;
         font-family: "Bebas Neue";
         font-size: 20px;
+        margin-right: 0;
         
     }
     #right{

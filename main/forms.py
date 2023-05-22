@@ -1193,6 +1193,48 @@ class AdminVehicleForm(ModelForm):
                     'id':'CR',
                     'type':'text',
                     'placeholder':'CR'})
+class adminAddServices(ModelForm):
+     class Meta:
+        model = Services
+        fields = ('price','driver','pick_up','franchise','status',)
+        def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                self.fields['price'].widget.attrs.update({
+                    'class': 'form',
+                    'required':'',
+                    'name':'price',
+                    'id':'price',
+                    'type':'text',
+                    'placeholder':'price'})
+                self.fields['driver'].widget.attrs.update({
+                    'class': 'form',
+                    'required':'',
+                    'name':'driver',
+                    'id':'driver',
+                    'type':'text',
+                    'placeholder':'driver'})
+                self.fields['pick_up'].widget.attrs.update({
+                    'class': 'form',
+                    'required':'',
+                    'name':'pick_up',
+                    'id':'pick_up',
+                    'type':'text',
+                    'placeholder':'zipcode'})
+                self.fields['franchise'].widget.attrs.update({
+                    'class': 'form',
+                    'required':'',
+                    'name':'franchise',
+                    'id':'franchise',
+                    'type':'text',
+                    'placeholder':'franchise'})
+                self.fields['status'].widget.attrs.update({
+                    'class': 'form',
+                    'required':'',
+                    'name':'status',
+                    'id':'status',
+                    'type':'text',
+                    'placeholder':'status'})
+
 
 class ServiceRegister(ModelForm):
     class Meta:
@@ -1384,3 +1426,5 @@ class DriverFeedbackForm(ModelForm):
                     'id':'concern',
                     'type':'text',
                     'placeholder':'Enter concern here'})
+                
+
