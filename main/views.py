@@ -2457,9 +2457,10 @@ def payment_summary(request,pk):
     
     
 def pdf_generator(request,pk):
-    account = Accounts.objects.get(user = request.user)
+   
     payment = Payment.objects.get(ref_no= pk)
     reservation = Reservation.objects.get(user_id = request.user.id)
+    account = Accounts.objects.get(reservation =reservation)
     service = Services.objects.get(service_id = reservation.service.service_id)
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
