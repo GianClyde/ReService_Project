@@ -2459,9 +2459,8 @@ def payment_summary(request,pk):
 def pdf_generator(request,pk):
    
     payment = Payment.objects.get(ref_no= pk)
-    reservation = Reservation.objects.get(user_id = request.user.id)
-    account = Accounts.objects.get(reservation =reservation)
-    service = Services.objects.get(service_id = reservation.service.service_id)
+    account = Accounts.objects.get(reservation =payment.reservation)
+    service = Services.objects.get(service_id = payment.reservation.service.service_id)
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
     
@@ -2485,7 +2484,7 @@ def pdf_generator(request,pk):
     list.append(" ")
     list.append(" ")
     list.append(" ")
-    list.append(f"ReServation ID: {reservation.reservation_id}")
+    list.append(f"ReServation ID: {payment.reservation.reservation_id}")
     list.append(" ")
     list.append(f"Account No: {account.acct_no}")
     list.append(" ")
@@ -2497,7 +2496,7 @@ def pdf_generator(request,pk):
     list.append(" ")
     list.append(f"Franchise: {service.franchise.franchise_name}")
     list.append(" ")
-    list.append(f"Reservation Date: {reservation.created}")
+    list.append(f"Reservation Date: {payment.reservation.created}")
     list.append(" ")
     list.append(f"Total: {payment.total} pesos")
     list.append(" ")
