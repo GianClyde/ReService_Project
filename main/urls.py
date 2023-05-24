@@ -129,6 +129,7 @@ urlpatterns = [
     
     
     path('no-driver/',views.no_drivers,name="no-driver"),
+    path('no-service/',views.no_service, name="noserv"),
     path('franchise_nav/',views.franchise_nav,name='franchise-nav'),
     path('franchise-drivers/',views.frannchise_drivers,name="franchise-drivers"),
     path('franchise-drivers-indiv/<str:pk>/',views.franchise_drivers_indiv,name="indiv-franchise-drivers"),

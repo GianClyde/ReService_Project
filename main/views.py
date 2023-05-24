@@ -2592,34 +2592,35 @@ def franchise_regiter_driver(request):
     franchise = Franchise.objects.get(user = request.user)
     vehicles = Vehicle.objects.filter(franchise=franchise)
     
-    #if not vehicles:
-    #    return redirect('no-driver')
-  
-    if request.method == "POST":
-        form = FranchiseDriversForm(request.POST,request.FILES)
-        if form.is_valid():
-            franchise_d = form.save(commit=False)
-            franchise_d.franchise = franchise
-            franchise_d.user=request.user
-            franchise_d.save()
-            current_date = datetime.datetime.now()  
-            subject = 'ReService:Driver Registration'
-            message = render_to_string("main/driver_registration_created_mssg.html", {
-                                'operator':request.user,
-                                'driver': franchise_d,
-                                'date':current_date,
-                            })
-            email_from = settings.EMAIL_HOST_USER
-            send_mail(subject, message, email_from,[request.user.email], fail_silently=False)
-            messages.success(request,'request successfully submitted')
-                
-            return redirect('franchise-drivers')
+    if not vehicles:
+        return redirect('no-driver')
     
+    else:
+        if request.method == "POST":
+            form = FranchiseDriversForm(request.POST,request.FILES)
+            if form.is_valid():
+                franchise_d = form.save(commit=False)
+                franchise_d.franchise = franchise
+                franchise_d.user=request.user
+                franchise_d.save()
+                current_date = datetime.datetime.now()  
+                subject = 'ReService:Driver Registration'
+                message = render_to_string("main/driver_registration_created_mssg.html", {
+                                    'operator':request.user,
+                                    'driver': franchise_d,
+                                    'date':current_date,
+                                })
+                email_from = settings.EMAIL_HOST_USER
+                send_mail(subject, message, email_from,[request.user.email], fail_silently=False)
+                messages.success(request,'request successfully submitted')
+                    
+                return redirect('franchise-drivers')
+        
     context = {'form':form}
     return render(request,'main/franchise/franchise_add_driver.html',context)
 
 def no_drivers(request):
-    return render(request,'main/franchise/no_driver.html')
+    return render(request,'main/no_driver.html')
 
 def franchise_vehicles(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -2741,28 +2742,35 @@ def franchise_services_indiv(request,pk):
 
 def franchise_services_register(request):
     form = ServiceRegister()
-
-    
     franchise = Franchise.objects.get(user = request.user)
-    drivers = Driverprofile.objects.filter( franchise = franchise)
-    if request.method == "POST":
-        form = ServiceRegister(request.POST)
-        if form.is_valid():
-            driver = request.POST.get('drivers')
-            if driver is None:
-                driver_user = None
-            else:
-                driver_user = Driverprofile.objects.get(user=driver )
-            
-            service = form.save(commit=False)
-            service.franchise = franchise
-            service.driver = driver_user
-            service.save()
-            messages.success(request,'request has been submitted')
-            return redirect('franchise-services')
+    drivers = FranchiseDrivers.objects.filter(franchise = franchise)
+    
+    if not drivers:
+        return redirect('noserv')
+    else:
+        drivers = Driverprofile.objects.filter( franchise = franchise)
+        if request.method == "POST":
+            form = ServiceRegister(request.POST)
+            if form.is_valid():
+                driver = request.POST.get('drivers')
+                if driver is None:
+                    driver_user = None
+                else:
+                    driver_user = Driverprofile.objects.get(user=driver )
+                
+                service = form.save(commit=False)
+                service.franchise = franchise
+                service.driver = driver_user
+                service.save()
+                messages.success(request,'request has been submitted')
+                return redirect('franchise-services')
     context = {'form':form,'drivers':drivers}
     return render(request,'main/franchise/franchise-services-register.html',context)
 
+def no_service(request):
+     return render(request,'main/noserv.html')
+ 
+ 
 def franchise_profile(request,pk):
     user = User.objects.get(id = pk)
     franchise = Franchise.objects.get(user = user)
