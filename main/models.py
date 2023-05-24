@@ -147,13 +147,13 @@ class Profile(models.Model):
         return str(self.user)
     
     def send_sms(self, body):
-        account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = '1e25127c26a6f41c8e3d6863e96d40fe'
+        account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
+        auth_token = 'd09f16f6b92ac44976a380227740fa22'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
                 body = body,
-                from_ = '+12543293294',
+                from_ = '+13156233978',
                 to = str(self.user.contact_no)
             )
             
@@ -241,13 +241,13 @@ class Reservation(models.Model):
         return self.created.strftime('%B')
     
     def send_sms(self, body):
-        account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = '1e25127c26a6f41c8e3d6863e96d40fe'
+        account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
+        auth_token = 'd09f16f6b92ac44976a380227740fa22'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
                 body = body,
-                from_ = '+12543293294',
+                from_ = '+13156233978',
                 to = str(self.user.contact_no)
             )
             
@@ -292,13 +292,13 @@ class ReservationCancelation(models.Model):
         return str (self.reservation.user)
 
     def send_sms(self, body):
-        account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = '1e25127c26a6f41c8e3d6863e96d40fe'
+        account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
+        auth_token = 'd09f16f6b92ac44976a380227740fa22'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
                 body = body,
-                from_ = '+12543293294',
+                from_ = '+13156233978',
                 to = self.reservation.user.contact_no
             )
             
@@ -324,13 +324,13 @@ class Franchise(models.Model):
     contact_no = models.CharField(max_length=13, null=True,blank=True)
    
     def send_sms(self, body):
-        account_sid = 'AC8331142c3bba6bec9c46274b3e419ca1'
-        auth_token = '1e25127c26a6f41c8e3d6863e96d40fe'
+        account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
+        auth_token = 'd09f16f6b92ac44976a380227740fa22'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
                 body = body,
-                from_ = '+12543293294',
+                from_ = '+13156233978',
                 to = self.contact_no
             )
             

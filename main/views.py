@@ -2778,6 +2778,7 @@ def franchise_profile(request,pk):
     vehicles = Vehicle.objects.filter(franchise = franchise)
     service = Services.objects.filter(franchise=franchise)
     payments = Payment.objects.filter(status = "SUCCESSFULL")
+ 
     total_list=[]
     payment_list = []
     for p in payments:
