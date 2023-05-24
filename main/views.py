@@ -2108,7 +2108,7 @@ def admin_cancelation_individual(request,pk):
     reservation = Reservation.objects.get(reservation_id = cancelation.reservation.reservation_id)
     account = Accounts.objects.get(reservation = reservation)
     if request. method == "POST":
-        account.delete()
+        
         reservation.reservation_status = "CANCELED" 
         reservation.active = False
         reservation.save()
