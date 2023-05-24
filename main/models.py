@@ -522,6 +522,18 @@ class Payment(models.Model):
     def __str__(self):
         return str(self.ref_no)
 
+    def send_sms(self, body):
+        account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
+        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        client = Client(account_sid,auth_token)
+        
+        message = client.messages.create(
+                body = body,
+                from_ = '+13156233978',
+                to = str(self.user.contact_no)
+            )
+            
+        print(message.sid)
         
     def period_to(self, sum):
             if self.period_to is None:
