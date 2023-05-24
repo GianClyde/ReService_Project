@@ -1,6 +1,6 @@
 {% extends 'main.html'%}
 
-
+{%block title%} Announcements {%endblock%}
 {%block content%}
 {% load static %}
 <style>
@@ -25,15 +25,20 @@
         font-family: 'Courier New', Courier, monospace;
         color: white;
         min-height: 600px;
+        max-height: 600px;
+        overflow: auto;
         background-color: #deaf39;
         padding: 3%;
-        margin-bottom: 2%;
+        
     }
     #subrow{
         padding: 2%;
         background-color: #001C69;
         color: white;
         border-radius: 10px;
+        overflow: auto;
+        margin-bottom: 2%;
+        max-height: 200px;
         overflow: auto;
 
     }
