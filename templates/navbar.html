@@ -99,7 +99,7 @@ ul a{
         <img id="navbar-logo" src="{% static 'images/logo.png' %}" />
     </div>
     <div id="navbar-btn-wrapper">
-        <span style="display: inline; font-size:20px;cursor:pointer," onclick="openNav()">&#9776;</span>
+
         
         <ul style="display: inline; padding: 0;">
             <li id="navbar-btns" class="navbtn"><a href="https://www.integratedmontessori.edu.ph/home/">IMC Website</a></li>
@@ -124,14 +124,7 @@ ul a{
         <li id="navbar-btns"><a style="color: white;" href="{% url 'login'%}">Login</a></li>       
         {%endif%}
 
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href=""><img id="side-navbtn-icon" src="{% static 'images/personalinf-icon.png' %}" />Profile</a>
-            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/security-icon.png' %}" />Security</a>
-            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/bus-icon.png' %}"/>My Service</a>
-            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/payment-icon.png' %}"/>Payments</a>
-            <a href="#"><img id="side-navbtn-icon" src="{% static 'images/about-icon.png' %}"/>About</a>
-          </div>
+ 
     </div>
 
     <script>
