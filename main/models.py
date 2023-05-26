@@ -149,7 +149,7 @@ class Profile(models.Model):
     
     def send_sms(self, body):
         account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
-        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        auth_token = '503a12016a23915e1cc6c49347d71524'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -243,7 +243,7 @@ class Reservation(models.Model):
     
     def send_sms(self, body):
         account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
-        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        auth_token = '503a12016a23915e1cc6c49347d71524'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -294,7 +294,7 @@ class ReservationCancelation(models.Model):
 
     def send_sms(self, body):
         account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
-        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        auth_token = '503a12016a23915e1cc6c49347d71524'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -326,7 +326,7 @@ class Franchise(models.Model):
    
     def send_sms(self, body):
         account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
-        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        auth_token = '503a12016a23915e1cc6c49347d71524'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
@@ -525,7 +525,7 @@ class Payment(models.Model):
 
     def send_sms(self, body):
         account_sid = 'ACd0ef71ec9195a7df55df1976cb306b02'
-        auth_token = 'afa7b4a5045075ccb950b70b70adb44c'
+        auth_token = '503a12016a23915e1cc6c49347d71524'
         client = Client(account_sid,auth_token)
         
         message = client.messages.create(
