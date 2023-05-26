@@ -192,13 +192,13 @@ def student_myservice(request):
        
        
         entry = DriverStudents.objects.get(student = request.user.profile) 
-        reservation = Reservation.objects.filter(user = request.user,reservation_status = "FORPAYMENT")
+        reservation = Reservation.objects.filter(user = request.user)
         
         
         
         
         for r in reservation:
-            if str(r.get_year()) == str(year):
+            if r.active == True:
                 x = r.reservation_id
         reserve = Reservation.objects.get( reservation_id = x)
         account = Accounts.objects.get(reservation = reserve)
