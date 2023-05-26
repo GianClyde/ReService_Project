@@ -333,7 +333,93 @@
         
     </div>
     
+    <div id="row">
+        <div id="header" class="clearfix">
+              <div id="hdr">
+                    Drivers
+              </div>
+              <div id="oprt-wrapper">
+                
+                
+              </div>
+              <form method="POST" action="">
+                {%csrf_token%}
+                <div id="printer">
+                    <select name="print" id="print">
+                        <option value="all">All</option>
+                        {%for d in drivers%}
+                            <option value="{{d.id}}">{{d.first_name}} {{d.last_name}}:{{d.driverprofile.franchise.franchise_name}}</option>
+                        {%endfor%}
+                    </select>       
+                  </div>
+                  <input class="btn" type="submit" value="Print">
+        
     
+            </form>
+              
+        </div>
+        <div id="content">
+            <div id="sub-hdr" class="clearfix">
+                <div id="lbl" style="width:28%;">
+                    Driver ID
+                </div>
+                <div id="lbl">
+                    Name
+                </div>
+
+                <div id="lbl">
+                    Franchise
+                </div>
+                <div id="lbl">
+                    Vehicle
+                </div>
+                <div id="lbl">
+                    contact no
+                </div>
+            </div>
+            {% for d in drivers%}
+                <div id="sub-row" class="clearfix">
+                    {% if d.id%}
+                    <div id="cnt" style="width:28%;">
+                        {{d.id}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="width:28%;">
+                        ----
+                    </div>
+                    {%endif%}
+                    {%if d.first_name or d.last_name%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{d.first_name}} {{d.last_name}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{d.driverprofile.franchise.franchise_name}}
+                    </div>
+                    {% if d.driverprofile.vehicle.vehicle_id%}
+                    <div id="cnt" style="font-size: 13px;">
+                        {{d.driverprofile.vehicle.vehicle_id}}
+                    </div>
+                    {%else%}
+                    <div id="cnt" style="font-size: 13px;">
+                        ----
+                    </div>
+                    {%endif%}
+                  
+                    <div id="cnt" style="font-size: 13px;">
+                        {{d.contact_no}}
+                    </div>
+                </div>
+            {%endfor%}
+            
+        </div>
+        
+    </div>
+
 </div>
 
 {% endblock content %}

@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@700&family=Merriweather+Sans:wght@500&family=Raleway:wght@500&display=swap" rel="stylesheet">
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body style="padding: 0; margin: 0; ">
+    <div id="main" style="padding: 0; margin: 0; width: 100vh; ">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            ReService Report
+        <hr>
+         </h1>
+         <p>Clients recorded as of {{today}}</p>
+
+         <h2>Clients under {{driver.first_name}} {{driver.middle_name}} {{driver.last_name}}({{driver.driverprofile.franchise.franchise_name}})</h2>
+         {%for s in students%}
+         <h3>Student No#: {{s.student.user.id}} </h3>
+         <table>
+            <tr>
+                <th>Name</th>
+                <td>{{s.student.user.first_name}} {{s.student.user.middle_name}} {{s.student.user.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{s.student.lot}} {{s.student.village}} {{s.student.street}} {{s.student.city}} {{s.student.zipcode}}</td>
+            </tr>
+            <tr>
+                <th>Year & Section</th>
+                <td>{{s.student.year_level}}-{{s.student.section}} </td>
+            </tr>
+            
+        
+        </table>
+
+          <div style="border: solid; padding: 10px;">
+            <h2>Summary</h2>
+            <label>No. of Students: {{count}}</label><br>
+            <p></p>
+          </div>
+          
+          {%endfor%}
+    </div>
+</body>
+</html>

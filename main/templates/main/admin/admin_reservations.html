@@ -105,7 +105,7 @@
                         <a href="{% url 'admin-reservations' %}?q=PENDING" class="list">Pending</a>
                     </li>
                     <li class="list">
-                        <a href="{% url 'admin-reservations' %}?q=SUCCESSFULL" class="list">Successful</a>
+                        <a href="{% url 'admin-reservations' %}?q=FORPAYMENT" class="list">For Payment</a>
                     </li>
                     <li class="list">
                         <a href="{% url 'admin-reservations' %}?q=DECLINED" class="list">Declined</a>
@@ -155,7 +155,7 @@
                         <div id="reserv-sts" style="color: #deaf39;">
                             {{reservation.reservation_status}}
                         </div>
-                    {%elif reservation.reservation_status == "SUCCESSFULL" %}
+                    {%elif reservation.reservation_status == "FORPAYMENT" %}
                         <div id="reserv-sts" style="color: green;">
                             {{reservation.reservation_status}}
                         </div>

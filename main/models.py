@@ -17,7 +17,8 @@ branch = [
 ]
 reservation_status = [
     ("PENDING","pending"),
-    ("SUCCESSFULL", "successfull"),
+    ("FORPAYMENT", "for payment"),
+    ("PAID", "for payment"),
     ("DECLINED", "declined"),
     ("CANCELED","canceled")
 ]
@@ -443,7 +444,7 @@ class Announcement(models.Model):
         return self.content
     
 class DriverStudents(models.Model):
-    
+
     student =models.ForeignKey(Profile, on_delete=models.CASCADE,null=True)
     assigned_driver =models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     #ayusing yung realtioship

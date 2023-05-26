@@ -1,0 +1,102 @@
+#row{
+    width: 100%;
+    background-color: #001c69;
+    padding: 0.5%;
+}
+h1{
+    font-family: "Bebas Neue";
+    color: #deaf39;
+}
+
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#img-wrap{
+    float: left;
+    width: 20%;
+}
+#information{
+    float: right;
+    width: 75%;
+}
+
+#hdr{
+    width: 100%;
+    background-color: #001c69;
+    font-family: "Bebas Neue";
+    color: #deaf39;
+    font-size: 25px;
+    padding: 1%;
+}
+
+#content{
+    background-color: white;
+    padding: 1%;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: auto;
+
+}
+#content1{
+    background-color: white;
+    padding: 1%;
+    min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+
+}
+
+#img{
+    width: 100%;
+}
+
+
+#subrow{
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+label{
+    float: left;
+    width: 20%;
+    font-family: "Bebas Neue";
+    font-size: 22px;
+}
+
+#info{
+    width: 80%;
+    float: right;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
+}
+
+#left{
+    width: 50%;
+    float: left;
+    padding: 1%;
+}
+
+#right{
+    width: 50%;
+    float: right;
+    padding: 1%;
+}
+
+.reserve-btn{
+    width: 10%;
+    padding: 1%;
+    color: white;
+    background-color: #deaf39;
+    font-family: "Bebas Neue";
+}
+h3{
+    font-size: 25px;
+    font-family: "Bebas Neue";
+}
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+}

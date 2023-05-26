@@ -22,7 +22,7 @@
     <div id="row">
         Pay Balance<br>
         <label>Account No:</label>
-        <p>{{request.user.accounts.acct_no}}</p>
+        <p>{{account.acct_no}}</p>
     </div>
     <form method="POST" action="">
         {%csrf_token%}

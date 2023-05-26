@@ -1,0 +1,499 @@
+{% extends 'main.html' %}
+{% block title %}ReService:Driver Information{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/reservation-driver-profile.css' %}"/>
+<style>
+    #main{
+        background-image: url("{%static 'images/brrr.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        min-height: 800px;
+        background-attachment: fixed;
+        width: 100%;
+        padding: 2%;
+    }
+    /* The Modal (background) */
+    .modal {
+       
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+        background-image: url("{%static 'images/landing.png'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+    
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0} 
+      to {top:0; opacity:1}
+    }
+    
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+    
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #deaf39;
+      color: white;
+      font-family: "Bebas Neue";
+    }
+    
+    .modal-body{
+       padding: 3%;
+    
+    }
+    
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+    #modal-header{
+        margin-right: 30%;
+    }
+</style>
+<div id="main">
+    <div id="row">
+        <h1>Driver Infromation</h1>
+    </div>
+    <div id="row" class="clearfix" style="background-color: transparent; padding: 2%;">
+        <div id="img-wrap">
+            <div id="hdr" style="padding:4%;">Driver Picture</div>
+            <div id="content">
+                {% if service.driver.image %}
+                    <img id="img" src="{{service.driver.image.url}}">
+                {%else%}
+                    <img id="img" src="{% static 'images/nopic.jpg'%}">
+                {%endif%}
+            </div>
+        </div>
+
+        <div id="information">
+            <div id="hdr">Profile Information</div>
+            <div id="content" class="clearfix">
+                <div id="left">
+                    <div id="subrow" class="clearfix">
+                        <label>Driver Id:</label>
+                        <div id="info">
+                            {{service.driver.user.id}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Name:</label>
+                        <div id="info">
+                            {{service.driver.user.first_name}} {{service.driver.user.last_name}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Birth Date:</label>
+                        <div id="info">
+                            {{service.driver.birth_date}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Contact No:</label>
+                        <div id="info">
+                            {{service.driver.user.contact_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Email:</label>
+                        <div id="info">
+                            {{service.driver.user.email}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Address:</label>
+                        <div id="info">
+                            {{service.driver.lot}} {{service.driver.street}} {{service.driver.village}} {{service.driver.city}} {{service.driver.zipcode}}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="right">
+                    <div id="subrow" class="clearfix">
+                        <label>Franchise:</label>
+                        <div id="info">
+                            {{service.driver.franchise.franchise_name}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Franchise#:</label>
+                        <div id="info">
+                            {{service.driver.franchise.franchise_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Operator:</label>
+                        <div id="info">
+                            {{service.driver.franchise.operator_firstN}} {{service.driver.franchise.operator_lastN}} 
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Service:</label>
+                        <div id="info">
+                            {{service}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Fee:</label>
+                        <div id="info">
+                            {{service.price}} pesos
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="row">
+        <h1>Vehicle Infromation</h1>
+    </div>
+    <div id="row" class="clearfix" style="background-color: transparent; padding: 2%;">
+       <div id="left">
+        <div id="hdr">Vehicle Image</div>
+        <div id="content1">
+            {% if service.driver.vehicle.vehicle.image%}
+                <img id="img" src="{{service.driver.vehicle.vehicle.image.url}}">
+            {%else%}
+            <img id="img" src="{% static 'images/noimage.png'%}">
+            {%endif%}
+        </div>
+       </div>
+       <div id="right">
+        <div id="hdr">Vehicle Information</div>
+        <div id="content1">
+            <div id="subrow" class="clearfix">
+                <label>Vehicle Id:</label>
+                <div id="info">
+                    {{service.driver.vehicle.vehicle.vehicle_id}}
+                </div>
+            </div>
+            <div id="subrow" class="clearfix">
+                <label>Model:</label>
+                <div id="info">
+                    {{service.driver.vehicle.vehicle.model}}
+                </div>
+            </div>
+            <div id="subrow" class="clearfix">
+                <label>Plate No:</label>
+                <div id="info">
+                    {{service.driver.vehicle.vehicle.plate_no}}
+                </div>
+            </div>
+            <div id="subrow" class="clearfix">
+                <label>Capacity:</label>
+                <div id="info">
+                    {{service.driver.vehicle.vehicle.capacity}}
+                </div>
+            </div>
+            <div id="subrow" class="clearfix">
+                <label>Included:</label>
+                <div id="info">
+                    {{service.driver.vehicle.vehicle.included}}
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+
+    <div id="row">
+        <button class="reserve-btn" id="myBtn">Reserve</button>
+    </div>
+
+</div>
+
+
+
+<!-- Trigger/Open The Modal -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <form method="POST" action="">
+            {%csrf_token%}
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h2 id="modal-header">Confirm Reservation</h2>
+          <span class="close">&times;</span>
+          
+        </div>
+        <div class="modal-body">
+            <div id="row" style="background-color: white;" class="clearfix">
+                <div id="hdr"> School Service Information</div>
+             
+                <div id="left" >
+                    <div id="subrow" class="clearfix">
+                        <label>Driver Id:</label>
+                        <div id="info">
+                            {{service.driver.user.id}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Driver Name:</label>
+                        <div id="info">
+                            {{service.driver.user.last_name}},{{service.driver.user.first_name}},{{service.driver.user.middle_name}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Contact No:</label>
+                        <div id="info">
+                            {{service.driver.user.contact_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Email:</label>
+                        <div id="info">
+                            {{service.driver.user.email}}
+                        </div>
+                    </div>
+                </div>
+                <div id="right">
+                    <div id="subrow" class="clearfix">
+                        <label>Franchise:</label>
+                        <div id="info">
+                            {{service.driver.franchise.franchise_name}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Franchise#:</label>
+                        <div id="info">
+                            {{service.driver.franchise.franchise_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Operator:</label>
+                        <div id="info">
+                            {{service.driver.franchise.operator_firstN}} {{service.driver.franchise.operator_lastN}} 
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Service:</label>
+                        <div id="info">
+                            {{service}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Fee:</label>
+                        <div id="info">
+                            {{service.price}} pesos
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="row" style="background-color: white;" class="clearfix">
+                <div id="hdr"> School Service Vehicle Information</div>
+             
+                <div id="left" >
+                    {% if service.driver.vehicle.vehicle.image%}
+                        <img id="img" src="{{service.driver.vehicle.vehicle.image.url}}">
+                    {%else%}
+                         <img id="img" src="{% static 'images/noimage.png'%}">
+                    {%endif%}
+                </div>
+                <div id="right">
+                    <div id="subrow" class="clearfix">
+                        <label>Vehicle Id:</label>
+                        <div id="info">
+                            {{service.driver.vehicle.vehicle.vehicle_id}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Model:</label>
+                        <div id="info">
+                            {{service.driver.vehicle.vehicle.model}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Plate No:</label>
+                        <div id="info">
+                            {{service.driver.vehicle.vehicle.plate_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Capacity:</label>
+                        <div id="info">
+                            {{service.driver.vehicle.vehicle.capacity}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Included:</label>
+                        <div id="info">
+                            {{service.driver.vehicle.vehicle.included}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="row" style="background-color: white;" class="clearfix">
+                <div id="hdr"> Student Information</div>
+             
+                <div id="left" >
+                    <div id="subrow" class="clearfix">
+                        <label>Student Id:</label>
+                        <div id="info">
+                            {{request.user.id}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Student Name:</label>
+                        <div id="info">
+                            {{request.user.last_name}},{{request.user.first_name}},{{request.user.middle_name}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Contact No:</label>
+                        <div id="info">
+                            {{request.user.contact_no}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Email:</label>
+                        <div id="info">
+                            {{request.user.email}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Address:</label>
+                        <div id="info">
+                            {{request.user.profile.lot}} {{request.user.profile.village}} {{request.user.profile.street}} {{request.user.profile.city}} {{request.user.profile.zipcode}}
+                        </div>
+                    </div>
+                </div>
+                <div id="right">
+                    <div id="subrow" class="clearfix">
+                        <label>Year level :</label>
+                        <div id="info">
+                            {{request.user.profile.year_level}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Section:</label>
+                        <div id="info">
+                            {{request.user.profile.section}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Guardian:</label>
+                        <div id="info">
+                            {{request.user.profile.parent}} 
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Guardian contact#:</label>
+                        <div id="info">
+                            {{request.user.profile.parent_contactNo}}
+                        </div>
+                    </div>
+                    <div id="subrow" class="clearfix">
+                        <label>Guardian Address:</label>
+                        <div id="info">
+                            {{request.user.profile.parent_address}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="row" style="background-color: white;" class="clearfix">
+                <div id="hdr">School Service Rules and Regulations</div>
+                
+                <div id="content" style="max-height: 680px;">
+                    <p>1. The school transportation service is for one(1) whole year. The payment of fee is on a monthly basis, regardless of the number of school days in a month. No daily or fraction computation is allowed. Transportation service covers regular school days only.</p>
+                    <p>2. The service route coverage tis limited on from residence to school and vice versa. However if the location of the residence is inaccessible, a pick-up point will be designated. Please advise your child to be at the pick-up point at the appointed time.</p>
+                    <p>3. Rehearsals, practices, educational tours, family days, graduation/recognition rites, and other activities that will be held outside the school premises shall not be covered by this agreement. Parent/guardians shall have to take charge in bringing their children to the areas of specific activity.</p>
+                    <p>4. Travel time allowance is just sufficient for safe and relaxed trip from school, so punctuality is earnestly requested. When the school bus service arrives at your respective pick-up point, your child must be ready as the delay of one will affect other students.</p>
+                    <p>5. Failure to ride due to absence or suspension of classes won't be deducted from the monthly fee.</p>
+                    <p>6. Caregivers, guardians, or parents who will accompany their children on a permanent basis shall be pain in full.</p>
+                    <p>7. The Board and Directors of the School Service Association determine and approve the rates and increases of the fee.</p>
+                    <p>8. In case that parents/guardians are not satisfied with the performance of the service, they have the option to terminate this agreement. Likewise, the operator has the option to terminate the agreement if there will be irreconcilable difference with the parent/guardian.</p>
+                    <p>9. As soon as the child disembarks from the bus appointed time and place, the operator's responsibility is confined only when the child is inside the bus.</p>
+                    <p>10. Transfer of riders is based on operator to operator transaction.</p>
+                    <p>11. The service vehicle is equipped with medical kit, umbrellas, and cellular phones. For safety reason, the driver may not be able to answer your text messages but may answer the calls.</p>
+                    <p>12. Accident insurance shall be in accordance with Passengers Management Insurance(PAMI) and LTO's existing policies on insurances.</p>
+                    <br>
+                    <p> by confirming this reservation, you agree and acknowledge the rules and regulations of this school service</p>
+                </div>
+            </div>
+            <div id="hdr"> <input type="submit" class="reserve-btn" value="Confirm"></div>
+        </div>
+    
+      </div>
+    </form>
+    </div>
+    
+    <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    
+    </script>
+    
+{% endblock %}

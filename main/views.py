@@ -192,7 +192,7 @@ def student_myservice(request):
        
        
         entry = DriverStudents.objects.get(student = request.user.profile) 
-        reservation = Reservation.objects.filter(user = request.user,reservation_status = "SUCCESSFULL")
+        reservation = Reservation.objects.filter(user = request.user,reservation_status = "FORPAYMENT")
         
         
         
@@ -273,11 +273,8 @@ def schdeule_fillup(request):
     return render(request,'main/student/student_schedule_form.html',context)
 @unauthenticated_user
 def login_page(request):
-    reservations = Reservation.objects.all()
-    
-    for r in reservations:
-        if r.created < r.valid_until:
-            r.active =False    
+  
+
             
     page = 'student_login'
     if request.method == 'POST':
@@ -338,8 +335,23 @@ def registerUser(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
 def mainNavPage(request):   
-   
-    return render(request,'main/student/student_navigation_page.html')
+    reservations = Reservation.objects.filter(user = request.user,active = True)
+    payments = Payment.objects.filter(user = request.user, status = "SUCCESSFULL")
+    
+    users = request.user
+    
+    if reservations and payments:
+        if users.role == "STUDENT":
+            
+            for r in reservations:
+                if r.created == r.valid_until:
+                    
+                    r.active =False
+                    
+                    stdnt_list = DriverStudents.objects.get(student = r.user.profile)
+                    stdnt_list.delete()
+                
+    return render(request,'main/student/student-nav.html')
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
@@ -401,7 +413,7 @@ def reservation(request):
     address.append(profile.zipcode)
     
     
-    reservations = Reservation.objects.filter(user = request.user,reservation_status="SUCCESSFULL",active = True)
+    reservations = Reservation.objects.filter(user = request.user,reservation_status="FORPAYMENT",active = True)
     
 
     if reservations:
@@ -420,7 +432,7 @@ def reservation(request):
     return render(request,'main/student/reservation_driver_list.html',context)
 
 def existing_reservation(request):
-    reservations = Reservation.objects.filter(user = request.user,reservation_status="SUCCESSFULL")
+    reservations = Reservation.objects.filter(user = request.user,reservation_status="FORPAYMENT")
     
     today = datetime.date.today()
     year = today.year
@@ -446,7 +458,7 @@ def reservation_driver_info(request,pk):
         messages.success(request,"We received your reservation, please wait for the confimation email")
         return redirect('navPage')
     context={'service':service,'profile_driver': profile_driver}
-    return render(request,'main/reservation/reservation_driver_profile.html',context)
+    return render(request,'main/reservation/reservation-driver-profile.html',context)
 
 
 
@@ -522,6 +534,37 @@ def driver_myservice(request):
 
     return render(request,'main/driver/driver_myservice.html',context)
 
+def print_stdnt_list(request,pk):
+    template_path = 'main/driver_student_list.html'
+    today = datetime.date.today()
+    file_date = datetime.datetime.now()
+    
+    driver = User.objects.get(id=pk)
+    students = DriverStudents.objects.filter(assigned_driver = driver)
+        
+    count = len(students)
+     
+    filename = f"reservice-student_list_{driver.first_name}_{driver.last_name}:{file_date}.pdf"
+    context = {'today':today,
+                'driver':driver,
+                'students':students,
+                'count':count
+                   }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename= f"payment_reports{today}.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 def driver_add_pickup_time(request,pk):
     profile = Profile.objects.get(user_id = pk)
     drvr_stdnt_table = DriverStudents.objects.filter(assigned_driver = request.user)
@@ -565,7 +608,7 @@ def driver_reservation_info(request,pk):
 
 def driver_reservation_accpeted(request,pk):
     reservation = Reservation.objects.get(reservation_id=pk)
-    reservation.reservation_status = "SUCCESSFULL"
+    reservation.reservation_status = "FORPAYMENT"
     reservation.save()
     stdnt = User.objects.get(email=reservation.user.email)
     current_date = datetime.datetime.now()  
@@ -638,7 +681,7 @@ def driver_register_page(request):
 @allowed_users(allowed_roles=['driver','admin'])
 def drivermainNavPage(request):
     context ={}
-    return render(request,'main/driver/driver_navigation_page.html',context )
+    return render(request,'main/driver/driver-nav.html',context )
 #driver views ends here.....
 
 @login_required(login_url='login')
@@ -728,6 +771,7 @@ def admin_reports(request):
     users = User.objects.all()
     reservations = Reservation.objects.all()
     payments = Payment.objects.all()
+    drivers = User.objects.filter(role="DRIVER")
     if request.method == "POST":
         print = request.POST.get('print')
         
@@ -751,14 +795,49 @@ def admin_reports(request):
             return redirect('pdf-users-all')
         elif print == "all":
             return redirect('all')
+        else:
+            return redirect('drivers-pdf-indiv', pk = print)
     
-    context={'reservations':reservations,'payments':payments,'users':users}
+    context={'reservations':reservations,'payments':payments,'users':users,'drivers':drivers}
     return render(request,'main/admin/admin_reports.html',context)
+
+def drivers_pdf_indiv(request,pk):
+    template_path = 'main/driver_reports.html'
+    today = datetime.date.today()
+    file_date = datetime.datetime.now()
+    driver = User.objects.get(id = pk)
+    student_driver = DriverStudents.objects.filter(assigned_driver = driver)
+    
+    count = len(student_driver)
+        
+    filename = f"reservice-driver-reports:{file_date}.pdf"
+    context = {'today':today,
+               'student_driver':student_driver,
+               'driver':driver,
+               'count':count
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename= f"payment_reports{today}.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
 
 def pdf_reports_payment_daily(request):
     template_path = 'main/pay_day_report.html'
     today = datetime.date.today()
-
+    file_date = datetime.datetime.now()
+  
     payments = Payment.objects.all()
     unsuccessfull_payment = Payment.objects.filter(status = "FAILED")
     pending_payment = Payment.objects.filter(status="PENDING")
@@ -788,7 +867,7 @@ def pdf_reports_payment_daily(request):
     pending_payment_count = len(pending)
     payments_count = len(pay)
     successful_payment_count = len(success )    
-    
+    filename = f"reservice-payment-daily_reports:{file_date}.pdf"
     context = {'payments':payments,
                'pending_payment_count':pending_payment_count,
                'payments_count':payments_count,
@@ -800,8 +879,8 @@ def pdf_reports_payment_daily(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+   # response['Content-Disposition'] = 'filename= f"payment_reports{today}.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -818,8 +897,8 @@ def pdf_report_res_daily(request):
     template_path = 'main/reservaiton_day_report.html'
     today = datetime.date.today()
     reservation = Reservation.objects.all()
-
-    
+    file_date = datetime.datetime.now()
+    filename = f"reservice-reservation-daily_reports:{file_date}.pdf"
     res = []
     for r in reservation:
         if str(r.get_date()) == str(today):
@@ -849,8 +928,8 @@ def pdf_report_res_daily(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -870,7 +949,8 @@ def all_report(request):
     reservations = Reservation.objects.all()
     template_path = 'main/all_report.html'
     today = datetime.datetime.now()
-
+    file_date = datetime.datetime.now()
+    filename = f"reservice-all-reports:{file_date}.pdf"
     
     user_count = len(users)
     payments_count = len(payments)
@@ -898,8 +978,8 @@ def all_report(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -915,7 +995,8 @@ def all_report(request):
 def render_pdf_user_all(request):
     template_path = 'main/user_all_report.html'
     today = datetime.datetime.now()
-
+    file_date = datetime.datetime.now()
+    filename = f"reservice-user-reports:{file_date}.pdf"
     users = User.objects.all()
     student_users = User.objects.filter(role = "STUDENT")
     driver_users = User.objects.filter(role="DRIVER")
@@ -940,8 +1021,8 @@ def render_pdf_user_all(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -958,6 +1039,8 @@ def render_pdf_payment_yearly(request):
     today = datetime.datetime.now()   
     year = today.strftime("%Y")
     
+        
+    filename = f"reservice-payment-yearly-reports:{year}.pdf"
     payments = Payment.objects.all()
     unsuccessfull_payment = Payment.objects.filter(status = "FAILED")
     pending_payment = Payment.objects.filter(status="PENDING")
@@ -1012,8 +1095,8 @@ def render_pdf_payment_yearly(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1029,7 +1112,10 @@ def render_pdf_payment_month(request):
     template_path = 'main/payments_monthly_report.html'
     today = datetime.datetime.now()   
     month = today.strftime("%B")
+    year = today.strftime("%Y")
     
+        
+    filename = f"reservice-payment-monthly-reports:{month}-{year}.pdf"
     payments = Payment.objects.all()
     unsuccessfull_payment = Payment.objects.filter(status = "FAILED")
     pending_payment = Payment.objects.filter(status="PENDING")
@@ -1084,8 +1170,8 @@ def render_pdf_payment_month(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1100,7 +1186,7 @@ def render_pdf_payment_month(request):
 def render_pdf_payment_all(request):
     template_path = 'main/payments_all_report.html'
     today = datetime.datetime.now()
-
+    filename = f"reservice-payment-reports:{today}.pdf"
     payments = Payment.objects.all()
     unsuccessfull_payment = Payment.objects.filter(status = "FAILED")
     pending_payment = Payment.objects.filter(status="PENDING")
@@ -1132,8 +1218,8 @@ def render_pdf_payment_all(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1150,6 +1236,7 @@ def render_pdf_payment_all(request):
 def render_pdf_all(request):
     template_path = 'main/reservaiton_all_report.html'
     today = datetime.datetime.now()
+    filename = f"reservice-reservation-reports:{today}.pdf"
     reservation = Reservation.objects.all()
     pending_reservations = Reservation.objects.filter(reservation_status = "PENDING")
     unpaid_reservations = Reservation.objects.filter(payment_status = "PENDING")
@@ -1170,8 +1257,8 @@ def render_pdf_all(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1188,6 +1275,7 @@ def render_pdf_view_yearly(request):
     template_path = 'main/yearly_report.html'
     today = datetime.datetime.now()
     year = today.strftime("%Y")
+    filename = f"reservice-reservation-yearly_reports:{year}.pdf"
     year_list = []
     unpaid_list_yearly=[]
     pending_list_yearly=[]
@@ -1222,8 +1310,8 @@ def render_pdf_view_yearly(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1239,7 +1327,9 @@ def render_pdf_view_yearly(request):
 def render_pdf_view(request):
     template_path = 'main/reports.html'
     today = datetime.datetime.now()
+    year = today.strftime("%Y")
     month1 = today.strftime("%B")
+    filename = f"reservice-reservation-monthly_reports:{month1}-{year}.pdf"
     month_list = []
     unpaid_list=[]
     pending_list=[]
@@ -1274,8 +1364,8 @@ def render_pdf_view(request):
                    }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    response['Content-Disposition'] = 'filename="report.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    #response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
@@ -1320,7 +1410,7 @@ def admin_payments_indiv(request,pk):
             
     reservation.valid_until = reservation.created.date() + datetime.timedelta(days=366)
     reservation.save()
-    
+ 
     if request.method == "POST":
         payment.status = "SUCCESSFULL"
         account.balance = float(account.balance) - float(payment.total)
@@ -1328,12 +1418,17 @@ def admin_payments_indiv(request,pk):
         reservation.payment_status = "PAID"
         reservation.save()
         payment.save()
+        
+        if account.balance == 0:
+            reservation.reservation_status = "PAID"
+            reservation.save()
+       
         if str(payment.user.profile) not in str(drv):
-            DriverStudents.objects.create(student = payment.user.profile, assigned_driver = reservation.driver.user)
+            x = DriverStudents.objects.create(student = payment.user.profile, assigned_driver = reservation.driver.user)
             
-            current_date = datetime.datetime.now()  
-            subject = 'ReService:Payment Verification'
-            message = render_to_string("main/payment_verified_mssg.html", {
+        current_date = datetime.datetime.now()  
+        subject = 'ReService:Payment Verification'
+        message = render_to_string("main/payment_verified_mssg.html", {
                                 'user': payment.user,
                                 'reservation':payment.reservation,
                             
@@ -1341,8 +1436,8 @@ def admin_payments_indiv(request,pk):
                                 'payment':payment,
                             })
             
-            email_from = settings.EMAIL_HOST_USER
-            send_mail(subject, message, email_from,[payment.user.email], fail_silently=False)
+        email_from = settings.EMAIL_HOST_USER
+        send_mail(subject, message, email_from,[payment.user.email], fail_silently=False)
         messages.success(request,'Payment approved')
         return redirect('admin-payments')
     context={'payment':payment}
@@ -1960,7 +2055,7 @@ def admin_add_driver(request):
 
 def admin_drivers_indiv(request,pk):
     userS = User.objects.get(id=pk)
-    reservation = Reservation.objects.filter(driver = userS.driverprofile,reservation_status = "SUCCESSFULL",active=True)
+    reservation = Reservation.objects.filter(driver = userS.driverprofile,reservation_status = "FORPAYMENT",active=True)
     #reservation = Reservation.objects.get(user_id=pk)
     
     context = {'userS':userS,"reservation":reservation ,}
@@ -2032,7 +2127,7 @@ def admin_reservation_indiv(request,pk):
         account.reservation = reservation
         account.balance  = float(reservation.service.price)*10
         account.save()
-        reservation.reservation_status = "SUCCESSFULL"
+        reservation.reservation_status = "FORPAYMENT"
         reservation.active = True
         reservation.save()
         
@@ -2107,8 +2202,9 @@ def admin_cancelation_individual(request,pk):
     cancelation = ReservationCancelation.objects.get(cancelation_id=pk)
     reservation = Reservation.objects.get(reservation_id = cancelation.reservation.reservation_id)
     account = Accounts.objects.get(reservation = reservation)
+    stdnt_list = DriverStudents.objects.get(student= reservation.user.profile)
     if request. method == "POST":
-        
+        stdnt_list.delete()
         reservation.reservation_status = "CANCELED" 
         reservation.active = False
         reservation.save()
@@ -2419,6 +2515,7 @@ def payment(request,pk):
     total = 0.0
    
     reservation = Reservation.objects.get(reservation_id = pk)
+
     account = Accounts.objects.get(reservation = reservation)
     total_payment = Payment.objects.filter(user = request.user, status ="SUCCESSFULL",account = account)
     service = Services.objects.get(service_id = reservation.service.service_id)
@@ -2560,7 +2657,7 @@ def franchise_registration(request):
 def franchise_nav(request):
     franchise = Franchise.objects.get(user = request.user)
     context = {'franchise':franchise}
-    return render(request,'main/franchise/franchise_nav.html',context)
+    return render(request,'main/franchise/franchise_navigation.html',context)
 
 
 def frannchise_drivers(request):

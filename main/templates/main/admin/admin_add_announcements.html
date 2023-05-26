@@ -3,6 +3,15 @@
 {% load static %}
 
 {% block content%}
+<style>
+    #main{
+        background-image: url("{%static 'images/landing.png'%}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+</style>
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/add-reservation.css' %}">
 <div id="main">
     <div id="card">

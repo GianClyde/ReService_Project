@@ -1,0 +1,102 @@
+{%extends 'main.html'%}
+
+{%block title%}ReService{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver-nav.css' %}">
+<style>
+    .card{
+        filter: grayscale(0%);
+    }
+#card1{
+        background-image: url("{%static 'images/c1.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+       
+        
+    }
+#card2{
+        background-image: url("{%static 'images/c2.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+     
+    }
+
+
+.card:hover {
+    background-image: url("{%static 'images/c1.jpg'%}");
+    filter: grayscale(0%);
+    
+}
+
+.card:hover label{
+
+    color: #deaf39;
+  
+}
+.card:hover span{
+
+    display: block;
+}
+
+
+@media screen and (min-width:750px){
+    .card{
+        filter: grayscale(100%);
+    }
+#card1{
+        background-image: url("{%static 'images/c1.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+       
+        
+    }
+#card2{
+        background-image: url("{%static 'images/c.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+     
+    }
+
+
+.card:hover {
+    background-image: url("{%static 'images/c1.jpg'%}");
+    filter: grayscale(0%);
+    
+}
+
+.card:hover label{
+
+    color: #deaf39;
+  
+}
+.card:hover span{
+
+    display: block;
+}
+
+}
+
+</style>
+
+<a id="main" class="clearfix">
+    <a href="{% url 'driver-profile' request.user.id%}"><div class="card" id="card1">
+        <label>My Profile</label>
+        <span>manage your information</span>
+    </div></a>
+    <a href="{% url 'myservice-driver'%}"><div class="card" id="card2">
+        <label>My Service</label>
+        <span>manage your service</span>
+    </div></a>
+</div>
+    
+
+{%endblock%}

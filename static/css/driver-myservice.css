@@ -111,3 +111,13 @@ img{
     background-color: #001c69;
     color: white;
 }
+
+.print-btn{
+    padding: 1%;
+    width: 10%;
+    font-family: "Bebas Neue";
+    background-color: #deaf39;
+    color: white;
+    margin-left: 45%;
+    
+}

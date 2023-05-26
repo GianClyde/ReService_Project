@@ -1,0 +1,144 @@
+{%extends 'main.html'%}
+
+{%block title%}ReService{%endblock%}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/franchise_navigation.css' %}">
+<style>
+    .card{
+        filter: grayscale(0%);
+    }
+#card1{
+        background-image: url("{%static 'images/c1.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+       
+        
+    }
+#card2{
+        background-image: url("{%static 'images/c2.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+     
+    }
+#card3{
+        background-image: url("{%static 'images/c3.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+    
+        
+    }
+#card4{
+        background-image: url("{%static 'images/c4.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+    
+        
+    }
+
+.card:hover {
+    background-image: url("{%static 'images/c1.jpg'%}");
+    filter: grayscale(0%);
+    
+}
+
+.card:hover label{
+
+    color: #deaf39;
+  
+}
+.card:hover span{
+
+    display: block;
+}
+
+
+@media screen and (min-width:750px){
+    .card{
+        filter: grayscale(100%);
+    }
+#card1{
+        background-image: url("{%static 'images/a1.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+       
+        
+    }
+#card2{
+        background-image: url("{%static 'images/a2.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+     
+    }
+#card3{
+        background-image: url("{%static 'images/a3.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+    
+        
+    }
+#card4{
+        background-image: url("{%static 'images/a4.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+        transition: 0.5s;
+    
+        
+    }
+
+.card:hover {
+    background-image: url("{%static 'images/c1.jpg'%}");
+    filter: grayscale(0%);
+    
+}
+
+.card:hover label{
+
+    color: #deaf39;
+  
+}
+.card:hover span{
+
+    display: block;
+}
+
+}
+
+</style>
+
+<a id="main">
+    <a href="{% url 'profile' request.user.id%}"><div class="card" id="card1">
+        <label>My Franchise</label>
+        <span>manage your information</span>
+    </div></a>
+    <a href="{% url 'reservation'%}"><div class="card" id="card2">
+        <label>My Drivers</label>
+        <span>manage and add your drivers</span>
+    </div></a>
+    <a href="{% url 'myservice'%}"><div class="card" id="card3">
+        <label>My Vehicles</label>
+        <span>manage and add your vehicles</span>
+    </div></a>
+    <a href="{% url 'faq'%}"></a><div class="card" id="card4">
+        <label>My Services</label>
+        <span>manage services offered</span>
+    </div></a>
+</div>
+    
+
+{%endblock%}
