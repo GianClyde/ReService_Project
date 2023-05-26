@@ -192,7 +192,7 @@ def student_myservice(request):
        
        
         entry = DriverStudents.objects.get(student = request.user.profile) 
-        reservation = Reservation.objects.filter(user = request.user,reservation_status = "FORPAYMENT",reservation_status = "PAID")
+        reservation = Reservation.objects.filter(user = request.user,reservation_status = "FORPAYMENT")
         
         
         
