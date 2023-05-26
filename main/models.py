@@ -18,7 +18,7 @@ branch = [
 reservation_status = [
     ("PENDING","pending"),
     ("FORPAYMENT", "for payment"),
-    ("PAID", "for payment"),
+    ("PAID", "paid"),
     ("DECLINED", "declined"),
     ("CANCELED","canceled")
 ]
