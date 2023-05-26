@@ -451,7 +451,7 @@ def reservation_driver_info(request,pk):
     
     if request.method == "POST":
         reservation = Reservation.objects.create(user = request.user , driver = service.driver, service = service )
-        reservation.valid_until =  reservation.created.date() + datetime.timedelta(days=1)
+        reservation.valid_until =  reservation.created.date() + datetime.timedelta(days=3)
         reservation.save()
         mssg = f'hi{reservation.user.last_name}, your reservation has been recorded plesase wait for the confirmation of your reservation', 
         reservation.send_sms(mssg)
