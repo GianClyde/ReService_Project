@@ -122,19 +122,19 @@
 </style>
 
 <a id="main">
-    <a href="{% url 'profile' request.user.id%}"><div class="card" id="card1">
+    <a href="{% url 'franchise-profile' request.user.id%}"><div class="card" id="card1">
         <label>My Franchise</label>
         <span>manage your information</span>
     </div></a>
-    <a href="{% url 'reservation'%}"><div class="card" id="card2">
+    <a href="{% url 'franchise-drivers'%}"><div class="card" id="card2">
         <label>My Drivers</label>
         <span>manage and add your drivers</span>
     </div></a>
-    <a href="{% url 'myservice'%}"><div class="card" id="card3">
+    <a href="{%url 'franchise-vehicles'%}"><div class="card" id="card3">
         <label>My Vehicles</label>
         <span>manage and add your vehicles</span>
     </div></a>
-    <a href="{% url 'faq'%}"></a><div class="card" id="card4">
+    <a href="{%url 'franchise-services'%}"></a><div class="card" id="card4">
         <label>My Services</label>
         <span>manage services offered</span>
     </div></a>
