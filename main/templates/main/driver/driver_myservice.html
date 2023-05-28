@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{%block title%} Reservice:MyService{%endblock%}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/driver-myservice.css' %}">
@@ -20,13 +20,6 @@
 
 
     <div id="row" class="clearfix">
-        <div id="left">
-            <div id="hdr">My Vehicle</div>
-            <div id="image">
-                <img src="{%static 'images/franchise.png'%}">
-            </div>
-            
-        </div>
         <div id="right">
             
             <div id="sub-row">
@@ -36,12 +29,83 @@
                     
                     
                 </div>
-                {%if dow == "Saturday" or dow == "Sunday"%}
-                <div id="content" style="width: 50%; margin: auto;">
-                    <div id="main-content">
-                        <img src="{%static 'images/noskul.gif'%}">
+                {% if table%}
+                    {%if dow == "Saturday" or dow == "Sunday"%}
+                    <div id="content" style="width: 50%; margin: auto;">
+                        <div id="main-content">
+                            <img src="{%static 'images/noskul.gif'%}">
+                        </div>
                     </div>
-                </div>
+                    {%else%}
+                    <div id="content">
+                        <div id="table-label" class="clearfix">
+                            
+                            <div id="tb-lbl" style="width: 30%;">
+                                Name
+                            </div>
+                            <div id="tb-lbl" style="width: 30%;">
+                                Address
+                            </div>
+                            <div id="tb-lbl" style="width: 20%;">
+                                Pick Up
+                            </div>
+                            <div id="tb-lbl" style="width: 20%;">
+                                Dismissal
+                            </div>
+                        </div>
+                        {% for entry in table%}
+                            <div id="main-content" class="clearfix">
+                                <div id="tb-cnt" style="width: 30%;">
+                                    {{entry.student.user.first_name}} {{entry.student.user.middle_name}} {{entry.student.user.last_name}}
+                                </div>
+                                <div id="tb-cnt" style="width: 30%;">
+
+                                    {{entry.student.lot}} {{entry.student.street}} {{entry.student.village}} {{entry.student.city}}
+                                </div>
+                                {% if dow == "Monday"%}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.monday_pickUp}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.mondy_dismiss}}
+                                </div>
+                                {% elif dow == "Tuesday" %}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.tuesday_pickUp}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.tuesday_dismiss}}
+                                </div>
+                                {% elif dow == "Wednesday" %}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.wednesday_pickUp}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.wednesday_dismiss}}
+                                </div>
+                                {% elif dow == "Thursday" %}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.thursday_pickUp}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.thursday_dismiss}}
+                                </div>
+                                {% elif dow == "Friday" %}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.friday_pickUp}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    {{entry.student.schedule.friday_dismiss}}
+                                </div>
+                                {%else%}
+                                <div id="tb-cnt" style="width: 20%;">
+                                    Weekend
+                                </div>
+                                {%endif%}
+                            </div>
+                        {%endfor%}
+                    </div>
+                    {%endif%}
                 {%else%}
                 <div id="content">
                     <div id="table-label" class="clearfix">
@@ -59,59 +123,13 @@
                             Dismissal
                         </div>
                     </div>
-                    {% for entry in table%}
-                        <div id="main-content" class="clearfix">
-                            <div id="tb-cnt" style="width: 30%;">
-                                {{entry.student.user.first_name}} {{entry.student.user.middle_name}} {{entry.student.user.last_name}}
-                            </div>
-                            <div id="tb-cnt" style="width: 30%;">
-
-                                {{entry.student.lot}} {{entry.student.street}} {{entry.student.village}} {{entry.student.city}}
-                            </div>
-                            {% if dow == "Monday"%}
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.monday_pickUp}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.mondy_dismiss}}
-                            </div>
-                            {% elif dow == "Tuesday" %}
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.tuesday_pickUp}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.tuesday_dismiss}}
-                            </div>
-                            {% elif dow == "Wednesday" %}
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.wednesday_pickUp}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.wednesday_dismiss}}
-                            </div>
-                            {% elif dow == "Thursday" %}
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.thursday_pickUp}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.thursday_dismiss}}
-                            </div>
-                            {% elif dow == "Friday" %}
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.friday_pickUp}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                {{entry.student.schedule.friday_dismiss}}
-                            </div>
-                            {%else%}
-                            <div id="tb-cnt" style="width: 20%;">
-                                Weekend
-                            </div>
-                            {%endif%}
-                        </div>
-                    {%endfor%}
+                </div>
+                <div id="main-content" class="clearfix">
+                    <h1>No Students enrolled </h1>
+                
                 </div>
                 {%endif%}
+                
             </div>
             
             <div id="sub-row">
@@ -122,6 +140,36 @@
                     
                 </div>
                 
+                {% if table%}
+                    <div id="content">
+                        <div id="table-label" class="clearfix">
+                            <div id="tb-lbl" style="width: 40%;">
+                                Name
+                            </div>
+                            <div id="tb-lbl" style="width: 40%;">
+                                Address
+                            </div>
+                            <div id="tb-lbl" style="width: 20%;">
+                                
+                            </div>
+
+                        </div>
+                        {% for entry in table%}
+                            <div id="main-content" class="clearfix">
+                                <div id="tb-cnt" style="width: 40%;">
+                                    {{entry.student.user.first_name}} {{entry.student.user.middle_name}} {{entry.student.user.last_name}}
+                                </div>
+                                <div id="tb-cnt" style="width: 40%;">
+
+                                    {{entry.student.lot}} {{entry.student.street}} {{entry.student.village}} {{entry.student.city}}
+                                </div>
+                                <div id="tb-cnt" style="width: 20%;">
+                                    <a href="{%url 'add-pickup' entry.student.user.id %}"><div class="btn">Set Time</div></a>
+                                </div>
+                            </div>
+                        {%endfor%}
+                    </div>
+                {%else%}
                 <div id="content">
                     <div id="table-label" class="clearfix">
                         <div id="tb-lbl" style="width: 40%;">
@@ -135,21 +183,13 @@
                         </div>
 
                     </div>
-                    {% for entry in table%}
                         <div id="main-content" class="clearfix">
-                            <div id="tb-cnt" style="width: 40%;">
-                                {{entry.student.user.first_name}} {{entry.student.user.middle_name}} {{entry.student.user.last_name}}
-                            </div>
-                            <div id="tb-cnt" style="width: 40%;">
-
-                                {{entry.student.lot}} {{entry.student.street}} {{entry.student.village}} {{entry.student.city}}
-                            </div>
-                            <div id="tb-cnt" style="width: 20%;">
-                                <a href="{%url 'add-pickup' entry.student.user.id %}"><div class="btn">Set Time</div></a>
-                            </div>
+                            <h1>No Students Enrolled</h1>
                         </div>
-                    {%endfor%}
+            
                 </div>
+                {%endif%}
+                
             </div>
         </div>
     </div>

@@ -193,9 +193,7 @@ def student_myservice(request):
        
         entry = DriverStudents.objects.get(student = request.user.profile) 
         reservation = Reservation.objects.filter(user = request.user)
-        
-        
-        
+
         
         for r in reservation:
             if r.active == True:
@@ -529,6 +527,7 @@ def driver_myservice(request):
     today = datetime.datetime.now()
     #dow = today.strftime('%A')
     dow = "Monday"
+    
     drvr_stdnt_table = DriverStudents.objects.filter(assigned_driver = request.user)
     context = {'table':drvr_stdnt_table,'dow':dow}
 
