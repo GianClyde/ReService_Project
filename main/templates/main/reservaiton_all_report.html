@@ -55,6 +55,9 @@
             
           </table>
 
+       
+          
+          {%endfor%}
           <div style="border: solid; padding: 10px;">
             <h2>Summary</h2>
             <label>No. of Reservations: {{count}}</label><br>
@@ -62,8 +65,6 @@
             <label>No. of Unpaid Reservations: {{unpaid_reservation_count}}</label><br>
             <p></p>
           </div>
-          
-          {%endfor%}
     </div>
 </body>
 </html>
